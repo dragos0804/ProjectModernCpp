@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <list>
+#include <memory>
 #include "Film.h"
 
 class User
@@ -21,6 +22,8 @@ public:
 	void SetPassword(std::string password);
 	void SetCountry(std::string country);
 
+	void leaveReview(Film& film, const int& grade);
+
 private:
 	int m_id;
 	std::string m_name;
@@ -28,6 +31,7 @@ private:
 	std::string m_dateOfBirth;
 	std::string m_password;
 	std::string m_country;
-	
+	std::list<std::shared_ptr<Film>> m_watchedMovies;
+	std::list<std::shared_ptr<Film>> m_favouriteMovies;
 };
 
