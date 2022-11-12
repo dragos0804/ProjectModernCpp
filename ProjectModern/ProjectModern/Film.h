@@ -1,14 +1,12 @@
 #pragma once
 #include <iostream>
-#include <vector>
+#include <list>
 
 class Film {
 
-// -- ENUMS --
+	// ---- ENUMS ----
 public:
-	// ar trebui sa fie legat de string cumva? 
-	//din cate stiu uint8_t ul de aici semnaleaza ca nu o sa am valori mai mult decat 2^8-1
-	enum class Genre : uint8_t{
+	enum class Genre : uint8_t {
 		action,
 		adventure,
 		comedy,
@@ -22,50 +20,77 @@ public:
 		sports,
 		thriller,
 		western,
-		family 
+		family,
+		none
 	};
 
-	enum class Actors {
-		// TODO: implement
+	enum class Actor {
+		// collected from database
 	};
 
-	enum class Producers {
-		// TODO: implement
+	enum class Producer {
+		// collected from database
 	};
 
 	enum class Studios {
-		// TODO: implement
+		// collected from database
 	};
 
-// ---- FUNCTIONS ----
+	// ---- METHODS ----
 public:
-	// constructor???
+	// ---- CONSTRUCTORS ----
+	Film(unsigned int id, unsigned int numberOfReviews, duration, float rating, std::string name, std::string releaseDate,
+		std::list<Genre> genres, std::list<Actor> actors, std::list<Producer> producers);
+	Film();
 
-	const void getFilm(const std::string name) const; // getter si dupa alti parametrii? cum?
+	// ---- GETTERS ----
+	unsigned int GetId() const;
 
-	const unsigned int getLength() const;
+	unsigned int GetDuration() const;
 
-	void setFilm(const std::string name, std::vector<Genre> genres); // setam un film si dupa genuri, right?
+	unsigned int GetNumberOfReviews() const;
 
-	void sortBy(std::vector<Film> films);
+	float GetRating() const;
 
-// ---- MEMBERS ----
+	std::string GetName() const;
+
+	std::string GetReleaseDate() const;
+
+	std::list<Genre> GetGenres() const;
+
+	std::list<Actor> GetActors() const;
+
+	std::list<Producer> GetProducers() const;
+
+	// ---- SETTERS ----
+
+	void SetNumberOfReviews(const unsigned int numberOfReviews);
+
+	void SetRating(unsigned int rating);
+
+	// TODO: AddRating method, (reviewRating + rating) /  numberOfReviews + 1
+
+	void SetName(const std::string name);
+
+	void SetGenres(const std::list<Genre> genres);
+
+	void SetActors(const std::list<Actor> actors);
+
+	void SetProducers(const std::list<Producer> producers);
+
+	// ---- MEMBERS ----
 private:
 	unsigned int m_id;
-	std::string m_name;
-	Genre m_genre : 1;
-	std::string m_dateOfRelease; // posibila schimbare in alt tip in functie de utilitati
-	Actors m_actors;
-	Producers m_producers;
-	Studios m_studios;
-	float m_rating;
+	unsigned int m_duration; // use ceil for seconds 
 	unsigned int m_numberOfReviews;
-	unsigned int m_duration; // setter using ceil for seconds 
 
-	// ---- EXTRA ----
-	// 
-	// sequel/ prequel?
-	// age restriction?
-	// 
-	// -----------
+	float m_rating;
+
+	std::string m_name;
+	std::string m_releaseDate;
+
+	std::list<Genre> m_genres;
+	std::list<Actor> m_actors;
+	std::list<Producer> m_producers;
+
 };
