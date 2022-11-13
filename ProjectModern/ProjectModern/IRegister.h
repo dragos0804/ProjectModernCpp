@@ -15,15 +15,15 @@ public:
 
 	virtual void SetCountry(std::string country) = 0;
 
-	virtual std::string GetName() = 0;
+	virtual std::string GetName() const = 0;
 
-	virtual std::string GetUsername() = 0;
+	virtual std::string GetUsername() const = 0;
 
-	virtual std::string GetPassword() = 0;
+	virtual std::string GetPassword() const = 0;
 
-	virtual std::string GetDateOfBirth() = 0;
+	virtual std::string GetDateOfBirth() const = 0;
 
-	virtual std::string GetCountry() = 0;
+	virtual std::string GetCountry() const = 0;
 
 	virtual void CreateUser() = 0;
 
