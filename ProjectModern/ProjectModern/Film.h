@@ -39,9 +39,8 @@ public:
 	// ---- METHODS ----
 public:
 	// ---- CONSTRUCTORS ----
-	Film(unsigned int id, unsigned int numberOfReviews, duration, float rating, std::string name, std::string releaseDate,
+	Film(unsigned int id, unsigned int numberOfReviews, unsigned int duration, float rating, std::string name, std::string releaseDate,
 		std::list<Genre> genres, std::list<Actor> actors, std::list<Producer> producers);
-	Film();
 
 	// ---- GETTERS ----
 	unsigned int GetId() const;
@@ -68,8 +67,6 @@ public:
 
 	void SetRating(unsigned int rating);
 
-	// TODO: AddRating method, (reviewRating + rating) /  numberOfReviews + 1
-
 	void SetName(const std::string name);
 
 	void SetGenres(const std::list<Genre> genres);
@@ -81,7 +78,7 @@ public:
 	// ---- MEMBERS ----
 private:
 	unsigned int m_id;
-	unsigned int m_duration; // use ceil for seconds 
+	unsigned int m_duration;
 	unsigned int m_numberOfReviews;
 
 	float m_rating;
