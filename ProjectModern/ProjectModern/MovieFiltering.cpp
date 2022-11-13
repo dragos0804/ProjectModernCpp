@@ -1,6 +1,6 @@
 #include "MovieFiltering.h"
 
-void MovieFiltering::SortBy(const unsigned int& option)
+void MovieFiltering::SortBy(const uint8_t& option)
 {
 	switch(option)
 	{
@@ -19,4 +19,14 @@ bool MovieFiltering::ComparatorLengthName(const Film& film1, const Film& film2)
 bool MovieFiltering::ComparatorDuration(const Film& film1, const Film& film2)
 {
 	return film1.GetDuration() < film2.GetDuration();
+}
+
+bool MovieFiltering::ComparatorRating(const Film& film1, const Film& film2)
+{
+	return film1.GetRating() < film2.GetRating();
+}
+
+bool MovieFiltering::ComparatorReleaseDate(const Film& film1, const Film& film2)
+{
+	return film1.GetReleaseDate() < film2.GetReleaseDate();
 }
