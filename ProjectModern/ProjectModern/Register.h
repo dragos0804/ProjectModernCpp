@@ -28,6 +28,8 @@ public:
 
 	std::string GetCountry() const override;
 
+	int GetId();
+
 	void CreateUser() override;
 
 

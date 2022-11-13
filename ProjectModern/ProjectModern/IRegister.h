@@ -9,11 +9,11 @@ public:
 
 	virtual void SetUsername(const std::string& username) = 0;
 
-	virtual void SetPassword(std::string password) = 0;
+	virtual void SetPassword(const std::string& password) = 0;
 
-	virtual void SetDateOfBirth(std::string dateOfBirth) = 0;
+	virtual void SetDateOfBirth(const std::string& dateOfBirth) = 0;
 
-	virtual void SetCountry(std::string country) = 0;
+	virtual void SetCountry(const std::string& country) = 0;
 
 	virtual std::string GetName() const = 0;
 
