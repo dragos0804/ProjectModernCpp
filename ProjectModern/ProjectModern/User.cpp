@@ -62,7 +62,7 @@ void User::SetCountry(std::string country)
 
 void User::leaveReview(Film& film, const int& grade)
 {
-	double sumOfGrades;
+	double sumOfGrades=0.0;
 	sumOfGrades += grade;
 	double averageRating = sumOfGrades / film.GetNumberOfReviews();
 	film.SetNumberOfReviews(film.GetNumberOfReviews() + 1);
