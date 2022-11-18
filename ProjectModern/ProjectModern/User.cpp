@@ -1,10 +1,11 @@
 #include "User.h"
 
-User::User(int id, std::string name, std::string username, std::string dateOfBirth, std::string password, std::string country)
+User::User(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country)
 	: m_id(id)
 	, m_name(name)
 	, m_username(username)
 	, m_dateOfBirth(dateOfBirth)
+	, m_email(email)
 	, m_password(password)
 	, m_country(country)
 {
@@ -23,6 +24,11 @@ std::string User::GetUsername() const
 std::string User::GetDateOfBirth() const
 {
 	return m_dateOfBirth;
+}
+
+std::string User::GetEmail() const
+{
+	return m_email;
 }
 
 std::string User::GetPassword() const
@@ -48,6 +54,11 @@ void User::SetUsername(std::string username)
 void User::SetDateOfBirth(std::string dateOfBirth)
 {
 	m_dateOfBirth = dateOfBirth;
+}
+
+void User::SetEmail(std::string email)
+{
+	m_email = email;
 }
 
 void User::SetPassword(std::string password)

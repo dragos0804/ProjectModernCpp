@@ -10,6 +10,8 @@ public:
 
 	virtual void SetUsername(const std::string& username) = 0;
 
+	virtual void SetEmail(const std::string& email) = 0;
+
 	virtual void SetPassword(const std::string& password) = 0;
 
 	virtual void SetDateOfBirth(const std::string& dateOfBirth) = 0;
@@ -20,6 +22,8 @@ public:
 
 	virtual std::string GetUsername() const = 0;
 
+	virtual std::string GetEmail() const = 0;
+
 	virtual std::string GetPassword() const = 0;
 
 	virtual std::string GetDateOfBirth() const = 0;
@@ -28,5 +32,6 @@ public:
 
 	virtual void CreateUser() = 0;
 
+	virtual bool EmailValidation(const std::string& email) = 0;
 };
 
