@@ -1,11 +1,12 @@
 #include "Register.h"
 #include "User.h"
 
-Register::Register(int id, std::string name, std::string username, std::string dateOfBirth, std::string password, std::string country)
+Register::Register(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country)
 	: m_id(id)
 	, m_name(name)
 	, m_username(username)
 	, m_dateOfBirth(dateOfBirth)
+	, m_email(email)
 	, m_password(password)
 	, m_country (country)
 {
@@ -19,6 +20,11 @@ void Register::SetName(const std::string& name)
 void Register::SetUsername(const std::string& username)
 {
 	m_username = username;
+}
+
+void Register::SetEmail(const std::string& email)
+{
+	m_email = email;
 }
 
 void Register::SetPassword(const std::string& password)
@@ -46,6 +52,11 @@ std::string Register::GetUsername() const
 	return m_username;
 }
 
+std::string Register::GetEmail() const
+{
+	return m_email;
+}
+
 std::string Register::GetPassword() const
 {
 	return std::string();
@@ -69,6 +80,14 @@ int Register::GetId()
 
 void Register::CreateUser()
 {
-	User(m_id, m_name, m_username, m_dateOfBirth, m_password, m_country);
+	User(m_id, m_name, m_username, m_dateOfBirth, m_email, m_password, m_country);
 	//TODO: Add in database
+}
+
+bool Register::EmailValidation(const std::string& email) 
+{
+	const std::regex emailPattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
+	if (std::regex_match(email, emailPattern))
+		return true;
+	return false;
 }
