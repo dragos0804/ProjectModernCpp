@@ -8,7 +8,7 @@ class User
 {
 public:
 	User();
-	User(int m_id, std::string name, std::string username, std::string dateOfBirth, std::string password, std::string country);
+	User(int id, std::string name, std::string username, std::string dateOfBirth, std::string password, std::string country);
 
 	std::string GetName() const;
 	std::string GetUsername() const;
