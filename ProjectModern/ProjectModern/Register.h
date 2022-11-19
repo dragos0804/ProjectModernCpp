@@ -39,6 +39,8 @@ public:
 
 	bool EmailValidation(const std::string& email) override;
 
+	bool UsernameValidation(const std::string& username) override;
+
 
 
 private:

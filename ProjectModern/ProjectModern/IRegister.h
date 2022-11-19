@@ -33,5 +33,7 @@ public:
 	virtual void CreateUser() = 0;
 
 	virtual bool EmailValidation(const std::string& email) = 0;
+
+	virtual bool UsernameValidation(const std::string& username) = 0;
 };
 
