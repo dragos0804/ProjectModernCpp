@@ -91,3 +91,14 @@ bool Register::EmailValidation(const std::string& email)
 		return true;
 	return false;
 }
+
+
+bool Register::UsernameValidation(const std::string& username)
+{
+	//small letters, digits and underscore only, minimum/maximum length is 4/15
+	const std::regex usernamePattern("^[a-z0-9_]{4,15}$");
+	if (std::regex_match(username, usernamePattern))
+		return true;
+	return false;
+}
+
