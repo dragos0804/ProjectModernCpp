@@ -65,7 +65,7 @@ public:
 
 	void SetNumberOfReviews(const unsigned int numberOfReviews);
 
-	void SetRating(unsigned int rating);
+	void SetRating(float rating);
 
 	void SetName(const std::string name);
 

@@ -66,7 +66,7 @@ void Film::SetNumberOfReviews(const unsigned int numberOfReviews)
 	m_numberOfReviews = numberOfReviews;
 }
 
-void Film::SetRating(unsigned int rating)
+void Film::SetRating(float rating)
 {
 	m_rating = rating;
 }

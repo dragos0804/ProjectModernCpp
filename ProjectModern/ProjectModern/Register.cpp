@@ -59,7 +59,7 @@ std::string Register::GetEmail() const
 
 std::string Register::GetPassword() const
 {
-	return std::string();
+	return m_password;
 }
 
 std::string Register::GetDateOfBirth() const
@@ -99,6 +99,30 @@ bool Register::UsernameValidation(const std::string& username)
 	const std::regex usernamePattern("^[a-z0-9_]{4,15}$");
 	if (std::regex_match(username, usernamePattern))
 		return true;
+	return false;
+}
+
+bool Register::PasswordValidation(const std::string& password)
+{
+	uint8_t capital_letters = 0, digits = 0;
+	bool special_characters = false;
+
+	for (auto& current_char : password) {
+		if (islower(current_char))
+			continue;
+		else if (isupper(current_char))
+			capital_letters++;
+		else if (isdigit(current_char))
+			digits++;
+		else
+			special_characters = true;
+	}
+
+	// TODO: PasswordSecurityLevel();
+
+	if (password.length() >= 7 && capital_letters && digits) 
+		return true;
+
 	return false;
 }
 

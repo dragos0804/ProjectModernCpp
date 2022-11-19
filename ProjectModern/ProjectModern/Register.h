@@ -41,7 +41,7 @@ public:
 
 	bool UsernameValidation(const std::string& username) override;
 
-
+	bool PasswordValidation(const std::string& password) override;
 
 private:
 	int m_id;
