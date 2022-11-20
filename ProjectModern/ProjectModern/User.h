@@ -4,6 +4,8 @@
 #include <memory>
 #include "Film.h"
 
+using IMoviePtr = std::shared_ptr<class IMovie>;
+
 class User
 {
 public:
@@ -26,6 +28,8 @@ public:
 
 	void leaveReview(Film& film, const int& grade);
 
+	void AddMovieToWatched(IMoviePtr movie);
+
 private:
 	int m_id;
 	std::string m_name;
@@ -34,7 +38,7 @@ private:
 	std::string m_email;
 	std::string m_password;
 	std::string m_country;
-	std::list<std::shared_ptr<Film>> m_watchedMovies;
-	std::list<std::shared_ptr<Film>> m_favouriteMovies;
+	std::list<IMoviePtr> m_watchedMovies;
+	std::list<IMoviePtr> m_favouriteMovies;
 };
 

@@ -79,3 +79,8 @@ void User::leaveReview(Film& film, const int& grade)
 	film.SetNumberOfReviews(film.GetNumberOfReviews() + 1);
 	film.SetRating(averageRating);
 }
+
+void User::AddMovieToWatched(IMoviePtr movie)
+{
+	m_watchedMovies.emplace_back(movie);
+}

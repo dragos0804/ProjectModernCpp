@@ -2,26 +2,27 @@
 #include <iostream>
 #include <list>
 
+
 class Film {
 
 	// ---- ENUMS ----
 public:
 	enum class Genre : uint8_t {
-		action,
-		adventure,
-		comedy,
-		drama,
-		fantasy,
-		horror,
-		musicals,
-		mystery,
-		romance,
-		science_fiction,
-		sports,
-		thriller,
-		western,
-		family,
-		none
+		Action,
+		Adventure,
+		Comedy,
+		Drama,
+		Fantasy,
+		Horror,
+		Musicals,
+		Mystery,
+		Romance,
+		Science_fiction,
+		Sports,
+		Thriller,
+		Western,
+		Family,
+		None
 	};
 
 	enum class Actor {
