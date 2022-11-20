@@ -2,6 +2,8 @@
 #include "User.h"
 #include "Register.h"
 #include "IRegister.h"
+#include "ILogin.h"
+#include "Login.h"
 
 int main()
 {
@@ -29,4 +31,18 @@ int main()
     {
         std::cout << "Username invalid" << std::endl;
     }
+
+    User u;
+    u.SetUsername(username);
+    u.SetPassword("parola");
+
+
+
+    Login l(username, "parola");
+    if (l.VerifyMatchUserToPassword(u) == true)
+        std::cout << "Login successful" << std::endl;
+
+    Login l1(username, "parolaP");
+    if (l1.VerifyMatchUserToPassword(u) == false)
+        std::cout << "Login failed" << std::endl;
 }

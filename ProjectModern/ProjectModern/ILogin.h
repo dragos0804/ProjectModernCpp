@@ -4,6 +4,7 @@
 
 class ILogin
 {
+public:
 	virtual ~ILogin() = default;
 
 	virtual std::string GetUsernameInput() const = 0;
