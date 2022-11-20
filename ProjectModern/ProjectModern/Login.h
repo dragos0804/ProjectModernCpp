@@ -8,8 +8,6 @@ public:
 
 	std::string GetUsernameInput() const;
 	std::string GetPasswordInput() const;
-	void SetUsernameInput(const std::string& username);
-	void SetPasswordInput(const std::string& password);
 
 	bool VerifyMatchUserToPassword(const User& user);
 private:
