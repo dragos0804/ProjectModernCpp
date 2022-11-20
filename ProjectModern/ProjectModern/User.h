@@ -29,6 +29,7 @@ public:
 	void leaveReview(Film& film, const int& grade);
 
 	void AddMovieToWatched(IMoviePtr movie);
+	void AddMovieToFavourites(IMoviePtr movie);
 
 private:
 	int m_id;

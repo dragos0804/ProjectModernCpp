@@ -9,6 +9,8 @@ User::User(int id, std::string name, std::string username, std::string dateOfBir
 	, m_password(password)
 	, m_country(country)
 {
+	m_favouriteMovies = {};
+	m_watchedMovies = {};
 }
 
 std::string User::GetName() const
@@ -83,4 +85,9 @@ void User::leaveReview(Film& film, const int& grade)
 void User::AddMovieToWatched(IMoviePtr movie)
 {
 	m_watchedMovies.emplace_back(movie);
+}
+
+void User::AddMovieToFavourites(IMoviePtr movie)
+{
+	m_favouriteMovies.emplace_back(movie);
 }
