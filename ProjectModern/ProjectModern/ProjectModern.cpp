@@ -83,7 +83,10 @@ int main()
         std::cout << movie.GetName() << " ";
     std::cout << std::endl;*/
 
-
+    r.SetPassword("ParolaNoua1");
+    r.PasswordValidation(r.GetPassword());
+    r.SetPassword("ParolaPuternica123!");
+    r.PasswordValidation(r.GetPassword());
 
     return 0;
 }
