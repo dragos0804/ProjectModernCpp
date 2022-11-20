@@ -45,6 +45,8 @@ public:
 
 	bool PasswordValidation(const std::string& password) override;
 
+	std::string PasswordSecurityLevel(const int length, const uint8_t capital_letters, const uint8_t digits, bool special_characters) override;
+
 private:
 	int m_id;
 	std::string m_name;

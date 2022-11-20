@@ -126,11 +126,27 @@ bool Register::PasswordValidation(const std::string& password)
 			special_characters = true;
 	}
 
-	// TODO: PasswordSecurityLevel();
+	std::cout << PasswordSecurityLevel(password.length(), capital_letters, digits, special_characters) << std::endl;
 
 	if (password.length() >= 7 && capital_letters && digits) 
 		return true;
 
 	return false;
+}
+
+std::string Register::PasswordSecurityLevel(const int length, const uint8_t capital_letters, const uint8_t digits, bool special_characters)
+{
+	if (length >= 13 && special_characters && capital_letters >= 2 && digits >= 2) {
+		return "Strong password!";
+	}
+	else if (length >= 10 && capital_letters >= 2 && digits >= 2) {
+		return "Medium password: for better security you must have at least 13 characters, 2 capital leters, 2 digits and one special character.";
+	}
+	else if (length >= 7 && capital_letters >= 1 && digits >= 1) {
+		return "Weak password : for better security you must have at least 10 characters, 1 capital leters, 1 digits.";
+	}
+	else {
+		return "Invalid password: You must have at least 7 characters, 1 capital leter, 1 digit.";
+	}
 }
 
