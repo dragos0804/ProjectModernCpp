@@ -39,7 +39,9 @@ public:
 
 	bool EmailValidation(const std::string& email) override;
 
-	bool UsernameValidation(const std::string& username) override;
+	bool UsernameValidation(const std::string& username, std::vector<User>& users) override;
+
+	bool CheckUniqueUsername(std::vector<User>& users) override;
 
 	bool PasswordValidation(const std::string& password) override;
 

@@ -1,5 +1,8 @@
 #pragma once
 #include <string>
+#include "User.h"
+#include <vector>
+
 class IRegister
 {
 public:
@@ -34,7 +37,9 @@ public:
 
 	virtual bool EmailValidation(const std::string& email) = 0;
 
-	virtual bool UsernameValidation(const std::string& username) = 0;
+	virtual bool UsernameValidation(const std::string& username, std::vector<User>& users) = 0;
+	
+	virtual bool CheckUniqueUsername(std::vector<User>& users) = 0;
 
 	virtual bool PasswordValidation(const std::string& password) = 0;
 };

@@ -93,13 +93,21 @@ bool Register::EmailValidation(const std::string& email)
 }
 
 
-bool Register::UsernameValidation(const std::string& username)
+bool Register::UsernameValidation(const std::string& username, std::vector<User>& users)
 {
 	//small letters, digits and underscore only, minimum/maximum length is 4/15
 	const std::regex usernamePattern("^[a-z0-9_]{4,15}$");
-	if (std::regex_match(username, usernamePattern))
+	if (std::regex_match(username, usernamePattern) && CheckUniqueUsername(users) == true)
 		return true;
 	return false;
+}
+
+bool Register::CheckUniqueUsername(std::vector<User>& users)
+{
+	for (auto& user : users)
+		if (user.GetName() == m_username)
+			return false;
+	return true;
 }
 
 bool Register::PasswordValidation(const std::string& password)

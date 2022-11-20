@@ -25,10 +25,14 @@ public:
 	};
 
 	enum class Actor {
+		A1,
+		A2
 		// collected from database
 	};
 
 	enum class Producer {
+		P1,
+		P2
 		// collected from database
 	};
 
