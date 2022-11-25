@@ -143,8 +143,12 @@
     <ClInclude Include="IRegister.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="MovieFiltering.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="Register.h" />
     <ClInclude Include="User.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="netflix_titles.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
