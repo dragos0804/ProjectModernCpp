@@ -44,5 +44,7 @@ public:
 	virtual bool PasswordValidation(const std::string& password) = 0;
 
 	virtual std::string PasswordSecurityLevel(const int length, const uint8_t capital_letters, const uint8_t digits, bool special_characters) = 0;
+
+	virtual bool AgeValidation(const std::string& dateOfBirth) = 0;
 };
 

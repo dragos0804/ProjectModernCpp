@@ -1,46 +1,56 @@
 #include <iostream>
-//#include "User.h"
-//#include "Register.h"
-//#include "IRegister.h"
-//#include "ILogin.h"
-//#include "Login.h"
-//#include "MovieFiltering.h"
+#include "User.h"
+#include "Register.h"
+#include "IRegister.h"
+#include "ILogin.h"
+#include "Login.h"
+#include "MovieFiltering.h"
 #include "Parser.h"
 
 int main()
 {
-  //  std::cout << "Hello World!\n";
+    std::cout << "Hello World!\n";
 
-  //  std::string email = "denisachete1223yahoo.com";
-  //  std::string username = "_denisa30";
-  //  Register r(1, "Denisa Chete", username, "12-12-2022", email, "parola", "Romania");
+    std::string email = "denisachete1223yahoo.com";
+    std::string username = "_denisa30";
+    std::string dateOfBirth = "2002-01-30";
+    Register r(1, "Denisa Chete", username, dateOfBirth, email, "parola", "Romania");
 
-  //  std::vector<User> users;
-  //  
-  //  if (r.CheckUniqueUsername(users))
-  //      std::cout << "registered" << std::endl;
-  //  User user1(1, "Denisa Chete", username, "12-12-2022", email, "parola", "Romania");
-  //  users.push_back(user1);
-  //  if (r.CheckUniqueUsername(users))
-  //      std::cout << "registration failed" << std::endl;
+   /* std::vector<User> users;
+    
+    if (r.CheckUniqueUsername(users))
+        std::cout << "registered" << std::endl;
+    User user1(1, "Denisa Chete", username, "12-12-2022", email, "parola", "Romania");
+    users.push_back(user1);
+    if (r.CheckUniqueUsername(users))
+        std::cout << "registration failed" << std::endl;
 
-  //  if (r.EmailValidation(email))
-  //  {
-  //      std::cout << "Email valid" << std::endl;
-  //  }
-  //  else
-  //  {
-  //      std::cout << "Email invalid" << std::endl;
-  //  }
+    if (r.EmailValidation(email))
+    {
+        std::cout << "Email valid" << std::endl;
+    }
+    else
+    {
+        std::cout << "Email invalid" << std::endl;
+    }
 
-  //  if (r.UsernameValidation(username, users))
-  //  {
-  //      std::cout << "Username valid" << std::endl;
-  //  }
-  //  else
-  //  {
-  //      std::cout << "Username invalid" << std::endl;
-  //  }
+    if (r.UsernameValidation(username, users))
+    {
+        std::cout << "Username valid" << std::endl;
+    }
+    else
+    {
+        std::cout << "Username invalid" << std::endl;
+    }*/
+
+    if (r.AgeValidation(dateOfBirth))
+    {
+        std::cout << "Valid age";
+    }
+    else
+    {
+        std::cout << "Invalid age";
+    }
 
   //  User u;
   //  u.SetUsername(username);
@@ -89,7 +99,7 @@ int main()
   //  r.SetPassword("ParolaPuternica123!");
   //  r.PasswordValidation(r.GetPassword());
 
-    ParseMethod();
+   // ParseMethod();
 
     return 0;
 }

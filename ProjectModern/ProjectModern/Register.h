@@ -3,6 +3,7 @@
 #include "IRegister.h"
 #include <string>
 #include <regex>
+#include <ctime>
 
 class Register : public IRegister
 {
@@ -46,6 +47,8 @@ public:
 	bool PasswordValidation(const std::string& password) override;
 
 	std::string PasswordSecurityLevel(const int length, const uint8_t capital_letters, const uint8_t digits, bool special_characters) override;
+
+	bool AgeValidation(const std::string& dateOfBirth) override;
 
 private:
 	int m_id;
