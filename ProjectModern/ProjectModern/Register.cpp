@@ -150,3 +150,20 @@ std::string Register::PasswordSecurityLevel(const int length, const uint8_t capi
 	}
 }
 
+bool Register::AgeValidation(const std::string& dateOfBirth)
+{
+	//format YYYY-MM-DD
+	int day, month, year;
+	struct tm date = { 0 };
+	date.tm_year = atoi(dateOfBirth.substr(0, 4).c_str()) - 1900;
+	date.tm_mon = atoi(dateOfBirth.substr(5, 2).c_str()) - 1;
+	date.tm_mday = atoi(dateOfBirth.substr(8, 2).c_str());
+	time_t userDateOfBirth = mktime(&date);
+	time_t current;
+	time(&current);
+	int age = ((difftime(current, userDateOfBirth) + 86400L / 2) / 86400L) / 365;
+	if (age > 13)
+		return true;
+	return false;
+}
+
