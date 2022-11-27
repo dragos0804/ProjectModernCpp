@@ -86,6 +86,11 @@ void Film::SetName(const std::string name)
 	m_name = name;
 }
 
+void Film::SetReleaseDate(const std::string releaseDate)
+{
+	m_releaseDate = releaseDate;
+}
+
 void Film::SetGenres(const std::list<Genre> genres)
 {
 	m_genres = genres;

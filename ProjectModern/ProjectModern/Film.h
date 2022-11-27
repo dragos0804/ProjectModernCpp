@@ -78,6 +78,8 @@ public:
 
 	void SetName(const std::string name);
 
+	void SetReleaseDate(const std::string releaseDate);
+
 	void SetGenres(const std::list<Genre> genres);
 
 	void SetActors(const std::list<Actor> actors);

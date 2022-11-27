@@ -32,7 +32,8 @@ inline auto createStorage(const std::string& filename)
 			make_column("genre", &Film::SetGenres, &Film::GetGenres),
 			make_column("release_date", &Film::SetReleaseDate, &Film::GetReleaseDate),
 			make_column("duration", &Film::SetDuration, &Film::GetDuration),
-			make_column("rating", &Film::SetRating, &Film::GetRating)
+			make_column("rating", &Film::SetRating, &Film::GetRating),
+			make_column("number_of_reviews", &Film::SetNumberOfReviews, &Film::GetNumberOfReviews)
 		),
 		make_table(
 			"Series",
@@ -41,9 +42,10 @@ inline auto createStorage(const std::string& filename)
 			make_column("producers", &Film::SetProducers, &Film::GetProducers),
 			make_column("actors", &Film::SetActors, &Film::GetActors),
 			make_column("genre", &Film::SetGenres, &Film::GetGenres),
-			make_column("release_date", &Film::SetReleaseDate, &Film::GetReleaseDate),
+			make_column("release_date", &Film::SetReleaseDate, &Film::GetReleaseDate), 
 			make_column("duration", &Film::SetDuration, &Film::GetDuration),
-			make_column("rating", &Film::SetRating, &Film::GetRating)
+			make_column("rating", &Film::SetRating, &Film::GetRating),
+			make_column("number_of_reviews", &Film::SetNumberOfReviews, &Film::GetNumberOfReviews)
 		)
 	);
 
@@ -56,10 +58,11 @@ class AppStorage
 {
 public:
 	bool Initialize(const std::string& csvDataFilePath);
+	void AddUser(User& user);
 
 private:
 	void PopulateStorage(const std::string& dataFilePath);
 
-private:
+public:
 	Storage m_db = createStorage(dbFile);
 };

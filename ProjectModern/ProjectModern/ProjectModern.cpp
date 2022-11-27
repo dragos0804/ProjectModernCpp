@@ -6,6 +6,7 @@
 #include "Login.h"
 #include "MovieFiltering.h"
 #include "Parser.h"
+#include "Storage.h"
 
 int main()
 {
