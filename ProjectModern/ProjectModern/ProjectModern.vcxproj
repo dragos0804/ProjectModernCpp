@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cluster.cpp" />
     <ClCompile Include="Film.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MovieFiltering.cpp" />
@@ -139,6 +140,7 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cluster.h" />
     <ClInclude Include="Film.h" />
     <ClInclude Include="IRegister.h" />
     <ClInclude Include="Login.h" />
