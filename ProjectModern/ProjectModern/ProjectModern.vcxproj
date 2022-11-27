@@ -147,6 +147,7 @@
     <ClInclude Include="MovieFiltering.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="Register.h" />
+    <ClInclude Include="Storage.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>

@@ -62,6 +62,9 @@
     <ClInclude Include="Cluster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Storage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="netflix_titles.csv">

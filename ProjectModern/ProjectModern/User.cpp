@@ -13,6 +13,11 @@ User::User(int id, std::string name, std::string username, std::string dateOfBir
 	m_watchedMovies = {};
 }
 
+int User::GetID() const
+{
+	return m_id;
+}
+
 std::string User::GetName() const
 {
 	return m_name;
@@ -41,6 +46,11 @@ std::string User::GetPassword() const
 std::string User::GetCountry() const
 {
 	return m_country;
+}
+
+void User::SetID(int id)
+{
+	m_id = id;
 }
 
 void User::SetName(std::string name)

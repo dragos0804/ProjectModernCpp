@@ -12,6 +12,7 @@ public:
 	User() = default;
 	User(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country);
 
+	int GetID() const;
 	std::string GetName() const;
 	std::string GetUsername() const;
 	std::string GetDateOfBirth() const;
@@ -19,6 +20,7 @@ public:
 	std::string GetPassword() const;
 	std::string GetCountry() const;
 
+	void SetID(int id);
 	void SetName(std::string name);
 	void SetUsername(std::string username);
 	void SetDateOfBirth(std::string dateOfBirth);
