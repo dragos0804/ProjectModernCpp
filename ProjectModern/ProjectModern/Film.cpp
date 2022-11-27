@@ -61,6 +61,16 @@ std::list<Film::Producer> Film::GetProducers() const
 	return m_producers;
 }
 
+void Film::SetId(const unsigned int id)
+{
+	m_id = id;
+}
+
+void Film::SetDuration(const unsigned int duration)
+{
+	m_duration = duration;
+}
+
 void Film::SetNumberOfReviews(const unsigned int numberOfReviews)
 {
 	m_numberOfReviews = numberOfReviews;

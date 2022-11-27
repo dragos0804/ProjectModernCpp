@@ -68,6 +68,10 @@ public:
 
 	// ---- SETTERS ----
 
+	void SetId(const unsigned int id);
+
+	void SetDuration(const unsigned int duration);
+
 	void SetNumberOfReviews(const unsigned int numberOfReviews);
 
 	void SetRating(float rating);
