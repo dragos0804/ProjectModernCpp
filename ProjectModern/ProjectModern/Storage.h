@@ -22,7 +22,7 @@ inline auto createStorage(const std::string& filename)
 			make_column("email", &User::SetEmail, &User::GetEmail),
 			make_column("password", &User::SetPassword, &User::GetPassword),
 			make_column("country", &User::SetCountry, &User::GetCountry)
-		),
+		)/*,
 		make_table(
 			"Films",
 			make_column("id", &Film::SetId, &Film::GetId, autoincrement(), primary_key()),
@@ -46,7 +46,7 @@ inline auto createStorage(const std::string& filename)
 			make_column("duration", &Film::SetDuration, &Film::GetDuration),
 			make_column("rating", &Film::SetRating, &Film::GetRating),
 			make_column("number_of_reviews", &Film::SetNumberOfReviews, &Film::GetNumberOfReviews)
-		)
+		)*/
 	);
 
 	//TODO: type, country,date_added, listed_in,description
@@ -57,11 +57,11 @@ using Storage = decltype(createStorage(""));
 class AppStorage
 {
 public:
-	bool Initialize(const std::string& csvDataFilePath);
+	//bool Initialize(const std::string& csvDataFilePath);
 	void AddUser(User& user);
 
 private:
-	void PopulateStorage(const std::string& dataFilePath);
+	//void PopulateStorage(const std::string& dataFilePath);
 
 public:
 	Storage m_db = createStorage(dbFile);

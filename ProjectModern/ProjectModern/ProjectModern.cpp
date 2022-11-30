@@ -102,5 +102,9 @@ int main()
 
    // ParseMethod();
 
+    User user1(1, "Denisa Chete", username, "12-12-2022", email, "parola", "Romania");
+    AppStorage storage;
+    storage.AddUser(user1);
+
     return 0;
 }
