@@ -12,76 +12,75 @@ Register::Register(int id, std::string name, std::string username, std::string d
 {
 }
 
-void Register::SetName(const std::string& name)
-{
-	m_name = name;
-}
-
-void Register::SetUsername(const std::string& username)
-{
-	m_username = username;
-}
-
-void Register::SetEmail(const std::string& email)
-{
-	m_email = email;
-}
-
-void Register::SetPassword(const std::string& password)
-{
-	m_password = password;
-}
-
-void Register::SetDateOfBirth(const std::string& dateOfBirth)
-{
-	m_dateOfBirth = dateOfBirth;
-}
-
-void Register::SetCountry(const std::string& country)
-{
-	m_country = country;
-}
-
-std::string Register::GetName() const
-{
-	return m_name;
-}
-
-std::string Register::GetUsername() const
-{
-	return m_username;
-}
-
-std::string Register::GetEmail() const
-{
-	return m_email;
-}
-
-std::string Register::GetPassword() const
-{
-	return m_password;
-}
-
-std::string Register::GetDateOfBirth() const
-{
-	return m_dateOfBirth;
-}
-
-std::string Register::GetCountry() const
-{
-	return m_country;
-}
-
-int Register::GetId()
-{
-	return m_id;
-	//TODO: Take id from db or autoincrement on each new user created
-}
+//void Register::SetName(const std::string& name)
+//{
+//	m_name = name;
+//}
+//
+//void Register::SetUsername(const std::string& username)
+//{
+//	m_username = username;
+//}
+//
+//void Register::SetEmail(const std::string& email)
+//{
+//	m_email = email;
+//}
+//
+//void Register::SetPassword(const std::string& password)
+//{
+//	m_password = password;
+//}
+//
+//void Register::SetDateOfBirth(const std::string& dateOfBirth)
+//{
+//	m_dateOfBirth = dateOfBirth;
+//}
+//
+//void Register::SetCountry(const std::string& country)
+//{
+//	m_country = country;
+//}
+//
+//std::string Register::GetName() const
+//{
+//	return m_name;
+//}
+//
+//std::string Register::GetUsername() const
+//{
+//	return m_username;
+//}
+//
+//std::string Register::GetEmail() const
+//{
+//	return m_email;
+//}
+//
+//std::string Register::GetPassword() const
+//{
+//	return m_password;
+//}
+//
+//std::string Register::GetDateOfBirth() const
+//{
+//	return m_dateOfBirth;
+//}
+//
+//std::string Register::GetCountry() const
+//{
+//	return m_country;
+//}
+//
+//int Register::GetId()
+//{
+//	return m_id;
+//	//TODO: Take id from db or autoincrement on each new user created
+//}
 
 void Register::CreateUser()
 {
-	User(m_id, m_name, m_username, m_dateOfBirth, m_email, m_password, m_country);
-	//TODO: Add in database
+	
 }
 
 bool Register::EmailValidation(const std::string& email) 
@@ -93,19 +92,20 @@ bool Register::EmailValidation(const std::string& email)
 }
 
 
-bool Register::UsernameValidation(const std::string& username, std::vector<User>& users)
+bool Register::UsernameValidation(const std::string& username, AppStorage& appStorage)
 {
 	//small letters, digits and underscore only, minimum/maximum length is 4/15
 	const std::regex usernamePattern("^[a-z0-9_]{4,15}$");
-	if (std::regex_match(username, usernamePattern) && CheckUniqueUsername(users) == true)
+	if (std::regex_match(username, usernamePattern) && CheckUniqueUsername(username, appStorage) == true)
 		return true;
 	return false;
 }
 
-bool Register::CheckUniqueUsername(std::vector<User>& users)
+bool Register::CheckUniqueUsername(const std::string& username, AppStorage& appStorage)
 {
-	for (auto& user : users)
-		if (user.GetName() == m_username)
+	auto selectQueryUsernames =  appStorage.m_db.get_all<User>(where(c(&User::GetUsername) != username));
+	for (const auto& user : selectQueryUsernames)
+		if (user.GetUsername() == username)
 			return false;
 	return true;
 }

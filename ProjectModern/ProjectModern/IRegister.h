@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "User.h"
+#include "Storage.h"
 #include <vector>
 
 class IRegister
@@ -9,7 +10,7 @@ public:
 
 	virtual ~IRegister() = default;
 
-	virtual void SetName(const std::string& name) = 0;
+	/*virtual void SetName(const std::string& name) = 0;
 
 	virtual void SetUsername(const std::string& username) = 0;
 
@@ -31,15 +32,15 @@ public:
 
 	virtual std::string GetDateOfBirth() const = 0;
 
-	virtual std::string GetCountry() const = 0;
+	virtual std::string GetCountry() const = 0;*/
 
 	virtual void CreateUser() = 0;
 
 	virtual bool EmailValidation(const std::string& email) = 0;
 
-	virtual bool UsernameValidation(const std::string& username, std::vector<User>& users) = 0;
+	virtual bool UsernameValidation(const std::string& username, AppStorage& appStorage) = 0;
 	
-	virtual bool CheckUniqueUsername(std::vector<User>& users) = 0;
+	virtual bool CheckUniqueUsername(const std::string& username, AppStorage& appStorage) = 0;
 
 	virtual bool PasswordValidation(const std::string& password) = 0;
 
