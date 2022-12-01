@@ -1,17 +1,22 @@
 #include "Film.h"
 #include <algorithm>
 
-Film::Film(unsigned int id, unsigned int numberOfReviews, unsigned int duration, float rating, std::string name
-	, std::string releaseDate, std::list<Genre> genres, std::list<Actor> actors, std::list<Producer> producers)
-	: m_id(id) 
+
+
+Film::Film(unsigned int id, unsigned int numberOfReviews, unsigned int duration, float rating, std::string type, std::string title, std::string ageRange, std::string description, uint16_t releaseYear, std::vector<std::string> genres, std::vector<std::string> cast, std::vector<std::string> director, std::vector<std::string> country)
+	: m_id(id)
 	, m_numberOfReviews(numberOfReviews)
 	, m_duration(duration)
 	, m_rating(rating)
-	, m_name(name)
-	, m_releaseDate(releaseDate)
+	, m_type(type)
+	, m_title(title)
+	, m_ageRange(ageRange)
+	, m_description(description)
+	, m_releaseYear(releaseYear)
 	, m_genres(genres)
-	, m_actors(actors)
-	, m_producers(producers)
+	, m_cast(cast)
+	, m_director(director)
+	, m_country(country)
 {
 }
 
@@ -19,6 +24,11 @@ Film::Film(unsigned int id, unsigned int numberOfReviews, unsigned int duration,
 unsigned int Film::GetId() const
 {
 	return m_id;
+}
+
+std::string Film::GetType() const
+{
+	return m_type;
 }
 
 unsigned int Film::GetDuration() const
@@ -36,34 +46,54 @@ float Film::GetRating() const
 	return m_rating;
 }
 
-std::string Film::GetName() const
+std::string Film::GetTitle() const
 {
-	return m_name;
+	return m_title;
 }
 
-std::string Film::GetReleaseDate() const
+uint16_t Film::GetReleaseYear() const
 {
-	return m_releaseDate;
+	return m_releaseYear;
 }
 
-std::list<Film::Genre> Film::GetGenres() const
+std::vector<std::string> Film::GetGenres() const
 {
 	return m_genres;
 }
 
-std::list<Film::Actor> Film::GetActors() const
+std::vector<std::string> Film::GetCast() const
 {
-	return m_actors;
+	return m_cast;
 }
 
-std::list<Film::Producer> Film::GetProducers() const
+std::vector<std::string> Film::GetDirector() const
 {
-	return m_producers;
+	return m_director;
+}
+
+std::string Film::GetDescription() const
+{
+	return m_description;
+}
+
+std::vector<std::string> Film::GetCountry() const
+{
+	return m_country;
+}
+
+std::string Film::GetAgeRange() const
+{
+	return m_ageRange;
 }
 
 void Film::SetId(const unsigned int id)
 {
 	m_id = id;
+}
+
+void Film::SetType(const std::string type)
+{
+	m_type = type;
 }
 
 void Film::SetDuration(const unsigned int duration)
@@ -81,27 +111,42 @@ void Film::SetRating(float rating)
 	m_rating = rating;
 }
 
-void Film::SetName(const std::string name)
+void Film::SetTitle(const std::string title)
 {
-	m_name = name;
+	m_title = title;
 }
 
-void Film::SetReleaseDate(const std::string releaseDate)
+void Film::SetReleaseYear(const uint16_t releaseYear)
 {
-	m_releaseDate = releaseDate;
+	m_releaseYear = releaseYear;
 }
 
-void Film::SetGenres(const std::list<Genre> genres)
+void Film::SetGenres(const std::vector<std::string> genres)
 {
 	m_genres = genres;
 }
 
-void Film::SetActors(const std::list<Actor> actors)
+void Film::SetCast(const std::vector<std::string> cast)
 {
-	m_actors = actors;
+	m_cast = cast;
 }
 
-void Film::SetProducers(const std::list<Producer> producers)
+void Film::SetDirector(const std::vector<std::string> director)
 {
-	m_producers = producers;
+	m_director = director;
+}
+
+void Film::SetDescription(const std::string description)
+{
+	m_description = description;
+}
+
+void Film::SetCountry(const std::vector<std::string> country)
+{
+	m_country = country;
+}
+
+void Film::SetAgeRange(const std::string ageRange)
+{
+	m_ageRange = ageRange;
 }
