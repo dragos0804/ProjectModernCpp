@@ -1,86 +1,63 @@
 #include "Register.h"
 #include "User.h"
 
-Register::Register(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country)
-	: m_id(id)
-	, m_name(name)
-	, m_username(username)
-	, m_dateOfBirth(dateOfBirth)
-	, m_email(email)
-	, m_password(password)
-	, m_country (country)
+void Register::CreateUser(AppStorage& appStorage)
 {
-}
+	//work in progress - bug occurs when reading the first line, no issues otherwise
+	User user;
+	std::string str;
+	std::cout << "Register a new account\n";
 
-//void Register::SetName(const std::string& name)
-//{
-//	m_name = name;
-//}
-//
-//void Register::SetUsername(const std::string& username)
-//{
-//	m_username = username;
-//}
-//
-//void Register::SetEmail(const std::string& email)
-//{
-//	m_email = email;
-//}
-//
-//void Register::SetPassword(const std::string& password)
-//{
-//	m_password = password;
-//}
-//
-//void Register::SetDateOfBirth(const std::string& dateOfBirth)
-//{
-//	m_dateOfBirth = dateOfBirth;
-//}
-//
-//void Register::SetCountry(const std::string& country)
-//{
-//	m_country = country;
-//}
-//
-//std::string Register::GetName() const
-//{
-//	return m_name;
-//}
-//
-//std::string Register::GetUsername() const
-//{
-//	return m_username;
-//}
-//
-//std::string Register::GetEmail() const
-//{
-//	return m_email;
-//}
-//
-//std::string Register::GetPassword() const
-//{
-//	return m_password;
-//}
-//
-//std::string Register::GetDateOfBirth() const
-//{
-//	return m_dateOfBirth;
-//}
-//
-//std::string Register::GetCountry() const
-//{
-//	return m_country;
-//}
-//
-//int Register::GetId()
-//{
-//	return m_id;
-//	//TODO: Take id from db or autoincrement on each new user created
-//}
+	std::cout << "Enter your name: \n";
+	std::getline (std::cin, str);
+	user.SetName(str);
+	std::cout << "\n";
 
-void Register::CreateUser()
-{
-	
+	std::cout << "Enter your username: \n";
+	std::getline (std::cin, str);
+	while (UsernameValidation(str, appStorage) == false)
+	{
+		std::cout << "This username is taken. Please insert another username: \n";
+		std::getline (std::cin, str);
+	}
+	user.SetUsername(str);
+	std::cout << "\n";
+
+	std::cout << "Enter your date of birth (YYYY-MM-DD): \n";
+	std::getline (std::cin, str);
+	while (AgeValidation(str) == false)
+	{
+		std::cout << "You must be 13 or older in order to create an account. Please try again: \n";
+		std::getline (std::cin, str);
+	}
+	user.SetDateOfBirth(str);
+	std::cout << "\n";
+
+	std::cout << "Enter your email: \n";
+	std::getline (std::cin, str);
+	while (EmailValidation(str) == false) // + check unique e-mail
+	{
+		std::cout << "Invalid e-mail! Please try again: \n";
+		std::getline (std::cin, str);
+	}
+	user.SetEmail(str);
+	std::cout << "\n";
+
+	std::cout << "Set up a password (minimum 7 characters, one digit and one capital letter): \n";
+	std::getline (std::cin, str);
+	while (PasswordValidation(str) == false) // + check unique e-mail
+	{
+		std::getline (std::cin, str);
+	}
+	user.SetPassword(str);
+	std::cout << "\n";
+
+	std::cout << "Enter your country of origin: \n";
+	std::getline (std::cin, str);
+	user.SetCountry(str);
+	std::cout << "\n";
+
+	appStorage.AddUser(user);
 }
 
 bool Register::EmailValidation(const std::string& email) 

@@ -15,7 +15,6 @@ int main()
     std::string email = "denisachete1223yahoo.com";
     std::string username = "_denisa30";
     std::string dateOfBirth = "2002-01-30";
-    Register r(1, "Denisa Chete", username, dateOfBirth, email, "parola", "Romania");
 
    /* std::vector<User> users;
     
@@ -44,14 +43,14 @@ int main()
         std::cout << "Username invalid" << std::endl;
     }*/
 
-    if (r.AgeValidation(dateOfBirth))
+    /*if (r.AgeValidation(dateOfBirth))
     {
         std::cout << "Valid age";
     }
     else
     {
         std::cout << "Invalid age";
-    }
+    }*/
 
   //  User u;
   //  u.SetUsername(username);
@@ -102,11 +101,30 @@ int main()
 
    // ParseMethod();
 
-    User user1(1, "Denisa Chete", username, "12-12-2022", email, "parola", "Romania");
+   // User user1(1, "Denisa Chete", username, "12-12-2022", email, "parola", "Romania");
     AppStorage storage;
-    storage.AddUser(user1);
+   // storage.AddUser(user1);
 
-    Film film1(1, 5, 120, 3.5, "Film", "Dick Johnson Is Dead", "TV-MA", "After crossing paths at a party, a Cape Town teen sets out to prove whether a private-school swimming star is her sister who was abducted at birth.", 2016, "Action, Drama", "", "Kirsten Johnson", "United States, Romania");
-    storage.AddFilm(film1);
+   // Film film1(1, 5, 120, 3.5, "Film", "Dick Johnson Is Dead", "TV-MA", "After crossing paths at a party, a Cape Town teen sets out to prove whether a private-school swimming star is her sister who was abducted at birth.", 2016, "Action, Drama", "", "Kirsten Johnson", "United States, Romania");
+   // storage.AddFilm(film1);
+    
+    
+    int option = -1;
+    Register r;
+    std::cout << "1. Register\n2.Log in\n Choose yout option: ";
+    std::cin >> option;
+    switch (option)
+    {
+    case 1:
+    {
+        r.CreateUser(storage);
+    }
+    case 2:
+        return 0; //not testing the login part yet
+    default:
+        return 0;
+    }
+    
+
     return 0;
 }
