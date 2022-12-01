@@ -16,10 +16,10 @@ public:
 		std::string ageRange,
 		std::string description, 
 		uint16_t releaseYear,
-		std::vector<std::string> genres,
-		std::vector<std::string> cast, 
-		std::vector<std::string> director,
-		std::vector<std::string> country);
+		std::string genres,
+		std::string cast, 
+		std::string director,
+		std::string country);
 
 	// ---- GETTERS ----
 	unsigned int GetId() const;
@@ -36,15 +36,15 @@ public:
 
 	uint16_t GetReleaseYear() const;
 
-	std::vector<std::string> GetGenres() const;
+	std::string GetGenres() const;
 
-	std::vector<std::string> GetCast() const;
+	std::string GetCast() const;
 
-	std::vector<std::string> GetDirector() const;
+	std::string GetDirector() const;
 
 	std::string GetDescription() const;
 	
-	std::vector<std::string> GetCountry() const;
+	std::string GetCountry() const;
 
 	std::string GetAgeRange() const;
 
@@ -64,15 +64,15 @@ public:
 
 	void SetReleaseYear(const uint16_t releaseYear);
 
-	void SetGenres(const std::vector<std::string> genres);
+	void SetGenres(const std::string genres);
 
-	void SetCast(const std::vector<std::string> cast);
+	void SetCast(const std::string cast);
 
-	void SetDirector(const std::vector<std::string> director);
+	void SetDirector(const std::string director);
 
 	void SetDescription(const std::string description);
 
-	void SetCountry(const std::vector<std::string> country);
+	void SetCountry(const std::string country);
 
 	void SetAgeRange(const std::string ageRange);
 
@@ -91,10 +91,10 @@ private:
 
 	uint16_t m_releaseYear;
 
-	std::vector<std::string> m_genres;
-	std::vector<std::string> m_cast;
-	std::vector<std::string> m_director;
-	std::vector<std::string> m_country;
+	std::string m_genres;
+	std::string m_cast;
+	std::string m_director;
+	std::string m_country;
 
 	//add getter setter for description, country, ageRange
 	//add description to constructor

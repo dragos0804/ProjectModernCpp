@@ -3,7 +3,19 @@
 
 
 
-Film::Film(unsigned int id, unsigned int numberOfReviews, unsigned int duration, float rating, std::string type, std::string title, std::string ageRange, std::string description, uint16_t releaseYear, std::vector<std::string> genres, std::vector<std::string> cast, std::vector<std::string> director, std::vector<std::string> country)
+Film::Film(unsigned int id, 
+	unsigned int numberOfReviews, 
+	unsigned int duration, 
+	float rating, 
+	std::string type, 
+	std::string title, 
+	std::string ageRange, 
+	std::string description, 
+	uint16_t releaseYear, 
+	std::string genres, 
+	std::string cast, 
+	std::string director, 
+	std::string country)
 	: m_id(id)
 	, m_numberOfReviews(numberOfReviews)
 	, m_duration(duration)
@@ -56,17 +68,17 @@ uint16_t Film::GetReleaseYear() const
 	return m_releaseYear;
 }
 
-std::vector<std::string> Film::GetGenres() const
+std::string Film::GetGenres() const
 {
 	return m_genres;
 }
 
-std::vector<std::string> Film::GetCast() const
+std::string Film::GetCast() const
 {
 	return m_cast;
 }
 
-std::vector<std::string> Film::GetDirector() const
+std::string Film::GetDirector() const
 {
 	return m_director;
 }
@@ -76,7 +88,7 @@ std::string Film::GetDescription() const
 	return m_description;
 }
 
-std::vector<std::string> Film::GetCountry() const
+std::string Film::GetCountry() const
 {
 	return m_country;
 }
@@ -121,17 +133,17 @@ void Film::SetReleaseYear(const uint16_t releaseYear)
 	m_releaseYear = releaseYear;
 }
 
-void Film::SetGenres(const std::vector<std::string> genres)
+void Film::SetGenres(const std::string genres)
 {
 	m_genres = genres;
 }
 
-void Film::SetCast(const std::vector<std::string> cast)
+void Film::SetCast(const std::string cast)
 {
 	m_cast = cast;
 }
 
-void Film::SetDirector(const std::vector<std::string> director)
+void Film::SetDirector(const std::string director)
 {
 	m_director = director;
 }
@@ -141,7 +153,7 @@ void Film::SetDescription(const std::string description)
 	m_description = description;
 }
 
-void Film::SetCountry(const std::vector<std::string> country)
+void Film::SetCountry(const std::string country)
 {
 	m_country = country;
 }
