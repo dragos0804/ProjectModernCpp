@@ -10,8 +10,6 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
-
     std::string email = "denisachete1223yahoo.com";
     std::string username = "_denisa30";
     std::string dateOfBirth = "2002-01-30";
@@ -111,8 +109,9 @@ int main()
     
     int option = -1;
     Register r;
-    std::cout << "1. Register\n2.Log in\n Choose yout option: ";
+    std::cout << "1. Register\n2. Log in\n Choose yout option: ";
     std::cin >> option;
+    std::cin.get();
     switch (option)
     {
     case 1:

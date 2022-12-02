@@ -5,57 +5,62 @@ void Register::CreateUser(AppStorage& appStorage)
 {
 	//work in progress - bug occurs when reading the first line, no issues otherwise
 	User user;
-	std::string str;
-	std::cout << "Register a new account\n";
+	std::string str = "";
+	std::cout << "Register a new account" << std::endl;
 
-	std::cout << "Enter your name: \n";
-	std::getline (std::cin, str);
+	std::cout << "Enter your name: " << std::endl;
+	std::getline(std::cin, str);
+	
 	user.SetName(str);
-	std::cout << "\n";
+	std::cout << std::endl;
 
-	std::cout << "Enter your username: \n";
+	std::cout << "Enter your username: " << std::endl;
 	std::getline (std::cin, str);
 	while (UsernameValidation(str, appStorage) == false)
 	{
-		std::cout << "This username is taken. Please insert another username: \n";
+		std::cout << "This username is taken. Please insert another username: " << std::endl;
+		
 		std::getline (std::cin, str);
 	}
 	user.SetUsername(str);
-	std::cout << "\n";
+	std::cout << std::endl;
 
-	std::cout << "Enter your date of birth (YYYY-MM-DD): \n";
+	std::cout << "Enter your date of birth (YYYY-MM-DD): " << std::endl;
 	std::getline (std::cin, str);
 	while (AgeValidation(str) == false)
 	{
-		std::cout << "You must be 13 or older in order to create an account. Please try again: \n";
+		std::cout << "You must be 13 or older in order to create an account. Please try again: " << std::endl;
+		
 		std::getline (std::cin, str);
 	}
 	user.SetDateOfBirth(str);
-	std::cout << "\n";
+	std::cout << std::endl;
 
-	std::cout << "Enter your email: \n";
+	std::cout << "Enter your email: " << std::endl;
 	std::getline (std::cin, str);
 	while (EmailValidation(str) == false) // + check unique e-mail
 	{
-		std::cout << "Invalid e-mail! Please try again: \n";
+		std::cout << "Invalid e-mail! Please try again: " << std::endl;
+		
 		std::getline (std::cin, str);
 	}
 	user.SetEmail(str);
-	std::cout << "\n";
+	std::cout << std::endl;
 
-	std::cout << "Set up a password (minimum 7 characters, one digit and one capital letter): \n";
+	std::cout << "Set up a password (minimum 7 characters, one digit and one capital letter): " << std::endl;
 	std::getline (std::cin, str);
 	while (PasswordValidation(str) == false) // + check unique e-mail
 	{
+		
 		std::getline (std::cin, str);
 	}
 	user.SetPassword(str);
-	std::cout << "\n";
+	std::cout << std::endl;
 
-	std::cout << "Enter your country of origin: \n";
+	std::cout << "Enter your country of origin: " << std::endl;
 	std::getline (std::cin, str);
 	user.SetCountry(str);
-	std::cout << "\n";
+	std::cout << std::endl;
 
 	appStorage.AddUser(user);
 }
@@ -80,7 +85,7 @@ bool Register::UsernameValidation(const std::string& username, AppStorage& appSt
 
 bool Register::CheckUniqueUsername(const std::string& username, AppStorage& appStorage)
 {
-	auto selectQueryUsernames =  appStorage.m_db.get_all<User>(where(c(&User::GetUsername) != username));
+	auto selectQueryUsernames =  appStorage.m_db.get_all<User>();
 	for (const auto& user : selectQueryUsernames)
 		if (user.GetUsername() == username)
 			return false;
