@@ -41,7 +41,7 @@ void Register::CreateUser(AppStorage& appStorage)
 
 	std::cout << "\t\tEnter your email: ";
 	std::getline (std::cin, str);
-	while (EmailValidation(str) == false) // + check unique e-mail
+	while (EmailValidation(str, appStorage) == false) // + check unique e-mail
 	{
 		std::cout << "\t\tInvalid e-mail! Please try again: ";
 		std::getline (std::cin, str);
@@ -51,7 +51,7 @@ void Register::CreateUser(AppStorage& appStorage)
 
 	std::cout << "\t\tSet up a password (minimum 7 characters, one digit and one capital letter): ";
 	std::getline (std::cin, str);
-	while (PasswordValidation(str) == false) // + check unique e-mail
+	while (PasswordValidation(str) == false)
 	{
 		std::getline (std::cin, str);
 	}
@@ -66,12 +66,21 @@ void Register::CreateUser(AppStorage& appStorage)
 	appStorage.AddUser(user);
 }
 
-bool Register::EmailValidation(const std::string& email) 
+bool Register::EmailValidation(const std::string& email, AppStorage& appStorage)
 {
 	const std::regex emailPattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
-	if (std::regex_match(email, emailPattern))
+	if (std::regex_match(email, emailPattern) && CheckUniqueEmail(email, appStorage) == true)
 		return true;
 	return false;
+}
+
+bool Register::CheckUniqueEmail(const std::string& email, AppStorage& appStorage)
+{
+	auto selectQueryEmails = appStorage.m_db.get_all<User>();
+	for (const auto& user : selectQueryEmails)
+		if (user.GetEmail() == email)
+			return false;
+	return true;
 }
 
 

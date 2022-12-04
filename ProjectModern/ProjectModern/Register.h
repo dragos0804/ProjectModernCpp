@@ -11,8 +11,10 @@ public:
 
 	void CreateUser(AppStorage& appStorage) override;
 
-	bool EmailValidation(const std::string& email) override;
+	bool EmailValidation(const std::string& email, AppStorage& appStorage) override;
 
+	bool CheckUniqueEmail(const std::string& email, AppStorage& appStorage) override;
+	
 	bool UsernameValidation(const std::string& username, AppStorage& appStorage) override;
 
 	bool CheckUniqueUsername(const std::string& username, AppStorage& appStorage) override;

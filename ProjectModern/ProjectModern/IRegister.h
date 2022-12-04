@@ -12,7 +12,9 @@ public:
 
 	virtual void CreateUser(AppStorage& appStorage) = 0;
 
-	virtual bool EmailValidation(const std::string& email) = 0;
+	virtual bool EmailValidation(const std::string& email, AppStorage& appStorage) = 0;
+
+	virtual bool CheckUniqueEmail(const std::string& email, AppStorage& appStorage) = 0;
 
 	virtual bool UsernameValidation(const std::string& username, AppStorage& appStorage) = 0;
 	
