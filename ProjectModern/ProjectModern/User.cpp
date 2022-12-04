@@ -13,7 +13,7 @@ User::User(int id, std::string name, std::string username, std::string dateOfBir
 	//m_watchedMovies = {};
 }
 
-int User::GetID() const
+unsigned int User::GetID() const
 {
 	return m_id;
 }
@@ -48,37 +48,37 @@ std::string User::GetCountry() const
 	return m_country;
 }
 
-void User::SetID(int id)
+void User::SetID(const unsigned int& id)
 {
 	m_id = id;
 }
 
-void User::SetName(std::string name)
+void User::SetName(const std::string& name)
 {
 	m_name = name;
 }
 
-void User::SetUsername(std::string username)
+void User::SetUsername(const std::string& username)
 {
 	m_username = username;
 }
 
-void User::SetDateOfBirth(std::string dateOfBirth)
+void User::SetDateOfBirth(const std::string& dateOfBirth)
 {
 	m_dateOfBirth = dateOfBirth;
 }
 
-void User::SetEmail(std::string email)
+void User::SetEmail(const std::string& email)
 {
 	m_email = email;
 }
 
-void User::SetPassword(std::string password)
+void User::SetPassword(const std::string& password)
 {
 	m_password = password;
 }
 
-void User::SetCountry(std::string country)
+void User::SetCountry(const std::string& country)
 {
 	m_country = country;
 }

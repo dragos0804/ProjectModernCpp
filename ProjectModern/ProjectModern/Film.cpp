@@ -98,67 +98,67 @@ std::string Film::GetAgeRange() const
 	return m_ageRange;
 }
 
-void Film::SetId(const unsigned int id)
+void Film::SetId(const unsigned int& id)
 {
 	m_id = id;
 }
 
-void Film::SetType(const std::string type)
+void Film::SetType(const std::string& type)
 {
 	m_type = type;
 }
 
-void Film::SetDuration(const unsigned int duration)
+void Film::SetDuration(const unsigned int& duration)
 {
 	m_duration = duration;
 }
 
-void Film::SetNumberOfReviews(const unsigned int numberOfReviews)
+void Film::SetNumberOfReviews(const unsigned int& numberOfReviews)
 {
 	m_numberOfReviews = numberOfReviews;
 }
 
-void Film::SetRating(float rating)
+void Film::SetRating(const float& rating)
 {
 	m_rating = rating;
 }
 
-void Film::SetTitle(const std::string title)
+void Film::SetTitle(const std::string& title)
 {
 	m_title = title;
 }
 
-void Film::SetReleaseYear(const uint16_t releaseYear)
+void Film::SetReleaseYear(const uint16_t& releaseYear)
 {
 	m_releaseYear = releaseYear;
 }
 
-void Film::SetGenres(const std::string genres)
+void Film::SetGenres(const std::string& genres)
 {
 	m_genres = genres;
 }
 
-void Film::SetCast(const std::string cast)
+void Film::SetCast(const std::string& cast)
 {
 	m_cast = cast;
 }
 
-void Film::SetDirector(const std::string director)
+void Film::SetDirector(const std::string& director)
 {
 	m_director = director;
 }
 
-void Film::SetDescription(const std::string description)
+void Film::SetDescription(const std::string& description)
 {
 	m_description = description;
 }
 
-void Film::SetCountry(const std::string country)
+void Film::SetCountry(const std::string& country)
 {
 	m_country = country;
 }
 
-void Film::SetAgeRange(const std::string ageRange)
+void Film::SetAgeRange(const std::string& ageRange)
 {
 	m_ageRange = ageRange;
 }

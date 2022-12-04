@@ -6,6 +6,20 @@
 class Film {
 
 public:
+	enum class AgeRange : uint8_t {
+		G,
+		TV_G,
+		TV_Y,
+		TV_7,
+		PG,
+		TV_PG,
+		PG_13,
+		TV_14,
+		R,
+		TV_MA
+	};
+
+public:
 	// ---- CONSTRUCTORS ----
 	Film(unsigned int id,
 		unsigned int numberOfReviews, 
@@ -50,31 +64,31 @@ public:
 
 	// ---- SETTERS ----
 
-	void SetId(const unsigned int id);
+	void SetId(const unsigned int& id);
 
-	void SetType(const std::string type);
+	void SetType(const std::string& type);
 
-	void SetDuration(const unsigned int duration);
+	void SetDuration(const unsigned int& duration);
 
-	void SetNumberOfReviews(const unsigned int numberOfReviews);
+	void SetNumberOfReviews(const unsigned int& numberOfReviews);
 
-	void SetRating(float rating);
+	void SetRating(const float& rating);
 
-	void SetTitle(const std::string title);
+	void SetTitle(const std::string& title);
 
-	void SetReleaseYear(const uint16_t releaseYear);
+	void SetReleaseYear(const uint16_t& releaseYear);
 
-	void SetGenres(const std::string genres);
+	void SetGenres(const std::string& genres);
 
-	void SetCast(const std::string cast);
+	void SetCast(const std::string& cast);
 
-	void SetDirector(const std::string director);
+	void SetDirector(const std::string& director);
 
-	void SetDescription(const std::string description);
+	void SetDescription(const std::string& description);
 
-	void SetCountry(const std::string country);
+	void SetCountry(const std::string& country);
 
-	void SetAgeRange(const std::string ageRange);
+	void SetAgeRange(const std::string& ageRange);
 
 	// ---- MEMBERS ----
 private:

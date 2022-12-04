@@ -12,7 +12,7 @@ public:
 	User() = default;
 	User(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country);
 
-	int GetID() const;
+	unsigned int GetID() const;
 	std::string GetName() const;
 	std::string GetUsername() const;
 	std::string GetDateOfBirth() const;
@@ -20,13 +20,13 @@ public:
 	std::string GetPassword() const;
 	std::string GetCountry() const;
 
-	void SetID(int id);
-	void SetName(std::string name);
-	void SetUsername(std::string username);
-	void SetDateOfBirth(std::string dateOfBirth);
-	void SetEmail(std::string email);
-	void SetPassword(std::string password);
-	void SetCountry(std::string country);
+	void SetID(const unsigned int& id);
+	void SetName(const std::string& name);
+	void SetUsername(const std::string& username);
+	void SetDateOfBirth(const std::string& dateOfBirth);
+	void SetEmail(const std::string& email);
+	void SetPassword(const std::string& password);
+	void SetCountry(const std::string& country);
 
 	void leaveReview(Film& film, const int& grade);
 
@@ -34,7 +34,7 @@ public:
 	void AddMovieToFavourites(IMoviePtr movie);
 
 private:
-	int m_id;
+	unsigned int m_id;
 	std::string m_name;
 	std::string m_username;
 	std::string m_dateOfBirth;
