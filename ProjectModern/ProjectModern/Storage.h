@@ -51,6 +51,8 @@ public:
 	void AddUser(User& user);
 	void AddFilm(Film& film);
 
+	static std::vector<std::string> split(const std::string& str, const std::string& delim);
+
 private:
 	//void PopulateStorage(const std::string& dataFilePath);
 
