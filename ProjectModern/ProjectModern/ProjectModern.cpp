@@ -118,7 +118,7 @@ int main()
     std::cout << "\t\t+----------------------------------------------------+\n";
     std::cout << "\t\t|                                                    |\n";
     std::cout << "\t\t|                    1. Register                     |\n";
-    std::cout << "\t\t|                    2. Log in                       |\n";
+    std::cout << "\t\t|                    2. Login                        |\n";
     std::cout << "\t\t|                                                    |\n";
     std::cout << "\t\t+----------------------------------------------------+\n\n";
     std::cout << "\t\tChoose yout option : ";
@@ -134,8 +134,20 @@ int main()
     }
     case 2:
     {
-        std::string username;
-        std::string password;
+        std::string username="";
+        std::string password="";
+        system("CLS");
+        std::cout << "\t\t*******************************************************\n";
+        std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
+        std::cout << "\t\t*******************************************************\n\n";
+
+        std::cout << "\t\tLog into your account" << std::endl;
+
+        std::cout << "\t\tUsername: ";
+        std::cin >> username;
+        std::cout << "\t\tPassword: ";
+        std::cin >> password;
+
         Login l(username, password);
     }
     default:
