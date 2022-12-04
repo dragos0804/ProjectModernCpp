@@ -3,61 +3,62 @@
 
 void Register::CreateUser(AppStorage& appStorage)
 {
-	//work in progress - bug occurs when reading the first line, no issues otherwise
+	std::cout << "\t\t*******************************************************\n";
+	std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
+	std::cout << "\t\t*******************************************************\n\n";
+
 	User user;
 	std::string str = "";
-	std::cout << "Register a new account" << std::endl;
+	std::cout << "\t\tRegister a new account" << std::endl;
 
-	std::cout << "Enter your name: " << std::endl;
+	std::cout << "\t\tEnter your name: ";
 	std::getline(std::cin, str);
 	
 	user.SetName(str);
 	std::cout << std::endl;
 
-	std::cout << "Enter your username: " << std::endl;
+	std::cout << "\t\tEnter your username: ";
 	std::getline (std::cin, str);
 	while (UsernameValidation(str, appStorage) == false)
 	{
-		std::cout << "This username is taken. Please insert another username: " << std::endl;
+		std::cout << "\t\tThis username is taken. Please insert another username: ";
 		
 		std::getline (std::cin, str);
 	}
 	user.SetUsername(str);
 	std::cout << std::endl;
 
-	std::cout << "Enter your date of birth (YYYY-MM-DD): " << std::endl;
+	std::cout << "\t\tEnter your date of birth (YYYY-MM-DD): ";
 	std::getline (std::cin, str);
 	while (AgeValidation(str) == false)
 	{
-		std::cout << "You must be 13 or older in order to create an account. Please try again: " << std::endl;
+		std::cout << "\t\tYou must be 13 or older in order to create an account. Please try again: ";
 		
 		std::getline (std::cin, str);
 	}
 	user.SetDateOfBirth(str);
 	std::cout << std::endl;
 
-	std::cout << "Enter your email: " << std::endl;
+	std::cout << "\t\tEnter your email: ";
 	std::getline (std::cin, str);
 	while (EmailValidation(str) == false) // + check unique e-mail
 	{
-		std::cout << "Invalid e-mail! Please try again: " << std::endl;
-		
+		std::cout << "\t\tInvalid e-mail! Please try again: ";
 		std::getline (std::cin, str);
 	}
 	user.SetEmail(str);
 	std::cout << std::endl;
 
-	std::cout << "Set up a password (minimum 7 characters, one digit and one capital letter): " << std::endl;
+	std::cout << "\t\tSet up a password (minimum 7 characters, one digit and one capital letter): ";
 	std::getline (std::cin, str);
 	while (PasswordValidation(str) == false) // + check unique e-mail
 	{
-		
 		std::getline (std::cin, str);
 	}
 	user.SetPassword(str);
 	std::cout << std::endl;
 
-	std::cout << "Enter your country of origin: " << std::endl;
+	std::cout << "\t\tEnter your country of origin: ";
 	std::getline (std::cin, str);
 	user.SetCountry(str);
 	std::cout << std::endl;
@@ -119,16 +120,16 @@ bool Register::PasswordValidation(const std::string& password)
 std::string Register::PasswordSecurityLevel(const int length, const uint8_t capital_letters, const uint8_t digits, bool special_characters)
 {
 	if (length >= 13 && special_characters && capital_letters >= 2 && digits >= 2) {
-		return "Strong password!";
+		return "\t\tStrong password!";
 	}
 	else if (length >= 10 && capital_letters >= 2 && digits >= 2) {
-		return "Medium password: for better security you must have at least 13 characters, 2 capital leters, 2 digits and one special character.";
+		return "\t\tMedium password: for better security you must have at least 13 characters, 2 capital leters, 2 digits and one special character.";
 	}
 	else if (length >= 7 && capital_letters >= 1 && digits >= 1) {
-		return "Weak password : for better security you must have at least 10 characters, 1 capital leters, 1 digits.";
+		return "\t\tWeak password : for better security you must have at least 10 characters, 1 capital leters, 1 digits.";
 	}
 	else {
-		return "Invalid password: You must have at least 7 characters, 1 capital leter, 1 digit.";
+		return "\t\tInvalid password: You must have at least 7 characters, 1 capital leter, 1 digit.";
 	}
 }
 

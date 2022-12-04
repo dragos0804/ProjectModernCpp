@@ -109,17 +109,35 @@ int main()
     
     int option = -1;
     Register r;
-    std::cout << "1. Register\n2. Log in\n Choose yout option: ";
+    std::cout << "\t\t*******************************************************\n";
+    std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
+    std::cout << "\t\t*******************************************************\n\n";
+
+    std::cout << "\t\t+----------------------------------------------------+\n";
+    std::cout << "\t\t|                       MENU                         |\n";
+    std::cout << "\t\t+----------------------------------------------------+\n";
+    std::cout << "\t\t|                                                    |\n";
+    std::cout << "\t\t|                    1. Register                     |\n";
+    std::cout << "\t\t|                    2. Log in                       |\n";
+    std::cout << "\t\t|                                                    |\n";
+    std::cout << "\t\t+----------------------------------------------------+\n\n";
+    std::cout << "\t\tChoose yout option : ";
+
     std::cin >> option;
     std::cin.get();
     switch (option)
     {
     case 1:
     {
+        system("CLS");
         r.CreateUser(storage);
     }
     case 2:
-        return 0; //not testing the login part yet
+    {
+        std::string username;
+        std::string password;
+        Login l(username, password);
+    }
     default:
         return 0;
     }
