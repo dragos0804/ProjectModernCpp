@@ -22,7 +22,7 @@ bool Login::VerifyMatchUserToPassword(AppStorage& appStorage, const std::string&
 	auto selectUsers = appStorage.m_db.get_all<User>(where(c(&User::GetUsername) == usernameInput));
 	if (selectUsers.size() == 0)
 	{
-		std::cout << "\tThere is no user with the username " << "\"" << usernameInput << "\"\n";
+		std::cout << "\t\tThere is no user with the username " << "\"" << usernameInput << "\"! Please, try again.\n";
 		return false;
 	}
 	else
@@ -30,9 +30,24 @@ bool Login::VerifyMatchUserToPassword(AppStorage& appStorage, const std::string&
 		for (const auto& user : selectUsers)
 			if (user.GetPassword() != passwordInput)
 			{
-				std::cout << "\tMissmatched password";
+				std::cout << "\t\tMissmatched password! Please, try again.";
 				return false;
 			}
 	}
+	system("CLS");
+	std::cout << "\t\t*******************************************************\n";
+	std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
+	std::cout << "\t\t*******************************************************\n\n";
+
+	std::cout << "\t\t+----------------------------------------------------+\n";
+	std::cout << "\t\t|                       WELCOME!                     |\n";
+	std::cout << "\t\t+----------------------------------------------------+\n";
+	std::cout << "\t\t|                                                    |\n";
+	std::cout << "\t\t|                  You are now loged in!             |\n";
+	std::cout << "\t\t|                  Check out what's new!             |\n";
+	std::cout << "\t\t|                                                    |\n";
+	std::cout << "\t\t+----------------------------------------------------+\n\n";
+	std::cout << "\t\tPress ENTER to continue...\n";
+
 	return true;
 }

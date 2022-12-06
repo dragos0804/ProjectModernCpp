@@ -41,7 +41,7 @@ void Register::CreateUser(AppStorage& appStorage)
 
 	std::cout << "\t\tEnter your email: ";
 	std::getline (std::cin, str);
-	while (EmailValidation(str, appStorage) == false) // + check unique e-mail
+	while (EmailValidation(str, appStorage) == false)
 	{
 		std::cout << "\t\tInvalid e-mail! Please try again: ";
 		std::getline (std::cin, str);
