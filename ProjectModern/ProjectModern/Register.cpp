@@ -76,9 +76,9 @@ bool Register::EmailValidation(const std::string& email, AppStorage& appStorage)
 
 bool Register::CheckUniqueEmail(const std::string& email, AppStorage& appStorage)
 {
-	auto selectQueryEmails = appStorage.m_db.get_all<User>();
+	auto selectQueryEmails = appStorage.m_db.select(&User::GetEmail);
 	for (const auto& user : selectQueryEmails)
-		if (user.GetEmail() == email)
+		if (user == email)
 			return false;
 	return true;
 }
@@ -95,9 +95,9 @@ bool Register::UsernameValidation(const std::string& username, AppStorage& appSt
 
 bool Register::CheckUniqueUsername(const std::string& username, AppStorage& appStorage)
 {
-	auto selectQueryUsernames =  appStorage.m_db.get_all<User>();
+	auto selectQueryUsernames =  appStorage.m_db.select(&User::GetUsername);
 	for (const auto& user : selectQueryUsernames)
-		if (user.GetUsername() == username)
+		if (user == username)
 			return false;
 	return true;
 }
