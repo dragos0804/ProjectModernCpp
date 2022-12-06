@@ -42,6 +42,9 @@
     <ClCompile Include="KMeans.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ILogin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Film.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="KMeans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ILogin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

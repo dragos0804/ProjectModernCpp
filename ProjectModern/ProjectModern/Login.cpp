@@ -30,7 +30,7 @@ bool Login::VerifyMatchUserToPassword(AppStorage& appStorage, const std::string&
 		for (const auto& user : selectUsers)
 			if (user.GetPassword() != passwordInput)
 			{
-				std::cout << "\t\tMissmatched password! Please, try again.";
+				std::cout << "\t\tMissmatched password! Please, try again.\n";
 				return false;
 			}
 	}

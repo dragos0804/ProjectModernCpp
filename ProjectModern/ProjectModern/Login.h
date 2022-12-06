@@ -1,6 +1,7 @@
 #pragma once
 #include <limits>
 #include <string>
+#include <dos.h>
 #include "ILogin.h"
 #include "User.h"
 

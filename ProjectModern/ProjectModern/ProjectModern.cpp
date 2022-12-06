@@ -144,11 +144,24 @@ int main()
         std::cout << "\t\tLog into your account" << std::endl;
 
         std::cout << "\t\tUsername: ";
-        std::cin >> username;
+        std::getline(std::cin, username);
         std::cout << "\t\tPassword: ";
-        std::cin >> password;
+        std::getline(std::cin, password);
 
         Login l(username, password);
+        bool verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password);
+        while (!verifiedLoginStatus)
+        {
+
+            std::cout << "\t\tLog into your account" << std::endl;
+
+            std::cout << "\t\tUsername: ";
+            std::getline(std::cin, username);
+            std::cout << "\t\tPassword: ";
+            std::getline(std::cin, password);
+
+            verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password);
+        }
     }
     default:
         return 0;
