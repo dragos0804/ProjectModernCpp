@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "User.h"
+#include "Storage.h"
 
 class ILogin
 {
@@ -11,6 +12,6 @@ public:
 
 	virtual std::string GetPasswordInput() const = 0;
 
-	virtual bool VerifyMatchUserToPassword(const User& user) = 0;
+	virtual bool VerifyMatchUserToPassword(AppStorage& appStorage, const std::string& usernameInput, const std::string& passwordInput) = 0;
 };
 

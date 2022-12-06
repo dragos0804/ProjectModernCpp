@@ -17,7 +17,22 @@ std::string Login::GetPasswordInput() const
 	return m_passwordInput;
 }
 
-bool Login::VerifyMatchUserToPassword(const User& user)
+bool Login::VerifyMatchUserToPassword(AppStorage& appStorage, const std::string& usernameInput, const std::string& passwordInput)
 {
-	return user.GetUsername() == m_usernameInput && user.GetPassword() == m_passwordInput;
+	auto selectUsers = appStorage.m_db.get_all<User>(where(c(&User::GetUsername) == usernameInput));
+	if (selectUsers.size() == 0)
+	{
+		std::cout << "\tThere is no user with the username " << "\"" << usernameInput << "\"\n";
+		return false;
+	}
+	else
+	{
+		for (const auto& user : selectUsers)
+			if (user.GetPassword() != passwordInput)
+			{
+				std::cout << "\tMissmatched password";
+				return false;
+			}
+	}
+	return true;
 }
