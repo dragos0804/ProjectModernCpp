@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Film.h"
+#include "Storage.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -65,12 +66,15 @@ void ParseMethod()
 	inputFile.open("netflix_titles.csv");
 	std::ofstream fout("filme.out");
 	std::string line = "";
+	AppStorage storage;
 
 	std::vector<Movie> movies;
 
 	while (std::getline(inputFile, line))
 	{
 		std::stringstream inputString(line);
+
+		Film film;
 
 		std::string type;
 		std::string title;
@@ -87,26 +91,38 @@ void ParseMethod()
 		std::string aux;
 
 		std::getline(inputString, type, ',');
+		if(!type.empty()) film.SetType(type);
 		std::getline(inputString, title, ',');
+		if(!title.empty()) film.SetTitle(title);
 		std::getline(inputString, director, ',');
+		if (!director.empty()) film.SetDirector(director);
 		std::getline(inputString, cast, ',');
+		if (!cast.empty()) film.SetCast(cast);
 		std::getline(inputString, country, ',');
+		if (!country.empty()) film.SetCountry(country);
 		std::getline(inputString, date_added, ',');
 		std::getline(inputString, aux, ',');
 		release_year = atoi(aux.c_str());
+		if (release_year >= 1900 && release_year <= 2050) film.SetReleaseYear(release_year);
 		std::getline(inputString, rating, ',');
+		if (!rating.empty()) film.SetAgeRange(rating);
 		std::getline(inputString, duration, ',');
+		if (!duration.empty()) film.SetDuration(duration);
 		std::getline(inputString, listed_in, ',');
+		if (!listed_in.empty()) film.SetGenres(listed_in);
 		std::getline(inputString, description, ',');
+		if (!description.empty()) film.SetDescription(description);
 
-		Movie movie(type, title, director, cast, country, date_added, release_year,
+		storage.AddFilm(film);
+
+	/*	Movie movie(type, title, director, cast, country, date_added, release_year,
 			rating, duration, listed_in, description);
+		movies.push_back(movie);*/
 
-		movies.push_back(movie);
 		line = "";
 
 	}
 
 
-	displayMovies(movies);
+	//displayMovies(movies);
 }

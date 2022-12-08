@@ -54,8 +54,6 @@ int main()
   //  u.SetUsername(username);
   //  u.SetPassword("parola");
 
-
-
   //  Login l(username, "parola");
   //  if (l.VerifyMatchUserToPassword(u) == true)
   //      std::cout << "Login successful" << std::endl;
@@ -71,7 +69,7 @@ int main()
   //  movies.push_back(f1);
   //  movies.push_back(f2);
 
-  ///*  MovieFiltering mv;
+  //  MovieFiltering mv;
   //  mv.SortBy(0);
   //  for (auto& movie : movies)
   //      std::cout << movie.GetName() << " ";
@@ -97,15 +95,18 @@ int main()
   //  r.SetPassword("ParolaPuternica123!");
   //  r.PasswordValidation(r.GetPassword());
 
-   // ParseMethod();
+    ParseMethod();
 
    // User user1(1, "Denisa Chete", username, "12-12-2022", email, "parola", "Romania");
-    AppStorage storage;
+   
    // storage.AddUser(user1);
 
    // Film film1(1, 5, 120, 3.5, "Film", "Dick Johnson Is Dead", "TV-MA", "After crossing paths at a party, a Cape Town teen sets out to prove whether a private-school swimming star is her sister who was abducted at birth.", 2016, "Action, Drama", "", "Kirsten Johnson", "United States, Romania");
    // storage.AddFilm(film1);
-    
+
+
+  /*  AppStorage storage;
+
     
     int option = -1;
     Register r;
@@ -165,7 +166,7 @@ int main()
     }
     default:
         return 0;
-    }
+    }*/
     
 
     return 0;

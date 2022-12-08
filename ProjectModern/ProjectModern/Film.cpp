@@ -5,7 +5,7 @@
 
 Film::Film(unsigned int id, 
 	unsigned int numberOfReviews, 
-	unsigned int duration, 
+	std::string duration, 
 	float rating, 
 	std::string type, 
 	std::string title, 
@@ -43,7 +43,7 @@ std::string Film::GetType() const
 	return m_type;
 }
 
-unsigned int Film::GetDuration() const
+std::string Film::GetDuration() const
 {
 	return m_duration;
 }
@@ -108,7 +108,7 @@ void Film::SetType(const std::string& type)
 	m_type = type;
 }
 
-void Film::SetDuration(const unsigned int& duration)
+void Film::SetDuration(const std::string& duration)
 {
 	m_duration = duration;
 }

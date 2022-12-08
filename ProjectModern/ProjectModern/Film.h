@@ -23,7 +23,7 @@ public:
 	// ---- CONSTRUCTORS ----
 	Film(unsigned int id,
 		unsigned int numberOfReviews, 
-		unsigned int duration, 
+		std::string duration, 
 		float rating, 
 		std::string type,
 		std::string title, 
@@ -35,12 +35,14 @@ public:
 		std::string director,
 		std::string country);
 
+	Film() = default;
+
 	// ---- GETTERS ----
 	unsigned int GetId() const;
 
 	std::string GetType() const;
 
-	unsigned int GetDuration() const;
+	std::string GetDuration() const;
 
 	unsigned int GetNumberOfReviews() const;
 
@@ -68,7 +70,7 @@ public:
 
 	void SetType(const std::string& type);
 
-	void SetDuration(const unsigned int& duration);
+	void SetDuration(const std::string& duration);
 
 	void SetNumberOfReviews(const unsigned int& numberOfReviews);
 
@@ -93,7 +95,6 @@ public:
 	// ---- MEMBERS ----
 private:
 	unsigned int m_id;
-	unsigned int m_duration;
 	unsigned int m_numberOfReviews;
 
 	float m_rating;
@@ -102,6 +103,7 @@ private:
 	std::string m_title;
 	std::string m_ageRange;
 	std::string m_description;
+	std::string m_duration;
 
 	uint16_t m_releaseYear;
 
