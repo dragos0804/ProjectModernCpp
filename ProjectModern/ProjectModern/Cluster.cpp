@@ -14,11 +14,11 @@ void Cluster::AddPoint(Position positionPoint)
 
 void Cluster::UpdateClusterPosition()
 {
-	Position sumOfPositions = {0.0f, {}, 0, 0, 0.0f };
-
+	Position sumOfPositions = {0.0f, 0.0f, 0, 0, 0.0f };
+	auto& [rating, category, year, duration, ageRestriction] = sumOfPositions;
 	for (const auto& point : m_points)
 	{
-		//TODO how should we keep track of movie categories when there are multiple ones? 
+		//TODO:
 	}
 }
 
