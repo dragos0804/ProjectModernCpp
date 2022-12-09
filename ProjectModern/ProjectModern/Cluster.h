@@ -2,12 +2,6 @@
 #include <crow.h>
 #include <cstdint>
 
-#define PositionRating (std::get<0>(Position))
-#define PositionCategory (std::get<1>(Position))
-#define PositionYear (std::get<2>(Position))
-#define PositionDuration (std::get<3>(Position))
-#define PositionAgeRestriction (std::get<4>(Position))
-
 using Position = std::tuple<float, float, uint16_t, uint16_t, float>;
 
 class Cluster
