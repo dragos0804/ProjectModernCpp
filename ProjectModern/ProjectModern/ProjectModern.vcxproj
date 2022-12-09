@@ -160,7 +160,7 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="netflix_titles.csv" />
+    <None Include="netflix_titles_formatted.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

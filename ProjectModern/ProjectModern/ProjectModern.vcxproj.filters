@@ -82,7 +82,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="netflix_titles.csv">
+    <None Include="netflix_titles_formatted.csv">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
