@@ -29,6 +29,10 @@ void Cluster::UpdateClusterPosition()
 		duration += PositionDuration;
 		ageRestriction += PositionAgeRestriction;
 	}
+	if (rating != 0 && category != 0 && year != 0 && duration != 0 && ageRestriction != 0)
+	{
+		m_clusterPosition = { rating / m_points.size() , category / m_points.size() , year / m_points.size() , duration / m_points.size() , ageRestriction / m_points.size() };
+	}
 }
 
 void Cluster::RemovePoints()
