@@ -3,13 +3,8 @@
 
 void Register::CreateUser(AppStorage& appStorage)
 {
-	std::cout << "\t\t*******************************************************\n";
-	std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
-	std::cout << "\t\t*******************************************************\n\n";
-
 	User user;
 	std::string str = "";
-	std::cout << "\t\tRegister a new account" << std::endl;
 
 	std::cout << "\t\tEnter your name: ";
 	std::getline(std::cin, str);

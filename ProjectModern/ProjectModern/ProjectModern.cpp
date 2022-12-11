@@ -7,6 +7,8 @@
 #include "MovieFiltering.h"
 #include "Parser.h"
 #include "Storage.h"
+#include <conio.h>
+#include <Windows.h>
 
 int main()
 {
@@ -95,7 +97,7 @@ int main()
   //  r.SetPassword("ParolaPuternica123!");
   //  r.PasswordValidation(r.GetPassword());
 
-    ParseMethod();
+   //ParseMethod();
 
    // User user1(1, "Denisa Chete", username, "12-12-2022", email, "parola", "Romania");
    
@@ -105,68 +107,110 @@ int main()
    // storage.AddFilm(film1);
 
 
-  /*  AppStorage storage;
+  AppStorage storage;
 
-    
-    int option = -1;
     Register r;
-    std::cout << "\t\t*******************************************************\n";
-    std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
-    std::cout << "\t\t*******************************************************\n\n";
-
-    std::cout << "\t\t+----------------------------------------------------+\n";
-    std::cout << "\t\t|                       MENU                         |\n";
-    std::cout << "\t\t+----------------------------------------------------+\n";
-    std::cout << "\t\t|                                                    |\n";
-    std::cout << "\t\t|                    1. Register                     |\n";
-    std::cout << "\t\t|                    2. Login                        |\n";
-    std::cout << "\t\t|                                                    |\n";
-    std::cout << "\t\t+----------------------------------------------------+\n\n";
-    std::cout << "\t\tChoose yout option : ";
-
-    std::cin >> option;
-    std::cin.get();
-    switch (option)
-    {
-    case 1:
-    {
-        system("CLS");
-        r.CreateUser(storage);
-    }
-    case 2:
-    {
-        std::string username="";
-        std::string password="";
-        system("CLS");
-        std::cout << "\t\t*******************************************************\n";
-        std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
-        std::cout << "\t\t*******************************************************\n\n";
-
-        std::cout << "\t\tLog into your account" << std::endl;
-
-        std::cout << "\t\tUsername: ";
-        std::getline(std::cin, username);
-        std::cout << "\t\tPassword: ";
-        std::getline(std::cin, password);
-
-        Login l(username, password);
-        bool verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password);
-        while (!verifiedLoginStatus)
+    int option = 1;
+    int keyCheck = -1;
+    
+    while (1) {
+        switch (option)
         {
+        case 1:
+        {
+            std::cout << "\t\t*******************************************************\n";
+            std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
+            std::cout << "\t\t*******************************************************\n\n";
+
+            std::cout << "\t\t+----------------------------------------------------+\n";
+            std::cout << "\t\t|                       MENU                         |\n";
+            std::cout << "\t\t+----------------------------------------------------+\n";
+            std::cout << "\t\t|                                                    |\n";
+            std::cout << "\t\t|                    1. Register                     |\n";
+            std::cout << "\t\t|                    2. Login                        |\n";
+            std::cout << "\t\t|                                                    |\n";
+            std::cout << "\t\t+----------------------------------------------------+\n\n";
+            //std::cout << "\t\tChoose yout option : ";
+
+
+            //std::cin >> option;
+            //std::cin.get();
+            
+            // WINDOWS Specific = reads character ( also special ones ) without echoing and returns ASCII value
+            option = _getch();
+            break;
+        }
+        case 49:
+        {
+            system("CLS");
+            std::cout << "\t\t*******************************************************\n";
+            std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
+            std::cout << "\t\t*******************************************************\n\n";
+
+            std::cout << "\t\tRegister a new account" << std::endl;
+            std::cout << "\t\tPress BACKSPACE to go back or any other key to continue" << std::endl;
+
+            keyCheck = _getch();
+            // BACKSPACE key -> 8 in ASCII Table
+            if (keyCheck == 8) {
+                option = 1;
+                system("CLS");
+                break;
+            }
+
+            r.CreateUser(storage);
+            option = 50;
+            break;
+        }
+        case 50:
+        {
+            std::string username = "";
+            std::string password = "";
+            system("CLS");
+            std::cout << "\t\t*******************************************************\n";
+            std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
+            std::cout << "\t\t*******************************************************\n\n";
 
             std::cout << "\t\tLog into your account" << std::endl;
+            std::cout << "\t\tPress BACKSPACE to go back or any other key to continue" << std::endl;
+
+            keyCheck = _getch();
+            // BACKSPACE key -> 8 in ASCII Table
+            if (keyCheck == 8) {
+                option = 1;
+                system("CLS");
+                break;
+            }
 
             std::cout << "\t\tUsername: ";
             std::getline(std::cin, username);
             std::cout << "\t\tPassword: ";
             std::getline(std::cin, password);
 
-            verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password);
+            Login l(username, password);
+            bool verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password);
+
+            if (verifiedLoginStatus) {
+                system("CLS");
+                std::cout << "\t\t*******************************************************\n";
+                std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
+                std::cout << "\t\t*******************************************************\n\n";
+
+                std::cout << "\t\t+----------------------------------------------------+\n";
+                std::cout << "\t\t|                       WELCOME!                     |\n";
+                std::cout << "\t\t+----------------------------------------------------+\n";
+                std::cout << "\t\t|                                                    |\n";
+                std::cout << "\t\t|                  You are now loged in!             |\n";
+                std::cout << "\t\t|                  Check out what's new!             |\n";
+                std::cout << "\t\t|                                                    |\n";
+                std::cout << "\t\t+----------------------------------------------------+\n\n";
+                std::cout << "\t\tPress ENTER to continue...\n";
+            }  
+        }
+        default:
+            return 0;
         }
     }
-    default:
-        return 0;
-    }*/
     
 
     return 0;

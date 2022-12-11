@@ -34,20 +34,6 @@ bool Login::VerifyMatchUserToPassword(AppStorage& appStorage, const std::string&
 				return false;
 			}
 	}
-	system("CLS");
-	std::cout << "\t\t*******************************************************\n";
-	std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
-	std::cout << "\t\t*******************************************************\n\n";
-
-	std::cout << "\t\t+----------------------------------------------------+\n";
-	std::cout << "\t\t|                       WELCOME!                     |\n";
-	std::cout << "\t\t+----------------------------------------------------+\n";
-	std::cout << "\t\t|                                                    |\n";
-	std::cout << "\t\t|                  You are now loged in!             |\n";
-	std::cout << "\t\t|                  Check out what's new!             |\n";
-	std::cout << "\t\t|                                                    |\n";
-	std::cout << "\t\t+----------------------------------------------------+\n\n";
-	std::cout << "\t\tPress ENTER to continue...\n";
 
 	return true;
 }

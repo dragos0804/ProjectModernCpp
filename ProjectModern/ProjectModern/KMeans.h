@@ -13,7 +13,7 @@ private:
 	float ComputeEuclidianDistance(std::tuple<Ts...> firstPoint, std::tuple<Ts...> secondPoint)
 	{
 		float total = 0;
-		for (; I != sizeof..(Ts); I++)
+		for (; I != sizeof...(Ts); I++)
 		{
 			total += power2(std::get<I>(secondPoint) - std::get<I>(firstPoint));
 		}
