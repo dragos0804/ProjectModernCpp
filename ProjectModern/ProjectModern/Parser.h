@@ -12,7 +12,6 @@ void ParseMethod()
 {
 	std::ifstream inputFile;
 	inputFile.open("netflix_titles_formatted.csv");
-	std::ofstream fout("filme.out");
 	std::string line = "";
 	AppStorage storage;
 

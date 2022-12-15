@@ -97,7 +97,6 @@ int main()
      //  r.SetPassword("ParolaPuternica123!");
      //  r.PasswordValidation(r.GetPassword());
 
-      //ParseMethod();
 
       // User user1(1, "Denisa Chete", username, "12-12-2022", email, "parola", "Romania");
 
@@ -108,6 +107,8 @@ int main()
 
 
     AppStorage storage;
+    //ParseMethod();
+
 
     Register r;
     int option = 1;

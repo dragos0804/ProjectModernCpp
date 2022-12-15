@@ -9,8 +9,8 @@ User::User(int id, std::string name, std::string username, std::string dateOfBir
 	, m_password(password)
 	, m_country(country)
 {
-	//m_favouriteMovies = {};
-	//m_watchedMovies = {};
+	m_favouriteMovies = {};
+	m_watchedMovies = {};
 }
 
 unsigned int User::GetID() const

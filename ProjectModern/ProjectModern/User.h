@@ -4,10 +4,12 @@
 #include <memory>
 #include "Film.h"
 
-using IMoviePtr = std::shared_ptr<class IMovie>;
 
 class User
 {
+public:
+	using IMoviePtr = std::shared_ptr<std::vector<Film>>;
+
 public:
 	User() = default;
 	User(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country);
@@ -41,7 +43,7 @@ private:
 	std::string m_email;
 	std::string m_password;
 	std::string m_country;
-	std::list<IMoviePtr> m_watchedMovies;
-	std::list<IMoviePtr> m_favouriteMovies;
+	std::vector<IMoviePtr> m_watchedMovies;
+	std::vector<IMoviePtr> m_favouriteMovies;
 };
 
