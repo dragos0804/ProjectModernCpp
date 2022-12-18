@@ -8,11 +8,19 @@
 class UserInterface
 {
 public:
-    void StartUpMenu(Register r, AppStorage storage);
+    void StartUpMenu();
 
 private:
-    void RegisterMenu(Register r, AppStorage storage);
+    void RegisterMenu();
 
-    void LoginMenu(Register r, AppStorage storage);
+    void LoginMenu();
+
+    void LoggedInMenu();
+
+    void SettingsMenu();
+
+private:
+    AppStorage storage;
+    int option = -1;
 };
 

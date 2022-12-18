@@ -104,17 +104,10 @@ int main()
 
       // Film film1(1, 5, 120, 3.5, "Film", "Dick Johnson Is Dead", "TV-MA", "After crossing paths at a party, a Cape Town teen sets out to prove whether a private-school swimming star is her sister who was abducted at birth.", 2016, "Action, Drama", "", "Kirsten Johnson", "United States, Romania");
       // storage.AddFilm(film1);
-
-
-    AppStorage storage;
     //ParseMethod();
 
-    Register r;
-
     UserInterface UI;
-
-    UI.StartUpMenu(r, storage);
-
+    UI.StartUpMenu();
 
     return 0;
 }
