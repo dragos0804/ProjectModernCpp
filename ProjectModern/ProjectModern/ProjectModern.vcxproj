@@ -146,11 +146,11 @@
     <ClCompile Include="ILogin.cpp" />
     <ClCompile Include="KMeans.cpp" />
     <ClCompile Include="Login.cpp" />
-    <ClCompile Include="MovieFiltering.cpp" />
     <ClCompile Include="ProjectModern.cpp" />
     <ClCompile Include="Register.cpp" />
     <ClCompile Include="Storage.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cluster.h" />
@@ -159,11 +159,11 @@
     <ClInclude Include="IRegister.h" />
     <ClInclude Include="KMeans.h" />
     <ClInclude Include="Login.h" />
-    <ClInclude Include="MovieFiltering.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="Register.h" />
     <ClInclude Include="Storage.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="netflix_titles_formatted.csv" />
