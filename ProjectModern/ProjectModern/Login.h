@@ -13,7 +13,7 @@ public:
 	std::string GetUsernameInput() const override;
 	std::string GetPasswordInput() const override;
 
-	bool VerifyMatchUserToPassword(AppStorage& appStorage, const std::string& usernameInput, const std::string& passwordInput) override;
+	bool VerifyMatchUserToPassword(AppStorage& appStorage, const std::string& usernameInput, const std::string& passwordInput, User& SavedUser) override;
 
 private:
 	std::string m_usernameInput;

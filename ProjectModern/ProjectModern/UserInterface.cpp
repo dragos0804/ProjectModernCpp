@@ -100,7 +100,7 @@ void UserInterface::LoginMenu()
     std::getline(std::cin, password);
 
     Login l(username, password);
-    bool verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password);
+    bool verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password, user);
 
     if (verifiedLoginStatus) {
         LoggedInMenu();
@@ -113,8 +113,6 @@ void UserInterface::LoginMenu()
 
 void UserInterface::LoggedInMenu()
 {
-    option = -1;
-
     system("CLS");
     std::cout << "\t\t*******************************************************\n";
     std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
@@ -132,27 +130,19 @@ void UserInterface::LoggedInMenu()
     std::cout << "\t\t|                                                    |\n";
     std::cout << "\t\t+----------------------------------------------------+\n\n";
 
-
+    option = -1;
     option = _getch();
 
     if (option == 49)
         SettingsMenu();
-
     //else if (option == 50)
        // TODO: SwitchAccount();
-
     else if (option == 51)
-    {
         SearchForAFilm();
-    }
-
-    // BACKSPACE key -> 8 in ASCII Table
     else if (option == 8) {
         system("CLS");
         StartUpMenu();
     }
-
-    // ESC key -> 27 in ASCII Table
     else if (option == 27) {
         exit(0);
     }
@@ -176,25 +166,20 @@ void UserInterface::SettingsMenu()
 
     option = _getch();
 
-    //if (option == 49)
-        // TODO: ChangePassword();
-
-    //else if (option == 50)
-       // TODO: ChangeUsername();
-
-    // BACKSPACE key -> 8 in ASCII Table
+    if (option == 49)
+        ChangeUsername();
+    else if (option == 50)
+        ChangePassword();
     if (option == 8) {
         system("CLS");
         LoggedInMenu();
     }
-
-    // ESC key -> 27 in ASCII Table
     else if (option == 27) {
         exit(0);
     }
-    else {
+    else
         SettingsMenu();
-    }
+
 
 }
 
@@ -205,4 +190,48 @@ void UserInterface::SearchForAFilm()
     std::getline(std::cin, title);
     std::cout << std::endl;
     storage.SearchFilmByTitle(title);
+}
+
+void UserInterface::ChangePassword()
+{
+    std::string password = "";
+
+    std::cout << "\t\tNew Password: ";
+    std::getline(std::cin, password);
+
+    user.SetPassword(password);
+
+    Register r;
+    if (r.PasswordValidation(password)) {
+        storage.m_db.update(user);
+        std::cout << "\t\tPassword Changed Succesfully!";
+        Sleep(2500);
+    }
+    else       
+        Sleep(4000);
+
+    LoggedInMenu();
+}
+
+void UserInterface::ChangeUsername()
+{
+    std::string username = "";
+
+    std::cout << "\t\tNew Username: ";
+    std::getline(std::cin, username);
+
+    user.SetUsername(username);
+
+    Register r;
+    if (r.UsernameValidation(username, storage)) {
+        std::cout << "\t\tUsername Changed Succesfully!";
+        storage.m_db.update(user);
+        Sleep(2500);
+    }
+    else {
+        std::cout << "\t\tUsername Already Taken / Username Invalid. Try again.";
+        Sleep(2500);
+    }
+    
+    LoggedInMenu();
 }

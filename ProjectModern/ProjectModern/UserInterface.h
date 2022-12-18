@@ -21,7 +21,12 @@ private:
 
     void SearchForAFilm();
 
+    void ChangePassword();
+    
+    void ChangeUsername();
+
 private:
+    User user;
     AppStorage storage;
     int option = -1;
 };

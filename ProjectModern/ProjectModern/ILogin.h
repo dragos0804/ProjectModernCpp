@@ -12,6 +12,6 @@ public:
 
 	virtual std::string GetPasswordInput() const = 0;
 
-	virtual bool VerifyMatchUserToPassword(AppStorage& appStorage, const std::string& usernameInput, const std::string& passwordInput) = 0;
+	virtual bool VerifyMatchUserToPassword(AppStorage& appStorage, const std::string& usernameInput, const std::string& passwordInput, User& savedUser) = 0;
 };
 
