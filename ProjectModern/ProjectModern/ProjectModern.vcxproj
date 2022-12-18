@@ -143,7 +143,6 @@
   <ItemGroup>
     <ClCompile Include="Cluster.cpp" />
     <ClCompile Include="Film.cpp" />
-    <ClCompile Include="ILogin.cpp" />
     <ClCompile Include="KMeans.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="ProjectModern.cpp" />

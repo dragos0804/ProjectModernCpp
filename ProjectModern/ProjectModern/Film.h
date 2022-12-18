@@ -44,7 +44,7 @@ public:
 
 	std::string GetDuration() const;
 
-	unsigned int GetNumberOfReviews() const;
+	//unsigned int GetNumberOfReviews() const;
 
 	float GetRating() const;
 
@@ -72,9 +72,9 @@ public:
 
 	void SetDuration(const std::string& duration);
 
-	void SetNumberOfReviews(const unsigned int& numberOfReviews);
+//	void SetNumberOfReviews(const unsigned int& numberOfReviews);
 
-	void SetRating(const float& rating);
+//	void SetRating(const float& rating);
 
 	void SetTitle(const std::string& title);
 

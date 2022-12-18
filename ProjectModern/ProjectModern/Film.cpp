@@ -48,10 +48,10 @@ std::string Film::GetDuration() const
 	return m_duration;
 }
 
-unsigned int Film::GetNumberOfReviews() const
-{
-	return m_numberOfReviews;
-}
+//unsigned int Film::GetNumberOfReviews() const
+//{
+//	return m_numberOfReviews;
+//}
 
 float Film::GetRating() const
 {
@@ -113,15 +113,15 @@ void Film::SetDuration(const std::string& duration)
 	m_duration = duration;
 }
 
-void Film::SetNumberOfReviews(const unsigned int& numberOfReviews)
-{
-	m_numberOfReviews = numberOfReviews;
-}
-
-void Film::SetRating(const float& rating)
-{
-	m_rating = rating;
-}
+//void Film::SetNumberOfReviews(const unsigned int& numberOfReviews)
+//{
+//	m_numberOfReviews = numberOfReviews;
+//}
+//
+//void Film::SetRating(const float& rating)
+//{
+//	m_rating = rating;
+//}
 
 void Film::SetTitle(const std::string& title)
 {

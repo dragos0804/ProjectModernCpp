@@ -30,7 +30,7 @@ public:
 	void SetPassword(const std::string& password);
 	void SetCountry(const std::string& country);
 
-	void leaveReview(Film& film, const int& grade);
+	//void leaveReview(Film& film, const int& grade);
 
 	void AddMovieToWatched(IMoviePtr movie);
 	void AddMovieToFavourites(IMoviePtr movie);

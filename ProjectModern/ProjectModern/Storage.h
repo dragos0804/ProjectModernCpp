@@ -35,9 +35,9 @@ inline auto createStorage(const std::string& filename)
 			make_column("age_range", &Film::SetAgeRange, &Film::GetAgeRange),
 			make_column("duration", &Film::SetDuration, &Film::GetDuration),
 			make_column("genre", &Film::SetGenres, &Film::GetGenres),
-			make_column("description", &Film::SetDescription, &Film::GetDescription),
-			make_column("rating", &Film::SetRating, &Film::GetRating),
-			make_column("number_of_reviews", &Film::SetNumberOfReviews, &Film::GetNumberOfReviews)
+			make_column("description", &Film::SetDescription, &Film::GetDescription)
+			//make_column("rating", &Film::SetRating, &Film::GetRating),
+			//make_column("number_of_reviews", &Film::SetNumberOfReviews, &Film::GetNumberOfReviews)
 		)
 	);
 }

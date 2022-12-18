@@ -13,8 +13,20 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\NewFilter1">
+    <Filter Include="Header Files\API">
       <UniqueIdentifier>{96fd2b1d-655e-4dbe-85e8-d0bf2ed3da6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Recommendation">
+      <UniqueIdentifier>{83498116-eb89-4dd7-a9db-0e7ef2f71ad6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DB_utils">
+      <UniqueIdentifier>{6d49974b-e7fe-43f1-98f1-1b07f0daae74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DB_utils">
+      <UniqueIdentifier>{a2adbf09-c92a-45fd-8b30-007eea7f9022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Recommendation">
+      <UniqueIdentifier>{48c79f15-0c81-4918-a6e2-f683c345169c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,20 +45,17 @@
     <ClCompile Include="Register.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cluster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Storage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KMeans.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ILogin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UserInterface.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cluster.cpp">
+      <Filter>Source Files\Recommendation</Filter>
+    </ClCompile>
+    <ClCompile Include="KMeans.cpp">
+      <Filter>Source Files\Recommendation</Filter>
+    </ClCompile>
+    <ClCompile Include="Storage.cpp">
+      <Filter>Source Files\DB_utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,26 +71,26 @@
     <ClInclude Include="Register.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cluster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Storage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KMeans.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ILogin.h">
-      <Filter>Header Files\NewFilter1</Filter>
+      <Filter>Header Files\API</Filter>
     </ClInclude>
     <ClInclude Include="IRegister.h">
-      <Filter>Header Files\NewFilter1</Filter>
+      <Filter>Header Files\API</Filter>
     </ClInclude>
     <ClInclude Include="UserInterface.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cluster.h">
+      <Filter>Header Files\Recommendation</Filter>
+    </ClInclude>
+    <ClInclude Include="KMeans.h">
+      <Filter>Header Files\Recommendation</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser.h">
+      <Filter>Header Files\DB_utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Storage.h">
+      <Filter>Header Files\DB_utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
