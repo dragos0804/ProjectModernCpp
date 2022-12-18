@@ -2,8 +2,8 @@
 
 std::vector<Film> KMeans::GetSimilarFilms(const Film& film)
 {
-	uint8_t closetClusterIndex = ComputeClosetClusterIndex(film);
-	return m_clusteredFilms[closetClusterIndex];
+	uint8_t closestClusterIndex = ComputeClosestClusterIndex(film);
+	return m_clusteredFilms[closestClusterIndex];
 }
 
 void KMeans::Run(std::vector<Film> films)
@@ -12,7 +12,7 @@ void KMeans::Run(std::vector<Film> films)
 	{
 		for (const auto& film : films)
 		{
-			uint8_t closestClusterIndex = ComputeClosetClusterIndex(film);
+			uint8_t closestClusterIndex = ComputeClosestClusterIndex(film);
 			Position position = GetNormFilm(film);
 			m_clusteredFilms[closestClusterIndex].push_back(film);
 		}
@@ -30,19 +30,19 @@ Position KMeans::GetNormFilm(const Film& film)
 	return Position();
 }
 
-uint8_t KMeans::ComputeClosetClusterIndex(const Film& film)
+uint8_t KMeans::ComputeClosestClusterIndex(const Film& film)
 {
 	Position position = GetNormFilm(film);
-	uint8_t closetClusterIndex = 0;
+	uint8_t closestClusterIndex = 0;
 	float minDistance = std::numeric_limits<float>::max();
 	for (uint8_t pos = 0; pos < m_clusters.size(); ++pos)
 	{
 		float distance = ComputeEuclideanDistance(m_clusters[pos].GetPosition(), position);
 		if (distance < minDistance)
 		{
-			closetClusterIndex = pos;
+			closestClusterIndex = pos;
 			minDistance = distance;
 		}
 	}
-	return closetClusterIndex;
+	return closestClusterIndex;
 }
