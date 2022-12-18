@@ -37,13 +37,15 @@ void AppStorage::AddFilm(Film& film)
 
 void AppStorage::SearchFilmByTitle(std::string title)
 {
-	//auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle), where(like(&Film::GetTitle, "%Pony%")));
-	auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle), where(like(&Film::GetTitle, "%"+title+"%")));
+	auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle, &Film::GetType, &Film::GetDuration, &Film::GetAgeRange), where(like(&Film::GetTitle, "%"+title+"%")));
 	for (auto& i : whereTitleLike)
 	{
 		auto& id = std::get<0>(i);
 		auto& title = std::get<1>(i);
+		auto& type = std::get<2>(i);
+		auto& duration = std::get<3>(i);
+		auto& ageRange = std::get<4>(i);
 		
-		std::cout << "\t" << id << "\t" << title << std::endl;
+		std::cout << "\t" << id << "\t" << type << "\t" << duration << "\t" << ageRange << "\t" << title << std::endl;
 	}
 }
