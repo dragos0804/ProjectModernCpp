@@ -7,6 +7,7 @@ class KMeans
 {
 public:
 	std::vector<Film> GetSimilarFilms(const Film& film);
+	void Run(std::vector<Film> films);
 
 private:
 	template <size_t I = 0, typename... Ts>
