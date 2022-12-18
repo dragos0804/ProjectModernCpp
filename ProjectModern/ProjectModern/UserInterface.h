@@ -19,6 +19,8 @@ private:
 
     void SettingsMenu();
 
+    void SearchForAFilm();
+
 private:
     AppStorage storage;
     int option = -1;

@@ -2,6 +2,7 @@
 
 void UserInterface::StartUpMenu()
 {
+    
     option = -1;
 
     std::cout << "\t\t*******************************************************\n";
@@ -127,6 +128,7 @@ void UserInterface::LoggedInMenu()
     std::cout << "\t\t|                                                    |\n";
     std::cout << "\t\t|                  1. Settings                       |\n";
     std::cout << "\t\t|                  2. Switch Account                 |\n";
+    std::cout << "\t\t|                  3. Search for a film              |\n";
     std::cout << "\t\t|                                                    |\n";
     std::cout << "\t\t+----------------------------------------------------+\n\n";
 
@@ -138,6 +140,11 @@ void UserInterface::LoggedInMenu()
 
     //else if (option == 50)
        // TODO: SwitchAccount();
+
+    else if (option == 51)
+    {
+        SearchForAFilm();
+    }
 
     // BACKSPACE key -> 8 in ASCII Table
     else if (option == 8) {
@@ -189,4 +196,13 @@ void UserInterface::SettingsMenu()
         SettingsMenu();
     }
 
+}
+
+void UserInterface::SearchForAFilm()
+{
+    std::string title;
+    std::cout << "\t\tSearch: ";
+    std::getline(std::cin, title);
+    std::cout << std::endl;
+    storage.SearchFilmByTitle(title);
 }

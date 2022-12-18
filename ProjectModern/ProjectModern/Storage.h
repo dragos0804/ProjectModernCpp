@@ -50,7 +50,7 @@ public:
 	//bool Initialize(const std::string& csvDataFilePath);
 	void AddUser(User& user);
 	void AddFilm(Film& film);
-
+	void SearchFilmByTitle(std::string title);
 	static std::vector<std::string> split(const std::string& str, const std::string& delim);
 
 private:
