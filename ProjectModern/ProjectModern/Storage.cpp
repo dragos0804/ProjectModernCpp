@@ -34,3 +34,16 @@ void AppStorage::AddFilm(Film& film)
 	std::cout << "insertedId = " << insertedId << std::endl;
 	auto initFilmCount2 = m_db.count<Film>();
 }
+
+void AppStorage::SearchFilmByTitle(std::string title)
+{
+	//auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle), where(like(&Film::GetTitle, "%Pony%")));
+	auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle), where(like(&Film::GetTitle, "%"+title+"%")));
+	for (auto& i : whereTitleLike)
+	{
+		auto& id = std::get<0>(i);
+		auto& title = std::get<1>(i);
+		
+		std::cout << "\t" << id << "\t" << title << std::endl;
+	}
+}
