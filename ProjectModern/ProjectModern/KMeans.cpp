@@ -32,5 +32,17 @@ Position KMeans::GetNormFilm(const Film& film)
 
 uint8_t KMeans::ComputeClosetClusterIndex(const Film& film)
 {
-	return 0;
+	Position position = GetNormFilm(film);
+	uint8_t closetClusterIndex = 0;
+	float minDistance = std::numeric_limits<float>::max();
+	for (uint8_t pos = 0; pos < m_clusters.size(); ++pos)
+	{
+		float distance = ComputeEuclideanDistance(m_clusters[pos].GetPosition(), position);
+		if (distance < minDistance)
+		{
+			closetClusterIndex = pos;
+			minDistance = distance;
+		}
+	}
+	return closetClusterIndex;
 }
