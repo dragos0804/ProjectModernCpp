@@ -37,7 +37,7 @@ void AppStorage::AddFilm(Film& film)
 
 void AppStorage::SearchFilmByTitle(std::string title)
 {
-	auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle, &Film::GetType, &Film::GetDuration, &Film::GetAgeRange), where(like(&Film::GetTitle, "%"+title+"%")));
+	/*auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle, &Film::GetType, &Film::GetDuration, &Film::GetAgeRange), where(like(&Film::GetTitle, "%"+title+"%")));
 	for (auto& i : whereTitleLike)
 	{
 		auto& id = std::get<0>(i);
@@ -47,5 +47,38 @@ void AppStorage::SearchFilmByTitle(std::string title)
 		auto& ageRange = std::get<4>(i);
 		
 		std::cout << "\t" << id << "\t" << type << "\t" << duration << "\t" << ageRange << "\t" << title << std::endl;
+	}*/
+
+	int current = 1;
+
+	auto whereTitleLike = m_db.select(columns(&Film::GetTitle), where(like(&Film::GetTitle, "%" + title + "%")));
+	for (auto& i : whereTitleLike)
+	{
+		auto& title = std::get<0>(i);
+
+		std::cout << "\t\t" << current << ".  " << "\t" << title << std::endl;
+		current++;
+	}
+}
+
+void AppStorage::SelectFilmFromCurrentList(std::string title, int currentNumber)
+{
+	int current = 1;
+
+	auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle, &Film::GetType, &Film::GetDuration, &Film::GetAgeRange), where(like(&Film::GetTitle, "%" + title + "%")));
+	for (auto& i : whereTitleLike)
+	{
+		if (current == currentNumber) {
+			auto& id = std::get<0>(i);
+			auto& title = std::get<1>(i);
+			auto& type = std::get<2>(i);
+			auto& duration = std::get<3>(i);
+			auto& ageRange = std::get<4>(i);
+
+			std::cout << "\t\t" << title << "\t" << type << "\t" << duration << "\t" << ageRange << std::endl;
+			break;
+		}
+
+		current++;
 	}
 }

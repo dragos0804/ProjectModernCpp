@@ -163,10 +163,22 @@ void UserInterface::SettingsMenu()
 void UserInterface::SearchForAFilm()
 {
     std::string title;
-    std::cout << "\t\tSearch: ";
-    std::getline(std::cin, title);
+    int movieNumber;
+    std::cout << "\t\tSearch: \n";
+
+    while (title.empty())
+    {
+        std::cout << "\t\t";
+        std::getline(std::cin, title);
+    }
+    
     std::cout << std::endl;
     storage.SearchFilmByTitle(title);
+
+    std::cout << std::endl;
+    std::cout << "Select a movie: ";
+    std::cin >> movieNumber;
+    storage.SelectFilmFromCurrentList(title, movieNumber);
 }
 
 void UserInterface::ChangePassword()
