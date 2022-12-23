@@ -102,12 +102,9 @@ void User::SetCountry(const std::string& country)
 //	film.SetRating(averageRating);
 //}
 
-void User::AddMovieToWatched(IMoviePtr movie)
+void User::AddMovieToVect(IMoviePtr movie, std::vector<IMoviePtr>& vectSavedMovie, std::string& strSavedMovie)
 {
-	//m_watchedMovies.emplace_back(movie);
-}
-
-void User::AddMovieToFavourites(IMoviePtr movie)
-{
-	//m_favouriteMovies.emplace_back(movie);
+	vectSavedMovie.push_back(movie);
+	for (const auto& movie : vectSavedMovie)
+		strSavedMovie = std::to_string(movie.get()->GetId()) + " ";
 }

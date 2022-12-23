@@ -34,8 +34,7 @@ public:
 
 	//void leaveReview(Film& film, const int& grade);
 
-	void AddMovieToWatched(IMoviePtr movie);
-	void AddMovieToFavourites(IMoviePtr movie);
+	void AddMovieToVect(IMoviePtr movie, std::vector<IMoviePtr>& vectSavedMovie, std::string& strSavedMovie);
 
 private:
 	unsigned int m_id;
