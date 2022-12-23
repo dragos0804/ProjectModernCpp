@@ -12,7 +12,7 @@ public:
 
 public:
 	User() = default;
-	User(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country);
+	User(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country, std::string idsWatched, std::string idsFavourites);
 
 	unsigned int GetID() const;
 	std::string GetName() const;

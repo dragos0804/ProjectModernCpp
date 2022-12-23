@@ -1,6 +1,6 @@
 #include "User.h"
 
-User::User(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country)
+User::User(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country, std::string idsWatched, std::string idsFavourites)
 	: m_id(id)
 	, m_name(name)
 	, m_username(username)
@@ -8,6 +8,8 @@ User::User(int id, std::string name, std::string username, std::string dateOfBir
 	, m_email(email)
 	, m_password(password)
 	, m_country(country)
+	, m_idsWatched(idsWatched)
+	, m_idsFavourites(idsFavourites)
 {
 	m_favouriteMovies = {};
 	m_watchedMovies = {};
