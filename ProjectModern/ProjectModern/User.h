@@ -8,7 +8,7 @@
 class User
 {
 public:
-	using IMoviePtr = std::shared_ptr<std::vector<Film>>;
+	using IMoviePtr = std::shared_ptr<class Film>;
 
 public:
 	User() = default;
@@ -21,6 +21,8 @@ public:
 	std::string GetEmail() const;
 	std::string GetPassword() const;
 	std::string GetCountry() const;
+	std::string GetMovieToWatched(IMoviePtr currentMovie) const;
+	std::string GetMovieToFavourites(IMoviePtr movie) const;
 
 	void SetID(const unsigned int& id);
 	void SetName(const std::string& name);
@@ -43,6 +45,8 @@ private:
 	std::string m_email;
 	std::string m_password;
 	std::string m_country;
+	std::string m_idsWatched;
+	std::string m_idsFavourites;
 	std::vector<IMoviePtr> m_watchedMovies;
 	std::vector<IMoviePtr> m_favouriteMovies;
 };

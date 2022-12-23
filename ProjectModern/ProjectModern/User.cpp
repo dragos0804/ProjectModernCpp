@@ -48,6 +48,16 @@ std::string User::GetCountry() const
 	return m_country;
 }
 
+std::string User::GetMovieToWatched(IMoviePtr currentMovie) const
+{
+
+}
+
+std::string User::GetMovieToFavourites(IMoviePtr movie) const
+{
+	return std::string();
+}
+
 void User::SetID(const unsigned int& id)
 {
 	m_id = id;
