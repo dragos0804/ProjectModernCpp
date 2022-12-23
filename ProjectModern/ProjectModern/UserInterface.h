@@ -25,6 +25,8 @@ private:
     
     void ChangeUsername();
 
+    void PrintMenu();
+
 private:
     User user;
     AppStorage storage;

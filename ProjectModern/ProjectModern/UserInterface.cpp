@@ -2,185 +2,162 @@
 
 void UserInterface::StartUpMenu()
 {
-    
-    option = -1;
-
-    std::cout << "\t\t*******************************************************\n";
-    std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
-    std::cout << "\t\t*******************************************************\n\n";
-
-    std::cout << "\t\t+----------------------------------------------------+\n";
-    std::cout << "\t\t|                       MENU                         |\n";
-    std::cout << "\t\t+----------------------------------------------------+\n";
-    std::cout << "\t\t|                                                    |\n";
-    std::cout << "\t\t|                    1. Register                     |\n";
-    std::cout << "\t\t|                    2. Login                        |\n";
-    std::cout << "\t\t|                                                    |\n";
-    std::cout << "\t\t+----------------------------------------------------+\n\n";
+    option = 1;
+    PrintMenu();
 
     option = _getch();
 
+    switch (option) {
     // 1 == 49 in ASCII table
-    if (option == 49) {
+    case 49:
         RegisterMenu();
-    }
-    // 2 == 50 in ASCII table
-    else if (option == 50) {
+        break;
+    case 50:
         LoginMenu();
-    }
+        break;
     // ESC KEY
-    else if (option == 27)
+    case 27:
         exit(0);
     // any other key will not change anything
-    else {
-        system("CLS");
+    default:
         StartUpMenu();
+        break;
     }
 }
 
 void UserInterface::RegisterMenu()
 {
-    option = -1;
-
-    system("CLS");
-    std::cout << "\t\t*******************************************************\n";
-    std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
-    std::cout << "\t\t*******************************************************\n\n";
+    PrintMenu();
 
     std::cout << "\t\tRegister a new account" << std::endl;
     std::cout << "\t\tPress BACKSPACE to go back or any other key to continue" << std::endl;
 
     option = _getch();
-    // BACKSPACE key -> 8 in ASCII Table
-    if (option == 8) {
-        system("CLS");
+
+    switch (option) {
+    case 8:
         StartUpMenu();
-    }
-
-    // ESC key -> 27 in ASCII Table
-    else if (option == 27) {
+        break;
+    // 1 == 49 in ASCII table
+    case 49:
+        RegisterMenu();
+        break;
+    case 50:
+        LoginMenu();
+        break;
+    // ESC KEY
+    case 27:
         exit(0);
+    // any other key will not change anything
+    default:
+        Register r;
+        r.CreateUser(storage);
+        LoginMenu();
+        break;
     }
-
-    Register r;
-    r.CreateUser(storage);
-
-    LoginMenu();
 }
 
 void UserInterface::LoginMenu()
 {
-    option = -1;
-
-    std::string username = "";
-    std::string password = "";
-    system("CLS");
-    std::cout << "\t\t*******************************************************\n";
-    std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
-    std::cout << "\t\t*******************************************************\n\n";
+    PrintMenu();
 
     std::cout << "\t\tLog into your account" << std::endl;
     std::cout << "\t\tPress BACKSPACE to go back or any other key to continue" << std::endl;
 
     option = _getch();
-    // BACKSPACE key -> 8 in ASCII Table
-    if (option == 8) {
-        system("CLS");
+
+    switch (option) {
+    case 8:
         StartUpMenu();
-    }
-
-    // ESC key -> 27 in ASCII Table
-    else if (option == 27) {
-        exit(0);
-    }
-
-    std::cout << "\t\tUsername: ";
-    std::getline(std::cin, username);
-    std::cout << "\t\tPassword: ";
-    std::getline(std::cin, password);
-
-    Login l(username, password);
-    bool verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password, user);
-
-    if (verifiedLoginStatus) {
-        LoggedInMenu();
-    }
-    else {
-        Sleep(4000);
+        break;
+        // 1 == 49 in ASCII table
+    case 49:
+        RegisterMenu();
+        break;
+    case 50:
         LoginMenu();
+        break;
+        // ESC KEY
+    case 27:
+        exit(0);
+        // any other key will not change anything
+    default:
+        std::string username = "";
+        std::string password = "";
+
+        std::cout << "\t\tUsername: ";
+        std::getline(std::cin, username);
+        std::cout << "\t\tPassword: ";
+        std::getline(std::cin, password);
+
+        Login l(username, password);
+        bool verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password, user);
+
+        if (verifiedLoginStatus) {
+            LoggedInMenu();
+        }
+        else {
+            Sleep(4000);
+            LoginMenu();
+        }
+        break;
     }
 }
 
 void UserInterface::LoggedInMenu()
 {
-    system("CLS");
-    std::cout << "\t\t*******************************************************\n";
-    std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
-    std::cout << "\t\t*******************************************************\n\n";
+    option = 2;
+    PrintMenu();
 
-    std::cout << "\t\t+----------------------------------------------------+\n";
-    std::cout << "\t\t|                       WELCOME!                     |\n";
-    std::cout << "\t\t+----------------------------------------------------+\n";
-    std::cout << "\t\t|                                                    |\n";
-    std::cout << "\t\t|                You are now logged in!              |\n";
-    std::cout << "\t\t|                                                    |\n";
-    std::cout << "\t\t|                  1. Settings                       |\n";
-    std::cout << "\t\t|                  2. Switch Account                 |\n";
-    std::cout << "\t\t|                  3. Search for a film              |\n";
-    std::cout << "\t\t|                                                    |\n";
-    std::cout << "\t\t+----------------------------------------------------+\n\n";
-
-    option = -1;
     option = _getch();
 
-    if (option == 49)
-        SettingsMenu();
-    //else if (option == 50)
-       // TODO: SwitchAccount();
-    else if (option == 51)
-        SearchForAFilm();
-    else if (option == 8) {
-        system("CLS");
+    switch (option) {
+    case 8:
         StartUpMenu();
-    }
-    else if (option == 27) {
+        break;
+    case 49:
+        SettingsMenu();
+        break;
+    case 50:
+        // TODO: SwitchAccount();
+        break;
+    case 51:
+        SearchForAFilm();
+        break;
+    case 27:
         exit(0);
-    }
-    else {
+    default:
         LoggedInMenu();
+        break;
     }
 }
 
 void UserInterface::SettingsMenu()
 {
-    system("CLS");
-    std::cout << "\t\t*******************************************************\n";
-    std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
-    std::cout << "\t\t*******************************************************\n\n";
+    option = 3;
+    PrintMenu();
 
-    std::cout << "\t\tSettings" << std::endl;
-    std::cout << "\t\tPress BACKSPACE to go back or any other key to continue" << std::endl;
-
-    std::cout << "\t\t1. Change Username" << std::endl;
-    std::cout << "\t\t2. Change Password" << std::endl;
+    std::cout << "\t\tPress BACKSPACE to go back or choose an option" << std::endl;
 
     option = _getch();
 
-    if (option == 49)
+    switch (option) {
+    case 8:
+        StartUpMenu();
+        break;
+    case 49:
         ChangeUsername();
-    else if (option == 50)
+        break;
+    case 50:
         ChangePassword();
-    if (option == 8) {
-        system("CLS");
-        LoggedInMenu();
-    }
-    else if (option == 27) {
+        break;
+    case 27:
         exit(0);
-    }
-    else
+    // any other key will not change anything
+    default:
         SettingsMenu();
-
-
+        break;
+    }
 }
 
 void UserInterface::SearchForAFilm()
@@ -234,4 +211,51 @@ void UserInterface::ChangeUsername()
     }
     
     LoggedInMenu();
+}
+
+void UserInterface::PrintMenu()
+{
+    system("CLS");
+    std::cout << "\t\t*******************************************************\n";
+    std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
+    std::cout << "\t\t*******************************************************\n\n";
+
+    switch (option)
+    {
+    case 1:
+        std::cout << "\t\t+----------------------------------------------------+\n";
+        std::cout << "\t\t|                       MENU                         |\n";
+        std::cout << "\t\t+----------------------------------------------------+\n";
+        std::cout << "\t\t|                                                    |\n";
+        std::cout << "\t\t|                    1. Register                     |\n";
+        std::cout << "\t\t|                    2. Login                        |\n";
+        std::cout << "\t\t|                                                    |\n";
+        std::cout << "\t\t+----------------------------------------------------+\n\n";
+        break;
+    case 2:
+        std::cout << "\t\t+----------------------------------------------------+\n";
+        std::cout << "\t\t|                       WELCOME!                     |\n";
+        std::cout << "\t\t+----------------------------------------------------+\n";
+        std::cout << "\t\t|                                                    |\n";
+        std::cout << "\t\t|                You are now logged in!              |\n";
+        std::cout << "\t\t|                                                    |\n";
+        std::cout << "\t\t|                  1. Settings                       |\n";
+        std::cout << "\t\t|                  2. Switch Account                 |\n";
+        std::cout << "\t\t|                  3. Search for a film              |\n";
+        std::cout << "\t\t|                                                    |\n";
+        std::cout << "\t\t+----------------------------------------------------+\n\n";
+        break;
+    case 3:
+        std::cout << "\t\t+----------------------------------------------------+\n";
+        std::cout << "\t\t|                      SETTINGS                      |\n";
+        std::cout << "\t\t+----------------------------------------------------+\n";
+        std::cout << "\t\t|                                                    |\n";
+        std::cout << "\t\t|                 1. Change Username                 |\n";
+        std::cout << "\t\t|                 2. Change Password                 |\n";
+        std::cout << "\t\t|                                                    |\n";
+        std::cout << "\t\t+----------------------------------------------------+\n\n";
+        break;
+    default:
+        break;
+    }
 }
