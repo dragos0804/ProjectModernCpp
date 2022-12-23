@@ -48,6 +48,15 @@ std::string User::GetCountry() const
 	return m_country;
 }
 
+std::string User::GetWatchedMovies() const
+{
+	return m_idsWatched;
+}
+
+std::string User::GetFavouriteMovies() const
+{
+	return m_idsFavourites;
+}
 
 void User::SetID(const unsigned int& id)
 {
@@ -82,6 +91,16 @@ void User::SetPassword(const std::string& password)
 void User::SetCountry(const std::string& country)
 {
 	m_country = country;
+}
+
+void User::SetWatched(const std::string& watched)
+{
+	m_idsWatched = watched;
+}
+
+void User::SetFavourites(const std::string& favourite)
+{
+	m_idsFavourites = favourite;
 }
 
 //void User::leaveReview(Film& film, const int& grade)

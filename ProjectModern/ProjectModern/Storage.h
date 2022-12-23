@@ -21,7 +21,10 @@ inline auto createStorage(const std::string& filename)
 			make_column("dateOfBirth", &User::SetDateOfBirth, &User::GetDateOfBirth),
 			make_column("email", &User::SetEmail, &User::GetEmail),
 			make_column("password", &User::SetPassword, &User::GetPassword),
-			make_column("country", &User::SetCountry, &User::GetCountry)
+			make_column("country", &User::SetCountry, &User::GetCountry),
+			make_column("watched", &User::SetWatched, &User::GetWatchedMovies),
+			make_column("favourites", &User::SetFavourites, &User::GetFavouriteMovies)
+
 		),
 		make_table(
 			"Films",

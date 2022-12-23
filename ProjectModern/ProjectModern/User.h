@@ -21,8 +21,8 @@ public:
 	std::string GetEmail() const;
 	std::string GetPassword() const;
 	std::string GetCountry() const;
-	std::string GetMovieToWatched(IMoviePtr currentMovie) const;
-	std::string GetMovieToFavourites(IMoviePtr movie) const;
+	std::string GetWatchedMovies() const;
+	std::string GetFavouriteMovies() const;
 
 	void SetID(const unsigned int& id);
 	void SetName(const std::string& name);
@@ -31,7 +31,8 @@ public:
 	void SetEmail(const std::string& email);
 	void SetPassword(const std::string& password);
 	void SetCountry(const std::string& country);
-
+	void SetWatched(const std::string& watched);
+	void SetFavourites(const std::string& favourite);
 	//void leaveReview(Film& film, const int& grade);
 
 	void AddMovieToVect(IMoviePtr movie, std::vector<IMoviePtr>& vectSavedMovie, std::string& strSavedMovie);
