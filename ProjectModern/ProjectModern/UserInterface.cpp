@@ -112,9 +112,6 @@ void UserInterface::LoggedInMenu()
     option = _getch();
 
     switch (option) {
-    case 8:
-        StartUpMenu();
-        break;
     case 49:
         SettingsMenu();
         break;
@@ -143,7 +140,7 @@ void UserInterface::SettingsMenu()
 
     switch (option) {
     case 8:
-        StartUpMenu();
+        LoggedInMenu();
         break;
     case 49:
         ChangeUsername();
@@ -176,9 +173,40 @@ void UserInterface::SearchForAFilm()
     storage.SearchFilmByTitle(title);
 
     std::cout << std::endl;
-    std::cout << "Select a movie: ";
+    std::cout << "\t\tSelect a movie: ";
     std::cin >> movieNumber;
+
+    option = -1;
+    PrintMenu();
     storage.SelectFilmFromCurrentList(title, movieNumber);
+
+    std::cout << "\t\tPress BACKSPACE to go back or:" << std::endl;
+    std::cout << "\t\t1. Leave review." << std::endl;
+    std::cout << "\t\t2. Add to watched." << std::endl;
+    std::cout << "\t\t3. Add to favourites." << std::endl;
+
+    option = _getch();
+
+    switch (option) {
+    case 8:
+        LoggedInMenu();
+        break;
+    case 49:
+        //TODO: LeaveReview();
+        break;
+    case 50:
+        //TODO: AddToWatched();
+        break;
+    case 51:
+        //TODO AddToFavourites();
+        break;
+    case 27:
+        exit(0);
+        // any other key will not change anything
+    default:
+        LoggedInMenu();
+        break;
+    }
 }
 
 void UserInterface::ChangePassword()

@@ -65,17 +65,34 @@ void AppStorage::SelectFilmFromCurrentList(std::string title, int currentNumber)
 {
 	int current = 1;
 
-	auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle, &Film::GetType, &Film::GetDuration, &Film::GetAgeRange), where(like(&Film::GetTitle, "%" + title + "%")));
+	auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle, &Film::GetType,
+		&Film::GetDuration, &Film::GetAgeRange, &Film::GetCast, &Film::GetGenres,
+		&Film::GetRating, &Film::GetNumberOfReviews, &Film::GetDescription),
+		where(like(&Film::GetTitle, "%" + title + "%")));
 	for (auto& i : whereTitleLike)
 	{
 		if (current == currentNumber) {
-			auto& id = std::get<0>(i);
 			auto& title = std::get<1>(i);
 			auto& type = std::get<2>(i);
 			auto& duration = std::get<3>(i);
 			auto& ageRange = std::get<4>(i);
+			auto& cast = std::get<5>(i);
+			auto& genres = std::get<6>(i);
+			auto& rating = std::get<7>(i);
+			auto& reviews = std::get<8>(i);
+			auto& description = std::get<9>(i);
 
-			std::cout << "\t\t" << title << "\t" << type << "\t" << duration << "\t" << ageRange << std::endl;
+			std::cout << "\t\t" << title << std::endl;
+			std::cout << "\t\t+----------------------------------------------------+\n";
+
+			std::cout << "\t\t" << "Type: " << type << std::endl;
+			std::cout << "\t\t" << "Duration: " << duration << std::endl;
+			std::cout << "\t\t" << "Age Restriction: " << ageRange << std::endl;
+			std::cout << "\t\t" << "Cast: " << cast << std::endl;
+			std::cout << "\t\t" << "Genres: " << genres << std::endl;
+			if(rating != -107374176)
+				std::cout << "\t\t" << "Rating: " << rating << " (" << reviews << " reviews) " << std::endl;
+			std::cout << "\t\t" << "Description: " << description << "\n\n";
 			break;
 		}
 
