@@ -73,11 +73,13 @@ void KMeans::Run(std::vector<Film> films)
 
 Position KMeans::GetNormFilm(const Film& film)
 {
+	Position position;
 	/*return { film.rating,
 			CategoriesMappingValues.at(film.genres),
 			film.releaseYear,
 			film.duration,
 			film.ageRange };*/
+	return position;
 }
 
 uint8_t KMeans::ComputeClosestClusterIndex(const Film& film)

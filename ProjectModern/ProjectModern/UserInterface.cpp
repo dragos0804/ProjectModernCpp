@@ -121,6 +121,8 @@ void UserInterface::LoggedInMenu()
     case 51:
         SearchForAFilm();
         break;
+    case 52: 
+        PrintUserProfile();
     case 27:
         exit(0);
     default:
@@ -253,6 +255,37 @@ void UserInterface::ChangeUsername()
     LoggedInMenu();
 }
 
+
+void UserInterface::PrintUserProfile()
+{
+    PrintMenu();
+    std::cout << "\t\t" << "Name: " << user.GetName() << std::endl;
+    std::cout << "\t\t" << "Username: " << user.GetUsername() << std::endl;
+    std::cout << "\t\t" << "Date of birth: " << user.GetDateOfBirth() << std::endl;
+    std::cout << "\t\t" << "Country: " << user.GetCountry() << std::endl;
+    std::cout << "\t\t" << "Email: " << user.GetEmail() << std::endl;
+    std::cout << "\t\t" << "Watched movies: " << user.GetWatchedMovies() << std::endl;
+    std::cout << "\t\t" << "Favourite movies: " << user.GetFavouriteMovies() << std::endl;
+
+    std::cout << std::endl << std::endl;
+
+    std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
+    
+    option = _getch();
+
+    switch (option) {
+    case 8:
+        LoggedInMenu();
+        break;
+    case 27:
+        exit(0);
+    default:
+        LoggedInMenu();
+        break;
+    }
+}
+
+
 void UserInterface::PrintMenu()
 {
     system("CLS");
@@ -282,6 +315,7 @@ void UserInterface::PrintMenu()
         std::cout << "\t\t|                  1. Settings                       |\n";
         std::cout << "\t\t|                  2. Switch Account                 |\n";
         std::cout << "\t\t|                  3. Search for a film              |\n";
+        std::cout << "\t\t|                  4. Your profile                   |\n";
         std::cout << "\t\t|                                                    |\n";
         std::cout << "\t\t+----------------------------------------------------+\n\n";
         break;

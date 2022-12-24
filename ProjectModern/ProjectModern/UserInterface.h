@@ -27,6 +27,8 @@ private:
 
     void PrintMenu();
 
+    void PrintUserProfile();
+
 private:
     User user;
     AppStorage storage;
