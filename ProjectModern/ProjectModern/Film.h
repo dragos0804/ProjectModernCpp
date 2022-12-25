@@ -64,6 +64,8 @@ public:
 
 	std::string GetAgeRange() const;
 
+	unsigned int GetSumOfGrades() const;
+
 	// ---- SETTERS ----
 
 	void SetId(const unsigned int& id);
@@ -92,10 +94,15 @@ public:
 
 	void SetAgeRange(const std::string& ageRange);
 
+	void SetSumOfGrades(const unsigned int& sumOfGrades);
+
+
 	// ---- MEMBERS ----
 private:
 	unsigned int m_id;
 	unsigned int m_numberOfReviews;
+	unsigned int m_sumOfGrades;
+
 
 	float m_rating;
 	

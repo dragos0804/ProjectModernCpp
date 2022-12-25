@@ -105,14 +105,15 @@ void User::SetFavourites(const std::string& favourite)
 	m_idsFavourites = favourite;
 }
 
-//void User::leaveReview(Film& film, const int& grade)
-//{
-//	double sumOfGrades=0.0;
-//	sumOfGrades += grade;
-//	double averageRating = sumOfGrades / film.GetNumberOfReviews();
-//	film.SetNumberOfReviews(film.GetNumberOfReviews() + 1);
-//	film.SetRating(averageRating);
-//}
+void User::leaveReview(Film& film, const int& grade)
+{
+	int sumOfGrades = film.GetSumOfGrades();
+	sumOfGrades += grade;
+	film.SetSumOfGrades(sumOfGrades);
+	float averageRating = film.GetSumOfGrades() / film.GetNumberOfReviews();
+	film.SetRating(averageRating);
+	film.SetNumberOfReviews(film.GetNumberOfReviews() + 1);
+}
 
 void User::AddMovieToVect(IMoviePtr movie, std::vector<IMoviePtr>& vectSavedMovie, std::string& strSavedMovie)
 {

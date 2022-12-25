@@ -99,6 +99,11 @@ std::string Film::GetAgeRange() const
 	return m_ageRange;
 }
 
+unsigned int Film::GetSumOfGrades() const
+{
+	return m_sumOfGrades;
+}
+
 void Film::SetId(const unsigned int& id)
 {
 	m_id = id;
@@ -162,4 +167,9 @@ void Film::SetCountry(const std::string& country)
 void Film::SetAgeRange(const std::string& ageRange)
 {
 	m_ageRange = ageRange;
+}
+
+void Film::SetSumOfGrades(const unsigned int& sumOfGrades)
+{
+	m_sumOfGrades = sumOfGrades;
 }

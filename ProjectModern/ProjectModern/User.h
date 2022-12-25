@@ -33,7 +33,8 @@ public:
 	void SetCountry(const std::string& country);
 	void SetWatched(const std::string& watched);
 	void SetFavourites(const std::string& favourite);
-	//void leaveReview(Film& film, const int& grade);
+
+	void leaveReview(Film& film, const int& grade);
 
 	void AddMovieToVect(IMoviePtr movie, std::vector<IMoviePtr>& vectSavedMovie, std::string& strSavedMovie);
 
