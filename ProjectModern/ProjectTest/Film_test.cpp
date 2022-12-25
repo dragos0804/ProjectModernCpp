@@ -10,16 +10,18 @@ public:
 			"Action", "No ideea", "Spielberg", "USA");
 		f2 = new Film(2, 500, "103min", 4.8, "Movie", "Code 4", "TV_MA", "Action movie with nice cars", 2008, 
 			"Action, Drama", "Hollywood", "Jason Statam", "England");
+		f3 = new Film();
 	}
 
 	void TearDown() override
 	{
 		delete f1;
 		delete f2;
+		delete f3;
 	}
 
 protected:
-	Film* f1 = nullptr, * f2 = nullptr;
+	Film* f1 = nullptr, * f2 = nullptr, * f3 = nullptr;
 };
 
 TEST_F(FilmTest, CheckIdGetter)
@@ -94,4 +96,64 @@ TEST_F(FilmTest, CheckAgeRestrictionGetter)
 {
 	EXPECT_EQ(f1->GetAgeRange(), "PG");
 	EXPECT_EQ(f2->GetAgeRange(), "TV_MA");
+}
+
+TEST_F(FilmTest, CheckTypeSetter)
+{
+	f3->SetType("Movie");
+	EXPECT_EQ(f3->GetType(), "Movie");
+}
+
+TEST_F(FilmTest, CheckDurationSetter)
+{
+	f3->SetDuration("90min");
+	EXPECT_EQ(f3->GetDuration(), "90min");
+}
+
+TEST_F(FilmTest, CheckTitleSetter)
+{
+	f3->SetTitle("Fast and furious");
+	EXPECT_EQ(f3->GetTitle(), "Fast and furious");
+}
+
+TEST_F(FilmTest, CheckReleaseYearSetter)
+{
+	f3->SetReleaseYear(2020);
+	EXPECT_EQ(f3->GetReleaseYear(), 2020);
+}
+
+TEST_F(FilmTest, CheckGenreSetter)
+{
+	f3->SetGenres("Action");
+	EXPECT_EQ(f3->GetGenres(), "Action");
+}
+
+TEST_F(FilmTest, CheckCastSetter)
+{
+	f3->SetCast("Margot Robbie");
+	EXPECT_EQ(f3->GetCast(), "Margot Robbie");
+}
+
+TEST_F(FilmTest, CheckDirectorSetter)
+{
+	f3->SetDirector("Spielberg");
+	EXPECT_EQ(f3->GetDirector(), "Spielberg");
+}
+
+TEST_F(FilmTest, CheckDescriptionSetter)
+{
+	f3->SetDescription("There once was a girl named S");
+	EXPECT_EQ(f3->GetDescription(), "There once was a girl named S");
+}
+
+TEST_F(FilmTest, CheckCountryGetter)
+{
+	f3->SetDescription("Romania");
+	EXPECT_EQ(f3->GetCountry(), "Romania");
+}
+
+TEST_F(FilmTest, CheckAgeRestrictionSetter)
+{
+	f3->SetDescription("TV_13");
+	EXPECT_EQ(f3->GetCountry(), "TV_13");
 }
