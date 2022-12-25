@@ -116,7 +116,8 @@ void UserInterface::LoggedInMenu()
         SettingsMenu();
         break;
     case 50:
-        // TODO: SwitchAccount();
+        //switch user
+        LoginMenu();
         break;
     case 51:
         SearchForAFilm();

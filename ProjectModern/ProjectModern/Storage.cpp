@@ -90,8 +90,7 @@ void AppStorage::SelectFilmFromCurrentList(std::string title, int currentNumber)
 			std::cout << "\t\t" << "Age Restriction: " << ageRange << std::endl;
 			std::cout << "\t\t" << "Cast: " << cast << std::endl;
 			std::cout << "\t\t" << "Genres: " << genres << std::endl;
-			if(rating != -107374176)
-				std::cout << "\t\t" << "Rating: " << rating << " (" << reviews << " reviews) " << std::endl;
+			std::cout << "\t\t" << "Rating: " << rating << " (" << reviews << " reviews) " << std::endl;
 			std::cout << "\t\t" << "Description: " << description << "\n\n";
 			break;
 		}
