@@ -6,8 +6,8 @@ class UserTest : public ::testing::Test
 public:
 	void SetUp() override
 	{
-		u1 = new User(1, "Alex", "Alex036", "31-05-2002", "chelmus.alexanther@gmail.com", "123456", "Romania");
-		u2 = new User(2, "Andrei", "Witcher66", "27-04-2017", "andreiwitcher@yahoo.ro", "AAAAAAA", "Deutschland");
+		u1 = new User(1, "Alex", "Alex036", "31-05-2002", "chelmus.alexanther@gmail.com", "123456", "Romania", "235,245,289", "289");
+		u2 = new User(2, "Andrei", "Witcher66", "27-04-2017", "andreiwitcher@yahoo.ro", "AAAAAAA", "Deutschland", "1000,6589", "2,36,753");
 		u3 = new User();
 	}
 
@@ -40,6 +40,19 @@ TEST_F(UserTest, CheckUsernameGetter)
 	EXPECT_EQ(u2->GetUsername(), "Witcher66");
 }
 
+TEST_F(UserTest, CheckWatchedMoviesGetter)
+{
+	EXPECT_EQ(u1->GetWatchedMovies(), "235,245,289");
+	EXPECT_EQ(u2->GetWatchedMovies(), "1000,6589");
+}
+
+TEST_F(UserTest, CheckFavouritesMoviesGetter)
+{
+	EXPECT_EQ(u1->GetFavouriteMovies(), "289");
+	EXPECT_EQ(u2->GetFavouriteMovies(), "2,36,753");
+}
+
+//Setter tests
 TEST_F(UserTest, CheckUsernameSetter)
 {
 	u3->SetUsername("Ion34Ionut");

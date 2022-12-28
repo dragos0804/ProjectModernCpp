@@ -45,9 +45,7 @@ TEST_F(FilmTest, CheckDurationGetter)
 TEST_F(FilmTest, CheckRatingGetter)
 {
 	EXPECT_EQ(f1->GetRating(), 3.6);
-	std::cout << f1->GetRating()<<"\n";
 	EXPECT_EQ(f2->GetRating(), 4.8);
-	std::cout << f2->GetRating() << "\n";
 }
 
 TEST_F(FilmTest, CheckTitleGetter)
@@ -146,14 +144,14 @@ TEST_F(FilmTest, CheckDescriptionSetter)
 	EXPECT_EQ(f3->GetDescription(), "There once was a girl named S");
 }
 
-TEST_F(FilmTest, CheckCountryGetter)
+TEST_F(FilmTest, CheckCountrySetter)
 {
-	f3->SetDescription("Romania");
+	f3->SetCountry("Romania");
 	EXPECT_EQ(f3->GetCountry(), "Romania");
 }
 
 TEST_F(FilmTest, CheckAgeRestrictionSetter)
 {
-	f3->SetDescription("TV_13");
-	EXPECT_EQ(f3->GetCountry(), "TV_13");
+	f3->SetAgeRange("TV_13");
+	EXPECT_EQ(f3->GetAgeRange(), "TV_13");
 }
