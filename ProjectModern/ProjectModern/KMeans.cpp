@@ -2,48 +2,51 @@
 
 const std::unordered_map<std::string, float> CategoriesMappingValues =
 {
-	{"TV Shows", 0.0f},
-	{"Teen TV Shows", 0.0f},
-	{"TV Sci-Fi & Fantasy", 0.0f},
-	{"Spanish-Language TV Shows", 0.0f},
-	{"TV Horror", 0.0f},
-	{"TV Comedies", 0.0f},
-	{"Docuseries", 0.0f},
-	{"TV Action & Adventure", 0.0f},
-	{"Crime TV Shows", 0.0f},
-	{"Dramas", 0.0f},
-	{"TV Mysteries", 0.0f},
-	{"Romantic TV Shows", 0.0f},
-	{"Movies", 0.0f},
-	{"Sports Movies", 0.0f},
-	{"Independent Movies", 0.0f},
-	{"Children & Family Movies", 0.0f},
-	{"Korean TV Shows", 0.0f},
-	{"Music & Musicals", 0.0f},
-	{"Sci-Fi & Fantasy", 0.0f},
-	{"British TV Shows", 0.0f},
-	{"Stand-Up Comedy", 0.0f},
-	{"Horror Movies", 0.0f},
-	{"Science & Nature TV", 0.0f},
-	{"Comedies", 0.0f},
+	//---TV_SHOWS---
+	// excludem din calculul recomandarii acele categorii care sunt prea indepartate / aducem spanish/british/korean tv shows la valori medii (media dintre toate celelalte categorii) 
+	{"TV Shows", 0.1f},
+	{"Teen TV Shows", 1.0f},
+	{"TV Sci-Fi & Fantasy", 2.0f},
+	{"Spanish-Language TV Shows", 19.0f}, //mediana
+	{"TV Horror", 3.0f},
+	{"TV Comedies", 15.0f},
+	{"Kids' TV", 0.8f},
+	{"Reality TV", 11.0f},
+	{"Classic & Cult TV", 7.0f}, //mediana
+	{"TV Dramas", 10.0f},
+	{"TV Thrillers", 4.0f},
+	{"TV Action & Adventure", 4.5f},
+	{"International TV Shows", 0.15f}, //mediana
+	{"Crime TV Shows", 4.7f},
+	{"Romantic TV Shows", 12.0f},
+	{"Science & Nature TV", 7.5f},
+	{"British TV Shows", 18.0f}, //mediana
+	{"TV Mysteries", 5.0f},
+	{"Korean TV Shows", 20.0f}, //mediana
+	{"Docuseries", 6.5f},
+	//---MOVIES---
+	{"Movies", 0.2f},
+	{"Dramas", 10.1f},
+	{"Sports Movies", 4.55f},
+	{"Independent Movies", 0.0f}, //mediana
+	{"Children & Family Movies", 13.0f},
+	{"Music & Musicals", 14.0f},
+	{"Sci-Fi & Fantasy", 2.01f},
+	{"Stand-Up Comedy", 15.01f},
+	{"Horror Movies", 3.01f},
+	{"Comedies", 15.011f},
 	{"Anime Series", 0.0f},
-	{"Kids' TV", 0.0f},
 	{"Faith & Spirituality", 0.0f},
-	{"Stand-Up Comedy & Talk Shows", 0.0f},
-	{"TV Thrillers", 0.0f},
-	{"International Movies", 0.0f},
-	{"Reality TV", 0.0f},
-	{"International TV Shows", 0.0f},
-	{"Anime Features", 0.0f},
-	{"Romantic Movies", 0.0f},
-	{"LGBTQ Movies", 0.0f},
-	{"Documentaries", 0.0f},
-	{"Cult Movies", 0.0f},
-	{"TV Dramas", 0.0f},
-	{"Classic Movies", 0.0f},
-	{"Thrillers", 0.0f},
-	{"Classic & Cult TV", 0.0f},
-	{"Action & Adventure", 0.0f}
+	{"Stand-Up Comedy & Talk Shows", 15.02f},
+	{"International Movies", 0.16f},
+	{"Anime Features", 0.9f},
+	{"Romantic Movies", 12.01f},
+	{"LGBTQ Movies", 8.0f},
+	{"Documentaries", 6.501f},
+	{"Cult Movies", 0.0f}, //mediana
+	{"Classic Movies", 0.0f}, //mediana
+	{"Thrillers", 4.01f},
+	{"Action & Adventure", 4.501f} 
 };
 
 std::vector<Film> KMeans::GetSimilarFilms(const Film& film)
