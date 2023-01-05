@@ -3,15 +3,19 @@
 const std::unordered_map<std::string, float> AgeRangeMappingValues =
 {
 	{"G", 0.0f},
-	{"TV_G", 0.0f},
-	{"TV_Y", 0.0f},
-	{"TV_7", 0.0f},
+	{"TV-G", 0.0f},
+	{"TV-Y7", 1.0f},
 	{"PG", 0.0f},
-	{"TV_PG", 0.0f},
-	{"PG_13", 0.0f},
-	{"TV_14", 0.0f},
+	{"NR", 0.0f},
+	{"NC-17", 0.0f},
+	{"PG-13", 0.0f},
+	{"TV-PG", 0.0f},
+	{"TV-14", 0.0f},
 	{"R", 0.0f},
-	{"TV_MA", 0.0f}
+	{"TV-Y", 0.0f},
+	{"TV-Y7-FV", 0.0f},
+	{"TV-MA", 0.0f},
+	{"UR", 0.0f}
 };
 
 const std::unordered_map<std::string, float> CategoriesMappingValues =
