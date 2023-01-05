@@ -78,7 +78,7 @@ Position KMeans::GetNormFilm(const Film& film)
 {
 	Position position;
 	/*return { film.rating,
-			CategoriesMappingValues.at(film.genres),
+			middleCategory / numberOfCategories,
 			film.releaseYear,
 			film.duration,
 			film.ageRange };*/
@@ -91,6 +91,14 @@ Position KMeans::GetNormFilm(const Film& film)
 		numberOfCategories++;
 		middleCategory += CategoriesMappingValues.at(filmCategory);
 	}
+
+	std::string duration;
+	for (uint8_t index = 0; index < film.GetDuration().size(); ++index)
+		if (film.GetDuration()[index] >= '0' && film.GetDuration()[index] <= '9')
+			duration += film.GetDuration()[index];
+		else break;
+
+	uint16_t durationNumeric = atoi(duration.c_str());
 
 	return position;
 }
