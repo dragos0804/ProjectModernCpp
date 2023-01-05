@@ -1,5 +1,19 @@
 #include "KMeans.h"
 
+const std::unordered_map<std::string, float> AgeRangeMappingValues =
+{
+	{"G", 0.0f},
+	{"TV_G", 0.0f},
+	{"TV_Y", 0.0f},
+	{"TV_7", 0.0f},
+	{"PG", 0.0f},
+	{"TV_PG", 0.0f},
+	{"PG_13", 0.0f},
+	{"TV_14", 0.0f},
+	{"R", 0.0f},
+	{"TV_MA", 0.0f}
+};
+
 const std::unordered_map<std::string, float> CategoriesMappingValues =
 {
 	//---TV_SHOWS---
@@ -46,7 +60,7 @@ const std::unordered_map<std::string, float> CategoriesMappingValues =
 	{"Cult Movies", 0.0f}, //mediana
 	{"Classic Movies", 0.0f}, //mediana
 	{"Thrillers", 4.01f},
-	{"Action & Adventure", 4.501f} 
+	{"Action & Adventure", 4.501f}
 };
 
 std::vector<Film> KMeans::GetSimilarFilms(const Film& film)
@@ -77,11 +91,7 @@ void KMeans::Run(std::vector<Film> films)
 Position KMeans::GetNormFilm(const Film& film)
 {
 	Position position;
-	/*return { film.rating,
-			middleCategory / numberOfCategories,
-			film.releaseYear,
-			film.duration,
-			film.ageRange };*/
+
 	float middleCategory = 0.0f;
 	uint8_t numberOfCategories = 0;
 
@@ -100,7 +110,11 @@ Position KMeans::GetNormFilm(const Film& film)
 
 	uint16_t durationNumeric = atoi(duration.c_str());
 
-	return position;
+	return { film.GetRating(),
+			middleCategory / numberOfCategories,
+			film.GetReleaseYear(),
+			durationNumeric,
+			AgeRangeMappingValues.at(film.GetAgeRange())};
 }
 
 uint8_t KMeans::ComputeClosestClusterIndex(const Film& film)

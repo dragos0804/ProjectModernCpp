@@ -6,20 +6,6 @@
 class Film {
 
 public:
-	enum class AgeRange : uint8_t {
-		G,
-		TV_G,
-		TV_Y,
-		TV_7,
-		PG,
-		TV_PG,
-		PG_13,
-		TV_14,
-		R,
-		TV_MA
-	};
-
-public:
 	// ---- CONSTRUCTORS ----
 	Film(unsigned int id,
 		unsigned int numberOfReviews, 
