@@ -1,6 +1,8 @@
 #pragma once
 #include "Cluster.h"
 #include "Film.h"
+#include "Storage.h"
+
 #define power2(a) ((a) * (a))
 
 class KMeans

@@ -82,6 +82,16 @@ Position KMeans::GetNormFilm(const Film& film)
 			film.releaseYear,
 			film.duration,
 			film.ageRange };*/
+	float middleCategory = 0.0f;
+	uint8_t numberOfCategories = 0;
+
+	std::vector filmCategories = AppStorage::split(film.GetGenres(), ", ");
+	for (const auto& filmCategory : filmCategories)
+	{
+		numberOfCategories++;
+		middleCategory += CategoriesMappingValues.at(filmCategory);
+	}
+
 	return position;
 }
 
