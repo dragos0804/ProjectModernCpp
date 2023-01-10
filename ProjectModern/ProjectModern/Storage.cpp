@@ -61,10 +61,10 @@ void AppStorage::SearchFilmByTitle(std::string title)
 	}
 }
 
-void AppStorage::SelectFilmFromCurrentList(std::string title, int currentNumber)
+Film AppStorage::SelectFilmFromCurrentList(std::string title, int currentNumber)
 {
 	int current = 1;
-
+	int idFilmSelectat = 0;
 	auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle, &Film::GetType,
 		&Film::GetDuration, &Film::GetAgeRange, &Film::GetCast, &Film::GetGenres,
 		&Film::GetRating, &Film::GetNumberOfReviews, &Film::GetDescription),
@@ -72,6 +72,7 @@ void AppStorage::SelectFilmFromCurrentList(std::string title, int currentNumber)
 	for (auto& i : whereTitleLike)
 	{
 		if (current == currentNumber) {
+			auto& idFilm = std::get<0>(i);
 			auto& title = std::get<1>(i);
 			auto& type = std::get<2>(i);
 			auto& duration = std::get<3>(i);
@@ -92,9 +93,16 @@ void AppStorage::SelectFilmFromCurrentList(std::string title, int currentNumber)
 			std::cout << "\t\t" << "Genres: " << genres << std::endl;
 			std::cout << "\t\t" << "Rating: " << rating << " (" << reviews << " reviews) " << std::endl;
 			std::cout << "\t\t" << "Description: " << description << "\n\n";
+
+			idFilmSelectat = idFilm;
+
 			break;
+
 		}
 
 		current++;
 	}
+
+	Film filmSelectat = m_db.get<Film>(idFilmSelectat);
+	return filmSelectat;
 }

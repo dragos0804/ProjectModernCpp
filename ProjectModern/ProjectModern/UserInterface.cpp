@@ -181,12 +181,22 @@ void UserInterface::SearchForAFilm()
 
     option = -1;
     PrintMenu();
-    storage.SelectFilmFromCurrentList(title, movieNumber);
-
+    film = storage.SelectFilmFromCurrentList(title, movieNumber);
+    film.SetSumOfGrades(0);
     std::cout << "\t\tPress BACKSPACE to go back or:" << std::endl;
     std::cout << "\t\t1. Leave review." << std::endl;
     std::cout << "\t\t2. Add to watched." << std::endl;
     std::cout << "\t\t3. Add to favourites." << std::endl;
+    //std::cout << idFilm << std::endl;
+    std::cout << "Number of reviews before: " << film.GetNumberOfReviews() << std::endl;
+    std::cout << "Ratinf before: " << film.GetRating() << std::endl;
+    user.leaveReview(film, 8);
+    std::cout << "sum: " << film.GetSumOfGrades() << std::endl;
+    user.leaveReview(film, 4);
+    std::cout << "sum: " << film.GetSumOfGrades() << std::endl;
+    std::cout << "Number of reviews after: " << film.GetNumberOfReviews() << std::endl;
+    std::cout << "Ratinf after: " << film.GetRating() << std::endl;
+    //film.SetRating(film.GetRating());
 
     option = _getch();
 
@@ -196,6 +206,7 @@ void UserInterface::SearchForAFilm()
         break;
     case 49:
         //TODO: LeaveReview();
+        //user.leaveReview(film, 8);
         break;
     case 50:
         //TODO: AddToWatched();

@@ -110,9 +110,9 @@ void User::leaveReview(Film& film, const int& grade)
 	int sumOfGrades = film.GetSumOfGrades();
 	sumOfGrades += grade;
 	film.SetSumOfGrades(sumOfGrades);
+	film.SetNumberOfReviews(film.GetNumberOfReviews() + 1);
 	float averageRating = film.GetSumOfGrades() / film.GetNumberOfReviews();
 	film.SetRating(averageRating);
-	film.SetNumberOfReviews(film.GetNumberOfReviews() + 1);
 }
 
 void User::AddMovieToVect(IMoviePtr movie, std::vector<IMoviePtr>& vectSavedMovie, std::string& strSavedMovie)

@@ -9,6 +9,7 @@ public:
 	// ---- CONSTRUCTORS ----
 	Film(unsigned int id,
 		unsigned int numberOfReviews, 
+		unsigned int sumOfGrades,
 		std::string duration, 
 		float rating, 
 		std::string type,
