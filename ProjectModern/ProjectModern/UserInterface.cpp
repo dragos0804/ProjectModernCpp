@@ -182,7 +182,7 @@ void UserInterface::SearchForAFilm()
     option = -1;
     PrintMenu();
     film = storage.SelectFilmFromCurrentList(title, movieNumber);
-    film.SetSumOfGrades(0);
+    //film.SetSumOfGrades(0);
     std::cout << "\t\tPress BACKSPACE to go back or:" << std::endl;
     std::cout << "\t\t1. Leave review." << std::endl;
     std::cout << "\t\t2. Add to watched." << std::endl;
@@ -190,13 +190,14 @@ void UserInterface::SearchForAFilm()
     //std::cout << idFilm << std::endl;
     std::cout << "Number of reviews before: " << film.GetNumberOfReviews() << std::endl;
     std::cout << "Ratinf before: " << film.GetRating() << std::endl;
-    user.leaveReview(film, 8);
+    user.leaveReview(film, 1);
     std::cout << "sum: " << film.GetSumOfGrades() << std::endl;
-    user.leaveReview(film, 4);
+    user.leaveReview(film, 1);
     std::cout << "sum: " << film.GetSumOfGrades() << std::endl;
     std::cout << "Number of reviews after: " << film.GetNumberOfReviews() << std::endl;
     std::cout << "Ratinf after: " << film.GetRating() << std::endl;
-    //film.SetRating(film.GetRating());
+    film.SetRating(film.GetRating());
+    //storage.m_db.update(film);
 
     option = _getch();
 
