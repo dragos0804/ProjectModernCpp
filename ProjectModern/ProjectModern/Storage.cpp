@@ -35,35 +35,29 @@ void AppStorage::AddFilm(Film& film)
 	auto initFilmCount2 = m_db.count<Film>();
 }
 
-void AppStorage::SearchFilmByTitle(std::string title)
+bool AppStorage::SearchFilmByTitle(std::string title)
 {
-	/*auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle, &Film::GetType, &Film::GetDuration, &Film::GetAgeRange), where(like(&Film::GetTitle, "%"+title+"%")));
-	for (auto& i : whereTitleLike)
-	{
-		auto& id = std::get<0>(i);
-		auto& title = std::get<1>(i);
-		auto& type = std::get<2>(i);
-		auto& duration = std::get<3>(i);
-		auto& ageRange = std::get<4>(i);
-		
-		std::cout << "\t" << id << "\t" << type << "\t" << duration << "\t" << ageRange << "\t" << title << std::endl;
-	}*/
-
-	int current = 1;
+	int current = 0;
 
 	auto whereTitleLike = m_db.select(columns(&Film::GetTitle), where(like(&Film::GetTitle, "%" + title + "%")));
 	for (auto& i : whereTitleLike)
 	{
 		auto& title = std::get<0>(i);
 
-		std::cout << "\t\t" << current << ".  " << "\t" << title << std::endl;
 		current++;
+		std::cout << "\t\t" << current << ".  " << "\t" << title << std::endl;
 	}
+	if (current == 0)
+	{
+		std::cout << "\t\tNo films found!" << std::endl;
+		return false;
+	}
+	return true;
 }
 
 Film AppStorage::SelectFilmFromCurrentList(std::string title, int currentNumber)
 {
-	int current = 1;
+	int current = 0;
 	int idFilmSelectat = 0;
 	auto whereTitleLike = m_db.select(columns(&Film::GetId, &Film::GetTitle, &Film::GetType,
 		&Film::GetDuration, &Film::GetAgeRange, &Film::GetCast, &Film::GetGenres,
@@ -71,6 +65,7 @@ Film AppStorage::SelectFilmFromCurrentList(std::string title, int currentNumber)
 		where(like(&Film::GetTitle, "%" + title + "%")));
 	for (auto& i : whereTitleLike)
 	{
+		current++;
 		if (current == currentNumber) {
 			auto& idFilm = std::get<0>(i);
 			auto& title = std::get<1>(i);
@@ -97,10 +92,7 @@ Film AppStorage::SelectFilmFromCurrentList(std::string title, int currentNumber)
 			idFilmSelectat = idFilm;
 
 			break;
-
 		}
-
-		current++;
 	}
 
 	Film filmSelectat = m_db.get<Film>(idFilmSelectat);

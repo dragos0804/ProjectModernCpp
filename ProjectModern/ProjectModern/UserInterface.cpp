@@ -173,31 +173,23 @@ void UserInterface::SearchForAFilm()
     }
     
     std::cout << std::endl;
-    storage.SearchFilmByTitle(title);
+    if (storage.SearchFilmByTitle(title))
+    {
+        std::cout << std::endl;
+        std::cout << "\t\tSelect a movie: ";
+        std::cin >> movieNumber;
 
-    std::cout << std::endl;
-    std::cout << "\t\tSelect a movie: ";
-    std::cin >> movieNumber;
 
-    option = -1;
-    PrintMenu();
-    film = storage.SelectFilmFromCurrentList(title, movieNumber);
-    //film.SetSumOfGrades(0);
-    std::cout << "\t\tPress BACKSPACE to go back or:" << std::endl;
-    std::cout << "\t\t1. Leave review." << std::endl;
-    std::cout << "\t\t2. Add to watched." << std::endl;
-    std::cout << "\t\t3. Add to favourites." << std::endl;
-    //std::cout << idFilm << std::endl;
-    std::cout << "Number of reviews before: " << film.GetNumberOfReviews() << std::endl;
-    std::cout << "Ratinf before: " << film.GetRating() << std::endl;
-    user.leaveReview(film, 1);
-    std::cout << "sum: " << film.GetSumOfGrades() << std::endl;
-    user.leaveReview(film, 1);
-    std::cout << "sum: " << film.GetSumOfGrades() << std::endl;
-    std::cout << "Number of reviews after: " << film.GetNumberOfReviews() << std::endl;
-    std::cout << "Ratinf after: " << film.GetRating() << std::endl;
-    film.SetRating(film.GetRating());
-    //storage.m_db.update(film);
+        option = -1;
+        PrintMenu();
+        film = storage.SelectFilmFromCurrentList(title, movieNumber);
+
+        std::cout << "\t\t1. Leave review." << std::endl;
+        std::cout << "\t\t2. Add to watched." << std::endl;
+        std::cout << "\t\t3. Add to favourites." << std::endl;
+        std::cout << std::endl;
+    }
+    std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
 
     option = _getch();
 
@@ -206,9 +198,29 @@ void UserInterface::SearchForAFilm()
         LoggedInMenu();
         break;
     case 49:
-        //TODO: LeaveReview();
-        //user.leaveReview(film, 8);
+    {
+        int grade;
+        std::cout << "\t\tLeave a grade between 1 and 10 for this film: ";
+        std::cin >> grade;
+        user.leaveReview(film, grade);
+        std::cout << "\t\tThank you! Rating after your review: " << film.GetRating() << std::endl;
+        storage.m_db.update(film);
+        std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
+
+        option = _getch();
+
+        switch (option) {
+        case 8:
+            LoggedInMenu();
+            break;
+        case 27:
+            exit(0);
+        default:
+            LoggedInMenu();
+            break;
+        }
         break;
+    }
     case 50:
         //TODO: AddToWatched();
         break;
@@ -222,6 +234,7 @@ void UserInterface::SearchForAFilm()
         LoggedInMenu();
         break;
     }
+
 }
 
 void UserInterface::ChangePassword()

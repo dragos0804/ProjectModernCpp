@@ -6,7 +6,7 @@
 
 using namespace sqlite_orm;
 
-const std::string dbFile = "App_db.sqlite";
+const std::string dbFile = "MovieApp_db.sqlite";
 
 
 inline auto createStorage(const std::string& filename)
@@ -39,7 +39,8 @@ inline auto createStorage(const std::string& filename)
 			make_column("genre", &Film::SetGenres, &Film::GetGenres),
 			make_column("description", &Film::SetDescription, &Film::GetDescription),
 			make_column("rating", &Film::SetRating, &Film::GetRating),
-			make_column("number_of_reviews", &Film::SetNumberOfReviews, &Film::GetNumberOfReviews)
+			make_column("number_of_reviews", &Film::SetNumberOfReviews, &Film::GetNumberOfReviews),
+			make_column("sum_of_grades", &Film::SetSumOfGrades, &Film::GetSumOfGrades)
 		)
 	);
 }
@@ -52,7 +53,7 @@ public:
 	//bool Initialize(const std::string& csvDataFilePath);
 	void AddUser(User& user);
 	void AddFilm(Film& film);
-	void SearchFilmByTitle(std::string title);
+	bool SearchFilmByTitle(std::string title);
 	Film SelectFilmFromCurrentList(std::string title, int currentNumber);
 	static std::vector<std::string> split(const std::string& str, const std::string& delim);
 

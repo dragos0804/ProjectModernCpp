@@ -101,7 +101,7 @@ std::string Film::GetAgeRange() const
 	return m_ageRange;
 }
 
-unsigned int Film::GetSumOfGrades() const
+float Film::GetSumOfGrades() const
 {
 	return m_sumOfGrades;
 }
@@ -171,7 +171,7 @@ void Film::SetAgeRange(const std::string& ageRange)
 	m_ageRange = ageRange;
 }
 
-void Film::SetSumOfGrades(const unsigned int& sumOfGrades)
+void Film::SetSumOfGrades(const float& sumOfGrades)
 {
 	m_sumOfGrades = sumOfGrades;
 }
