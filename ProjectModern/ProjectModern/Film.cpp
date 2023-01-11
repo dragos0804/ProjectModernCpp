@@ -3,21 +3,23 @@
 
 
 
-Film::Film(unsigned int id, 
-	unsigned int numberOfReviews, 
-	std::string duration, 
-	float rating, 
-	std::string type, 
-	std::string title, 
-	std::string ageRange, 
-	std::string description, 
-	uint16_t releaseYear, 
-	std::string genres, 
-	std::string cast, 
-	std::string director, 
+Film::Film(unsigned int id,
+	unsigned int numberOfReviews,
+	unsigned int sumOfGrades,
+	std::string duration,
+	float rating,
+	std::string type,
+	std::string title,
+	std::string ageRange,
+	std::string description,
+	uint16_t releaseYear,
+	std::string genres,
+	std::string cast,
+	std::string director,
 	std::string country)
 	: m_id(id)
 	, m_numberOfReviews(numberOfReviews)
+	, m_sumOfGrades(sumOfGrades)
 	, m_duration(duration)
 	, m_rating(rating)
 	, m_type(type)
@@ -99,7 +101,7 @@ std::string Film::GetAgeRange() const
 	return m_ageRange;
 }
 
-unsigned int Film::GetSumOfGrades() const
+float Film::GetSumOfGrades() const
 {
 	return m_sumOfGrades;
 }
@@ -169,7 +171,7 @@ void Film::SetAgeRange(const std::string& ageRange)
 	m_ageRange = ageRange;
 }
 
-void Film::SetSumOfGrades(const unsigned int& sumOfGrades)
+void Film::SetSumOfGrades(const float& sumOfGrades)
 {
 	m_sumOfGrades = sumOfGrades;
 }

@@ -31,6 +31,7 @@ private:
 
 private:
     User user;
+    Film film;
     AppStorage storage;
     int option = -1;
 };

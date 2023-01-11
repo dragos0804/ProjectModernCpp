@@ -44,8 +44,8 @@ TEST_F(FilmTest, CheckDurationGetter)
 
 TEST_F(FilmTest, CheckRatingGetter)
 {
-	EXPECT_EQ(f1->GetRating(), 3.6);
-	EXPECT_EQ(f2->GetRating(), 4.8);
+	EXPECT_EQ(f1->GetRating(), 3.6f);
+	EXPECT_EQ(f2->GetRating(), 4.8f);
 }
 
 TEST_F(FilmTest, CheckTitleGetter)
