@@ -1,4 +1,6 @@
 #include "KMeans.h"
+#define NUM_OF_GENRES 42
+
 
 const std::unordered_map<std::string, float> AgeRangeMappingValues =
 {
@@ -41,27 +43,42 @@ const std::unordered_map<std::string, float> CategoriesMappingValues =
 	//---MOVIES---
 	{"Movies", 0.2f},
 	{"Dramas", 10.1f},
-	{"Sports Movies", 4.55f},
+	{"Sports Movies", 4.5f},
 	{"Independent Movies", 0.0f}, //mediana
 	{"Children & Family Movies", 13.0f},
 	{"Music & Musicals", 14.0f},
-	{"Sci-Fi & Fantasy", 2.01f},
-	{"Stand-Up Comedy", 15.01f},
-	{"Horror Movies", 3.01f},
-	{"Comedies", 15.011f},
+	{"Sci-Fi & Fantasy", 2.0f},
+	{"Stand-Up Comedy", 15.0f},
+	{"Horror Movies", 3.0f},
+	{"Comedies", 15.0f},
 	{"Anime Series", 0.0f},
 	{"Faith & Spirituality", 0.0f},
-	{"Stand-Up Comedy & Talk Shows", 15.02f},
+	{"Stand-Up Comedy & Talk Shows", 15.0f},
 	{"International Movies", 0.16f},
 	{"Anime Features", 0.9f},
-	{"Romantic Movies", 12.01f},
+	{"Romantic Movies", 12.0f},
 	{"LGBTQ Movies", 8.0f},
-	{"Documentaries", 6.501f},
+	{"Documentaries", 6.5f},
 	{"Cult Movies", 0.0f}, //mediana
 	{"Classic Movies", 0.0f}, //mediana
-	{"Thrillers", 4.01f},
-	{"Action & Adventure", 4.501f}
+	{"Thrillers", 4.0f},
+	{"Action & Adventure", 4.5f}
 };
+
+KMeans::KMeans(uint8_t numberOfClusters)
+{
+	srand(std::time(0));
+	m_clusters.reserve(numberOfClusters);
+	for (uint8_t id = 0; id < numberOfClusters; ++id)
+	{
+		m_clusters.emplace_back(Cluster(id, { static_cast<float>(rand()) / RAND_MAX,
+											  rand() % NUM_OF_GENRES,
+											  static_cast<uint16_t>(rand()) / RAND_MAX,
+											  static_cast<uint16_t>(rand()) / RAND_MAX,
+											  rand() % 10}));
+		m_clusteredFilms.push_back({});
+	}
+}
 
 std::vector<Film> KMeans::GetSimilarFilms(const Film& film)
 {

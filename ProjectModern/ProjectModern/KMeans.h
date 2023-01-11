@@ -8,6 +8,7 @@
 class KMeans
 {
 public:
+	KMeans(uint8_t numberOfClusters);
 	std::vector<Film> GetSimilarFilms(const Film& film);
 	void Run(std::vector<Film> films);
 
