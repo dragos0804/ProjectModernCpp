@@ -181,7 +181,7 @@ void UserInterface::SearchForAFilm()
 
 
         option = -1;
-        PrintMenu();
+
         film = storage.SelectFilmFromCurrentList(title, movieNumber);
 
         std::cout << "\t\t1. Leave review." << std::endl;

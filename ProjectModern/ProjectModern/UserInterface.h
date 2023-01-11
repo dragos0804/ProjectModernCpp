@@ -1,8 +1,6 @@
 #pragma once
 #include "Register.h"
 #include "Storage.h"
-#include <conio.h>
-#include <Windows.h>
 #include "Login.h"
 
 class UserInterface

@@ -17,7 +17,6 @@ int main()
             storage.m_db.update(film);
     }*/
     
-
     UserInterface UI;
     UI.StartUpMenu();
 
