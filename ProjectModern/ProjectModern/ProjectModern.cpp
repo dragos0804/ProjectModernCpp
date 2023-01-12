@@ -1,6 +1,7 @@
 #include <iostream>
 #include "UserInterface.h"
 #include "Parser.h"
+#include "../Validation/Validate.h"
 
 int main()
 {
