@@ -56,7 +56,9 @@ public:
 	void AddUser(User& user);
 	void AddFilm(Film& film);
 	bool SearchFilmByTitle(std::string title);
-	Film SelectFilmFromCurrentList(const std::string& title, int& currentNumber);
+	Film SelectFilmFromCurrentList(const std::string& title, int&	 currentNumber);
+	std::vector<Film> GetFilmsByCategory(const std::vector<std::string>& categories);
+	
 	static std::vector<std::string> split(const std::string& str, const std::string& delim);
 
 private:

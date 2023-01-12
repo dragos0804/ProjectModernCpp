@@ -115,3 +115,12 @@ Film AppStorage::SelectFilmFromCurrentList(const std::string& title, int& curren
 	Film filmSelectat = m_db.get<Film>(idSelectedFilm);
 	return filmSelectat;
 }
+
+std::vector<Film> AppStorage::GetFilmsByCategory(const std::vector<std::string>& categories)
+{
+	using namespace sqlite_orm;
+	std::vector <Film> films;
+	
+	return films;
+
+}
