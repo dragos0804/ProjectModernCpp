@@ -1,6 +1,6 @@
 #pragma once
+#include "KMeans.h"
 #include "Register.h"
-#include "Storage.h"
 #include "Login.h"
 
 class UserInterface

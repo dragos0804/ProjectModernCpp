@@ -185,70 +185,23 @@ void UserInterface::SearchForAFilm()
 		film = storage.SelectFilmFromCurrentList(title, movieNumber);
 
 		std::cout << "\t\t------------------------------------------------------\n";
-		std::cout << "\t\tSimilar to this one:\n";
-		const std::vector<std::string> genres = {
-				"TV Shows",
-				"Teen TV Shows",
-				"TV Sci-Fi & Fantasy",
-				"Spanish-Language TV Shows",
-				"TV Horror",
-				"TV Comedies",
-				"Kids' TV",
-				"Reality TV",
-				"Classic & Cult TV",
-				"TV Dramas",
-				"TV Thrillers",
-				"TV Action & Adventure",
-				"International TV Shows",
-				"Crime TV Shows",
-				"Romantic TV Shows",
-				"Science & Nature TV",
-				"British TV Shows",
-				"TV Mysteries",
-				"Korean TV Shows",
-				"Docuseries",
-				"Movies",
-				"Dramas",
-				"Sports Movies",
-				"Independent Movies",
-				"Children & Family Movies",
-				"Music & Musicals",
-				"Sci-Fi & Fantasy",
-				"Stand-Up Comedy",
-				"Horror Movies",
-				"Comedies",
-				"Anime Series",
-				"Faith & Spirituality",
-				"Stand-Up Comedy & Talk Shows",
-				"International Movies",
-				"Anime Features",
-				"Romantic Movies",
-				"LGBTQ Movies",
-				"Documentaries",
-				"Cult Movies",
-				"Classic Movies",
-				"Thrillers",
-				"Action & Adventure"
-		};
+		std::cout << "\t\tSimilar movies, based on genres:\n";
 
-		const std::vector<std::string> ageRanges = {
-				"TV-Y",
-				"TV-G",
-				"TV-Y7",
-				"TV-Y7-FV",
-				"TV-PG",
-				"TV-14",
-				"TV-MA",
-				"G",
-				"PG",
-				"NR",
-				"NC-17",
-				"PG-13",
-				"R",
-				"UR"
-		};
 
-		std::vector<Film> films = storage.GetFilmsByCategory();
+		std::vector<std::string> vectorOfCategoriesForFilm = AppStorage::split(film.GetGenres(), ", ");
+		std::vector<Film> films = storage.GetFilmsByCategory(vectorOfCategoriesForFilm);
+
+		KMeans kmeans(vectorOfCategoriesForFilm.size());
+		kmeans.Run(films);
+
+		std::vector<Film> similarFilms = kmeans.GetSimilarFilms(film);
+		uint8_t countMax10FilmsPerRecommendation = 1;
+		for (const auto& simFilm : similarFilms)
+		{
+			if (countMax10FilmsPerRecommendation == 11)
+				break;
+			std::cout << "\t\t\t" << countMax10FilmsPerRecommendation << ". " << simFilm.GetTitle() << " - " << simFilm.GetGenres() << std::endl;
+		}
 
 		std::cout << "\t\t1. Leave review." << std::endl;
 		std::cout << "\t\t2. Add to watched." << std::endl;
