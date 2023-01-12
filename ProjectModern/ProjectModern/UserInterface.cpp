@@ -195,12 +195,13 @@ void UserInterface::SearchForAFilm()
 		kmeans.Run(films);
 
 		std::vector<Film> similarFilms = kmeans.GetSimilarFilms(film);
-		uint8_t countMax10FilmsPerRecommendation = 1;
+		int countMax10FilmsPerRecommendation = 1;
 		for (const auto& simFilm : similarFilms)
 		{
 			if (countMax10FilmsPerRecommendation == 11)
 				break;
 			std::cout << "\t\t\t" << countMax10FilmsPerRecommendation << ". " << simFilm.GetTitle() << " - " << simFilm.GetGenres() << std::endl;
+			countMax10FilmsPerRecommendation++;
 		}
 
 		std::cout << "\t\t1. Leave review." << std::endl;
