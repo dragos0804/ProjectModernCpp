@@ -105,6 +105,16 @@ void User::SetFavourites(const std::string& favourite)
 	m_idsFavourites = favourite;
 }
 
+void User::AddToWatchedVector(IMoviePtr& film)
+{
+	m_watchedMovies.emplace_back(film);
+}
+
+//void User::AddToFavouritesVector(const Film& film)
+//{
+//	m_favouriteMovies.emplace_back(film);
+//}
+
 void User::leaveReview(Film& film, const int& grade)
 {
 	int sumOfGrades = film.GetSumOfGrades();
@@ -113,11 +123,4 @@ void User::leaveReview(Film& film, const int& grade)
 	film.SetNumberOfReviews(film.GetNumberOfReviews() + 1);
 	float averageRating = film.GetSumOfGrades() / film.GetNumberOfReviews();
 	film.SetRating(averageRating);
-}
-
-void User::AddMovieToVect(IMoviePtr movie, std::vector<IMoviePtr>& vectSavedMovie, std::string& strSavedMovie)
-{
-	vectSavedMovie.push_back(movie);
-	for (const auto& movie : vectSavedMovie)
-		strSavedMovie = std::to_string(movie.get()->GetId()) + " ";
 }

@@ -27,6 +27,10 @@ private:
 
     void PrintUserProfile();
 
+    void AddToWatched(const Film& film);
+
+    //void AddToFavourites(const Film& film);
+
 private:
     User user;
     Film film;
