@@ -1,5 +1,6 @@
 #include "Register.h"
 #include "User.h"
+#include "../Validation/Validate.h"
 
 void Register::CreateUser(AppStorage& appStorage)
 {
@@ -8,12 +9,25 @@ void Register::CreateUser(AppStorage& appStorage)
 
 	std::cout << "\t\tEnter your name: ";
 	std::getline(std::cin, str);
+
+	while (Validate::IsBlankField(str))
+	{
+		std::cout << "\t\tEnter your name: ";
+		std::getline(std::cin, str);
+	}
 	
 	user.SetName(str);
 	std::cout << std::endl;
 
 	std::cout << "\t\tEnter your username: ";
 	std::getline (std::cin, str);
+
+	while (Validate::IsBlankField(str))
+	{
+		std::cout << "\t\tEnter your username: ";
+		std::getline(std::cin, str);
+	}
+
 	while (UsernameValidation(str, appStorage) == false)
 	{
 		std::cout << "\t\tThis username is taken. Please insert another username: ";
@@ -25,6 +39,13 @@ void Register::CreateUser(AppStorage& appStorage)
 
 	std::cout << "\t\tEnter your date of birth (YYYY-MM-DD): ";
 	std::getline (std::cin, str);
+
+	while (Validate::IsBlankField(str))
+	{
+		std::cout << "\t\tEnter your date of birth (YYYY-MM-DD): ";
+		std::getline(std::cin, str);
+	}
+
 	while (AgeValidation(str) == false)
 	{
 		std::cout << "\t\tYou must be 13 or older in order to create an account. Please try again: ";
@@ -36,6 +57,13 @@ void Register::CreateUser(AppStorage& appStorage)
 
 	std::cout << "\t\tEnter your email: ";
 	std::getline (std::cin, str);
+
+	while (Validate::IsBlankField(str))
+	{
+		std::cout << "\t\tEnter your email: ";
+		std::getline(std::cin, str);
+	}
+
 	while (EmailValidation(str, appStorage) == false)
 	{
 		std::cout << "\t\tInvalid e-mail! Please try again: ";
@@ -46,6 +74,14 @@ void Register::CreateUser(AppStorage& appStorage)
 
 	std::cout << "\t\tSet up a password (minimum 7 characters, one digit and one capital letter): ";
 	std::getline (std::cin, str);
+
+	while (Validate::IsBlankField(str))
+	{
+		std::cout << "\t\tSet up a password (minimum 7 characters, one digit and one capital letter): ";
+		std::getline(std::cin, str);
+	}
+
+
 	while (PasswordValidation(str) == false)
 	{
 		std::getline (std::cin, str);
@@ -55,6 +91,13 @@ void Register::CreateUser(AppStorage& appStorage)
 
 	std::cout << "\t\tEnter your country of origin: ";
 	std::getline (std::cin, str);
+
+	while (Validate::IsBlankField(str))
+	{
+		std::cout << "\t\tEnter your country of origin: ";
+		std::getline(std::cin, str);
+	}
+
 	user.SetCountry(str);
 	std::cout << std::endl;
 
