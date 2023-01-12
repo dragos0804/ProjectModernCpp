@@ -120,7 +120,48 @@ std::vector<Film> AppStorage::GetFilmsByCategory(const std::vector<std::string>&
 {
 	using namespace sqlite_orm;
 	std::vector <Film> films;
-	
+	for (const auto& category : categories)
+	{
+		auto rows = m_db.select(sqlite_orm::columns
+		(
+			&Film::GetId,
+			&Film::GetNumberOfReviews,
+			&Film::GetSumOfGrades,
+			&Film::GetDuration,
+			&Film::GetRating,
+			&Film::GetType,
+			&Film::GetTitle,
+			&Film::GetAgeRange,
+			&Film::GetDescription,
+			&Film::GetReleaseYear,
+			&Film::GetGenres,
+			&Film::GetCast,
+			&Film::GetDirector,
+			&Film::GetCountry
+		), 
+			sqlite_orm::where(like(&Film::GetGenres, "%" + category + "%")));
+
+		for ( auto& row : rows)
+		{
+			Film film(
+				std::get<0>(row),
+				std::get<1>(row),
+				std::get<2>(row),
+				std::get<3>(row),
+				std::get<4>(row),
+				std::get<5>(row),
+				std::get<6>(row),
+				std::get<7>(row),
+				std::get<8>(row),
+				std::get<9>(row),
+				std::get<10>(row),
+				std::get<11>(row),
+				std::get<12>(row),
+				std::get<13>(row)
+			);
+			films.emplace_back(film);
+		}
+	}
 	return films;
 
 }
