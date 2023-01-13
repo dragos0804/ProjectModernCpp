@@ -55,8 +55,8 @@ public:
 	//bool Initialize(const std::string& csvDataFilePath);
 	void AddUser(User& user);
 	void AddFilm(Film& film);
-	bool SearchFilmByTitle(std::string title);
-	Film SelectFilmFromCurrentList(const std::string& title, int& currentNumber);
+	std::vector<Film> SearchFilmByTitle(const std::string& title);
+	Film SelectFilmFromCurrentList(const std::vector<Film>& listOfFilms, int& currentNumber);
 	std::vector<Film> GetFilmsByCategory(const std::vector<std::string>& categories, const std::string& ageRange);
 	
 	static std::vector<std::string> split(const std::string& str, const std::string& delim);

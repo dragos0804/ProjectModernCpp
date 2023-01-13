@@ -186,47 +186,65 @@ void UserInterface::SearchForAFilm()
 		std::getline(std::cin, title);
 	}
 
-	std::cout << std::endl;
-	if (storage.SearchFilmByTitle(title))
+	int contor = 0;
+	std::vector<Film> searchedFilms = storage.SearchFilmByTitle(title);
+	for (const auto& film : searchedFilms)
 	{
+		contor++;
+		std::cout << "\t\t" << contor << ". " << film.GetTitle() << std::endl;
+	}
+
+	std::cout << std::endl;
+	
+	std::cout << std::endl;
+	std::cout << "\t\tSelect a movie: ";
+	std::cin >> movieNumber;
+
+	while (movieNumber <= 0 || movieNumber > searchedFilms.size())
+	{
+		std::cout << "\t\t" << movieNumber << " is an invalid input! Please select from the list of movies available!";
 		std::cout << std::endl;
 		std::cout << "\t\tSelect a movie: ";
 		std::cin >> movieNumber;
-
-
-		option = -1;
-
-		film = storage.SelectFilmFromCurrentList(title, movieNumber);
-
-		std::cout << "\t\t------------------------------------------------------\n";
-		std::cout << "\t\tSimilar to this:\n";
-
-
-		std::vector<std::string> vectorOfCategoriesForFilm = AppStorage::split(film.GetGenres(), ", ");
-		std::vector<Film> films = storage.GetFilmsByCategory(vectorOfCategoriesForFilm, film.GetAgeRange());
-
-		KMeans kmeans(vectorOfCategoriesForFilm.size());
-		kmeans.Run(films);
-
-		std::vector<Film> similarFilms = kmeans.GetSimilarFilms(film);
-		int countMax10FilmsPerRecommendation = 1;
-		for (const auto& simFilm : similarFilms)
-		{
-			if (countMax10FilmsPerRecommendation == 11)
-				break;
-			std::cout << "\t\t\t" << countMax10FilmsPerRecommendation << ". " << simFilm.GetTitle() << std::endl;
-			std::cout << "\t\t\t\tAge range: " << simFilm.GetAgeRange() << std::endl; 
-			std::cout << "\t\t\t\tGenres: " << simFilm.GetGenres() << std::endl;
-			countMax10FilmsPerRecommendation++;
-		}
-
-		std::cout << "\t\t------------------------------------------------------\n";
-
-		std::cout << "\t\t1. Leave review." << std::endl;
-		std::cout << "\t\t2. Add to watched." << std::endl;
-		std::cout << "\t\t3. Add to favourites." << std::endl;
-		std::cout << std::endl;
 	}
+
+	film = storage.SelectFilmFromCurrentList(searchedFilms, movieNumber);
+	PrintFilmPage();
+
+	option = -1;
+
+	//		film = storage.SelectFilmFromCurrentList(title, movieNumber);
+
+	std::cout << "\t\t------------------------------------------------------\n";
+	std::cout << "\t\tSimilar to this:\n";
+
+
+	std::vector<std::string> vectorOfCategoriesForFilm = AppStorage::split(film.GetGenres(), ", ");
+	std::vector<Film> films = storage.GetFilmsByCategory(vectorOfCategoriesForFilm, film.GetAgeRange());
+
+	KMeans kmeans(vectorOfCategoriesForFilm.size());
+	kmeans.Run(films);
+
+	std::vector<Film> similarFilms = kmeans.GetSimilarFilms(film);
+	int countMax10FilmsPerRecommendation = 1;
+	for (const auto& simFilm : similarFilms)
+	{
+		if (countMax10FilmsPerRecommendation == 11)
+			break;
+		std::cout << "\t\t\t" << countMax10FilmsPerRecommendation << ". " << simFilm.GetTitle() << std::endl;
+		std::cout << "\t\t\t\tAge range: " << simFilm.GetAgeRange() << std::endl;
+		std::cout << "\t\t\t\tGenres: " << simFilm.GetGenres() << std::endl;
+		countMax10FilmsPerRecommendation++;
+	}
+
+	std::cout << "\t\t------------------------------------------------------\n";
+
+	std::cout << "\t\t1. Leave review." << std::endl;
+	std::cout << "\t\t2. Add to watched." << std::endl;
+	std::cout << "\t\t3. Add to favourites." << std::endl;
+	std::cout << "\t\t4. Select movie from recomandation list." << std::endl;
+	std::cout << std::endl;
+
 	std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
 
 	option = _getch();
@@ -265,6 +283,75 @@ void UserInterface::SearchForAFilm()
 	case 51:
 		//AddToFavourites(film);
 		break;
+	case 52:
+	{
+		std::cout << "\t\tSelect a movie: ";
+		std::cin >> movieNumber;
+
+		while (movieNumber <= 0 || movieNumber > similarFilms.size())
+		{
+			std::cout << "\t\t" << movieNumber << " is an invalid input! Please select from the list of movies available!";
+			std::cout << std::endl;
+			std::cout << "\t\tSelect a movie: ";
+			std::cin >> movieNumber;
+		}
+
+		film = storage.SelectFilmFromCurrentList(similarFilms, movieNumber);
+		PrintFilmPage();
+		std::cout << "\n\n";
+		std::cout << "\t\t1. Leave review." << std::endl;
+		std::cout << "\t\t2. Add to watched." << std::endl;
+		std::cout << "\t\t3. Add to favourites." << std::endl;
+		std::cout << "\t\t4. Select movie from recomandation list." << std::endl;
+		std::cout << std::endl;
+
+		std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
+
+		option = _getch();
+
+		switch (option) {
+		case 8:
+			LoggedInMenu();
+			break;
+		case 49:
+		{
+			int grade;
+			std::cout << "\t\tLeave a grade between 1 and 10 for this film: ";
+			std::cin >> grade;
+			user.leaveReview(film, grade);
+			std::cout << "\t\tThank you! Rating after your review: " << film.GetRating() << std::endl;
+			storage.m_db.update(film);
+			std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
+
+			option = _getch();
+
+			switch (option) {
+			case 8:
+				LoggedInMenu();
+				break;
+			case 27:
+				exit(0);
+			default:
+				LoggedInMenu();
+				break;
+			}
+			break;
+		}
+		case 50:
+			AddToWatched(film);
+			break;
+		case 51:
+			//AddToFavourites(film);
+			break;
+		case 27:
+			exit(0);
+			// any other key will not change anything
+		default:
+			LoggedInMenu();
+			break;
+		}
+		break;
+	}
 	case 27:
 		exit(0);
 		// any other key will not change anything
@@ -319,6 +406,24 @@ void UserInterface::ChangeUsername()
 	LoggedInMenu();
 }
 
+void UserInterface::PrintFilmPage()
+{
+	system("CLS");
+	std::cout << "\t\t*******************************************************\n";
+	std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
+	std::cout << "\t\t*******************************************************\n\n";
+
+	std::cout << "\t\t" << film.GetTitle() << std::endl;
+	std::cout << "\t\t+----------------------------------------------------+\n";
+
+	std::cout << "\t\t" << "Type: " << film.GetType() << std::endl;
+	std::cout << "\t\t" << "Duration: " << film.GetDuration() << std::endl;
+	std::cout << "\t\t" << "Age Restriction: " << film.GetAgeRange() << std::endl;
+	std::cout << "\t\t" << "Cast: " << film.GetCast() << std::endl;
+	std::cout << "\t\t" << "Genres: " << film.GetGenres() << std::endl;
+	std::cout << "\t\t" << "Rating: " << film.GetRating() << " (" << film.GetNumberOfReviews() << " reviews) " << std::endl;
+	std::cout << "\t\t" << "Description: " << film.GetDescription() << "\n\n";
+}
 
 void UserInterface::PrintUserProfile()
 {

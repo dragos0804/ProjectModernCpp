@@ -25,6 +25,8 @@ private:
 
     void PrintMenu();
 
+    void PrintFilmPage();
+
     void PrintUserProfile();
 
     void AddToWatched(const Film& film);
