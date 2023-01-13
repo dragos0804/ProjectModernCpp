@@ -460,17 +460,19 @@ void UserInterface::AddToWatched(const Film& film)
 	user.SetWatched(user.GetWatchedMovies() + " " + std::to_string(film.GetId()));
 	storage.m_db.update(user);
 	//also, modify in the vector of shared pointers that this film is part of the user's watched movies
-	const Film* filmPointer = &film;
-	std::shared_ptr<const Film> filmPtr(filmPointer);
+	std::shared_ptr<const Film> filmPtr = std::make_shared<Film>(film);
+
 	user.AddToWatchedVector(filmPtr);
 }
 
-//void UserInterface::AddToFavourites(const Film& film)
-//{
-//    user.SetFavourites(user.GetFavouriteMovies() + " " + std::to_string(film.GetId()));
-//    storage.m_db.update(user);
-//    user.AddToFavouritesVector(film);
-//}
+void UserInterface::AddToFavourites(const Film& film)
+{
+    user.SetFavourites(user.GetFavouriteMovies() + " " + std::to_string(film.GetId()));
+    storage.m_db.update(user);
+	std::shared_ptr<const Film> filmPtr = std::make_shared<Film>(film);
+
+    user.AddToFavouritesVector(filmPtr);
+}
 
 void UserInterface::PrintMenu()
 {

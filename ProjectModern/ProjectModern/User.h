@@ -12,6 +12,7 @@ public:
 
 public:
 	User() = default;
+	~User() { m_watchedMovies.clear(); }
 	User(int id, std::string name, std::string username, std::string dateOfBirth, std::string email, std::string password, std::string country, std::string idsWatched, std::string idsFavourites);
 
 	unsigned int GetID() const;
@@ -34,7 +35,7 @@ public:
 	void SetWatched(const std::string& watched);
 	void SetFavourites(const std::string& favourite);
 	void AddToWatchedVector(IMoviePtr& film);
-	//void AddToFavouritesVector(const Film& film);
+	void AddToFavouritesVector(IMoviePtr& film);
 
 	void leaveReview(Film& film, const int& grade);
 

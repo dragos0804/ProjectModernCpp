@@ -107,13 +107,14 @@ void User::SetFavourites(const std::string& favourite)
 
 void User::AddToWatchedVector(IMoviePtr& film)
 {
-	m_watchedMovies.emplace_back(film);
+
+	m_watchedMovies.push_back(film);
 }
 
-//void User::AddToFavouritesVector(const Film& film)
-//{
-//	m_favouriteMovies.emplace_back(film);
-//}
+void User::AddToFavouritesVector(IMoviePtr& film)
+{
+	m_favouriteMovies.push_back(film);
+}
 
 void User::leaveReview(Film& film, const int& grade)
 {

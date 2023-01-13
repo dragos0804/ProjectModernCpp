@@ -31,7 +31,7 @@ private:
 
     void AddToWatched(const Film& film);
 
-    //void AddToFavourites(const Film& film);
+    void AddToFavourites(const Film& film);
 
 private:
     User user;
