@@ -1,4 +1,5 @@
 #include "UserInterface.h"
+#include "../Validation/Validate.h"
 
 void UserInterface::StartUpMenu()
 {
@@ -87,8 +88,21 @@ void UserInterface::LoginMenu()
 
 		std::cout << "\t\tUsername: ";
 		std::getline(std::cin, username);
+
+		while (Validate::IsBlankField(username))
+		{
+			std::cout << "\t\tUsername: ";
+			std::getline(std::cin, username);
+		}
+
 		std::cout << "\t\tPassword: ";
 		std::getline(std::cin, password);
+
+		while (Validate::IsBlankField(password))
+		{
+			std::cout << "\t\tPassword: ";
+			std::getline(std::cin, password);
+		}
 
 		Login l(username, password);
 		bool verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password, user);
