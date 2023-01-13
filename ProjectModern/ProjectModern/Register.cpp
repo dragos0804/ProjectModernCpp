@@ -10,7 +10,7 @@ void Register::CreateUser(AppStorage& appStorage)
 	std::cout << "\t\tEnter your name: ";
 	std::getline(std::cin, str);
 
-	while (Validate::IsBlankField(str) || Validate::ContainsOnlyWhiteSpaces(str))
+	while (Validate::IsBlankField(str) || Validate::ContainsOnlyWhiteSpaces(str) || !Validate::ContainsNumbers(str))
 	{
 		std::cout << "\t\tEnter your name: ";
 		std::getline(std::cin, str);
