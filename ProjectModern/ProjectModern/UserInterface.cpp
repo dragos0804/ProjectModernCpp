@@ -89,7 +89,7 @@ void UserInterface::LoginMenu()
 		std::cout << "\t\tUsername: ";
 		std::getline(std::cin, username);
 
-		while (Validate::IsBlankField(username))
+		while (Validate::IsBlankField(username) || Validate::ContainsOnlyWhiteSpaces(username))
 		{
 			std::cout << "\t\tUsername: ";
 			std::getline(std::cin, username);
@@ -98,7 +98,7 @@ void UserInterface::LoginMenu()
 		std::cout << "\t\tPassword: ";
 		std::getline(std::cin, password);
 
-		while (Validate::IsBlankField(password))
+		while (Validate::IsBlankField(password) || Validate::ContainsOnlyWhiteSpaces(password))
 		{
 			std::cout << "\t\tPassword: ";
 			std::getline(std::cin, password);

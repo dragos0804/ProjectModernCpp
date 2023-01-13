@@ -10,7 +10,7 @@ void Register::CreateUser(AppStorage& appStorage)
 	std::cout << "\t\tEnter your name: ";
 	std::getline(std::cin, str);
 
-	while (Validate::IsBlankField(str))
+	while (Validate::IsBlankField(str) || Validate::ContainsOnlyWhiteSpaces(str))
 	{
 		std::cout << "\t\tEnter your name: ";
 		std::getline(std::cin, str);
@@ -22,7 +22,7 @@ void Register::CreateUser(AppStorage& appStorage)
 	std::cout << "\t\tEnter your username: ";
 	std::getline (std::cin, str);
 
-	while (Validate::IsBlankField(str))
+	while (Validate::IsBlankField(str) || Validate::ContainsOnlyWhiteSpaces(str))
 	{
 		std::cout << "\t\tEnter your username: ";
 		std::getline(std::cin, str);
@@ -40,7 +40,7 @@ void Register::CreateUser(AppStorage& appStorage)
 	std::cout << "\t\tEnter your date of birth (YYYY-MM-DD): ";
 	std::getline (std::cin, str);
 
-	while (Validate::IsBlankField(str))
+	while (Validate::IsBlankField(str) || Validate::ContainsOnlyWhiteSpaces(str))
 	{
 		std::cout << "\t\tEnter your date of birth (YYYY-MM-DD): ";
 		std::getline(std::cin, str);
@@ -58,7 +58,7 @@ void Register::CreateUser(AppStorage& appStorage)
 	std::cout << "\t\tEnter your email: ";
 	std::getline (std::cin, str);
 
-	while (Validate::IsBlankField(str))
+	while (Validate::IsBlankField(str) || Validate::ContainsOnlyWhiteSpaces(str))
 	{
 		std::cout << "\t\tEnter your email: ";
 		std::getline(std::cin, str);
@@ -75,7 +75,7 @@ void Register::CreateUser(AppStorage& appStorage)
 	std::cout << "\t\tSet up a password (minimum 7 characters, one digit and one capital letter): ";
 	std::getline (std::cin, str);
 
-	while (Validate::IsBlankField(str))
+	while (Validate::IsBlankField(str) || Validate::ContainsOnlyWhiteSpaces(str))
 	{
 		std::cout << "\t\tSet up a password (minimum 7 characters, one digit and one capital letter): ";
 		std::getline(std::cin, str);
@@ -92,7 +92,7 @@ void Register::CreateUser(AppStorage& appStorage)
 	std::cout << "\t\tEnter your country of origin: ";
 	std::getline (std::cin, str);
 
-	while (Validate::IsBlankField(str))
+	while (Validate::IsBlankField(str) || Validate::ContainsOnlyWhiteSpaces(str))
 	{
 		std::cout << "\t\tEnter your country of origin: ";
 		std::getline(std::cin, str);

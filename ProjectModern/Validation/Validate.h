@@ -10,6 +10,8 @@
 class VALIDATION_API Validate
 {
 public:
-	static bool IsBlankField(std::string from);
+	static bool IsBlankField(const std::string& from);
+	static bool ContainsOnlyWhiteSpaces(const std::string& from);
+
 private:
 };
