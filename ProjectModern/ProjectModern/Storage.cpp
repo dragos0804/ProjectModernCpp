@@ -116,7 +116,7 @@ Film AppStorage::SelectFilmFromCurrentList(const std::string& title, int& curren
 	return filmSelectat;
 }
 
-std::vector<Film> AppStorage::GetFilmsByCategory(const std::vector<std::string>& categories)
+std::vector<Film> AppStorage::GetFilmsByCategory(const std::vector<std::string>& categories, const std::string& ageRange)
 {
 	using namespace sqlite_orm;
 	std::vector <Film> films;
@@ -139,7 +139,7 @@ std::vector<Film> AppStorage::GetFilmsByCategory(const std::vector<std::string>&
 			&Film::GetDirector,
 			&Film::GetCountry
 		), 
-			sqlite_orm::where(like(&Film::GetGenres, "%" + category + "%")));
+			sqlite_orm::where(like(&Film::GetGenres, "%" + category + "%") and c(&Film::GetAgeRange) == ageRange));
 
 		for ( auto& row : rows)
 		{

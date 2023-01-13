@@ -185,11 +185,11 @@ void UserInterface::SearchForAFilm()
 		film = storage.SelectFilmFromCurrentList(title, movieNumber);
 
 		std::cout << "\t\t------------------------------------------------------\n";
-		std::cout << "\t\tSimilar movies, based on genres:\n";
+		std::cout << "\t\tSimilar to this:\n";
 
 
 		std::vector<std::string> vectorOfCategoriesForFilm = AppStorage::split(film.GetGenres(), ", ");
-		std::vector<Film> films = storage.GetFilmsByCategory(vectorOfCategoriesForFilm);
+		std::vector<Film> films = storage.GetFilmsByCategory(vectorOfCategoriesForFilm, film.GetAgeRange());
 
 		KMeans kmeans(vectorOfCategoriesForFilm.size());
 		kmeans.Run(films);
@@ -200,9 +200,13 @@ void UserInterface::SearchForAFilm()
 		{
 			if (countMax10FilmsPerRecommendation == 11)
 				break;
-			std::cout << "\t\t\t" << countMax10FilmsPerRecommendation << ". " << simFilm.GetTitle() << " - " << simFilm.GetGenres() << std::endl;
+			std::cout << "\t\t\t" << countMax10FilmsPerRecommendation << ". " << simFilm.GetTitle() << std::endl;
+			std::cout << "\t\t\t\tAge range: " << simFilm.GetAgeRange() << std::endl; 
+			std::cout << "\t\t\t\tGenres: " << simFilm.GetGenres() << std::endl;
 			countMax10FilmsPerRecommendation++;
 		}
+
+		std::cout << "\t\t------------------------------------------------------\n";
 
 		std::cout << "\t\t1. Leave review." << std::endl;
 		std::cout << "\t\t2. Add to watched." << std::endl;
