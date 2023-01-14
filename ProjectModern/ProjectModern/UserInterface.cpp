@@ -379,11 +379,17 @@ void UserInterface::AddToWatched(const Film& film)
 	//also, modify in the vector of shared pointers that this film is part of the user's watched movies
 	std::shared_ptr<const Film> filmPtr = std::make_shared<Film>(film);
 
-	m_user.AddToWatchedVector(filmPtr);
-
-	std::cout << std::endl << std::endl;
-
-	std::cout << "\t\tSuccessfully added the movie to your watched list" << std::endl;
+	std::vector<std::string> watchedMovies = m_storage.split(m_user.GetWatchedMovies(), " ");
+	if (std::find(watchedMovies.begin(), watchedMovies.end(), std::to_string(film.GetId())) == watchedMovies.end())
+	{
+		m_user.AddToWatchedVector(filmPtr);
+		std::cout << std::endl << std::endl;
+		std::cout << "\t\tSuccessfully added the movie to your watched list" << std::endl;
+	}
+	else
+	{
+		std::cout << "\t\tThis movie is already in your watched list" << std::endl;
+	}
 
 	m_option = _getch();
 
@@ -405,11 +411,17 @@ void UserInterface::AddToFavourites(const Film& film)
     m_storage.m_db.update(m_user);
 	std::shared_ptr<const Film> filmPtr = std::make_shared<Film>(film);
 
-    m_user.AddToFavouritesVector(filmPtr);
-
-	std::cout << std::endl << std::endl;
-
-	std::cout << "\t\tSuccessfully added the movie to your favourites list" << std::endl;
+	std::vector<std::string> favouritesMovies = m_storage.split(m_user.GetFavouriteMovies(), " ");
+	if (std::find(favouritesMovies.begin(), favouritesMovies.end(), std::to_string(film.GetId())) == favouritesMovies.end())
+	{
+		m_user.AddToFavouritesVector(filmPtr);
+		std::cout << std::endl << std::endl;
+		std::cout << "\t\tSuccessfully added the movie to your favourites list" << std::endl;
+	}
+	else
+	{
+		std::cout << "\t\tThis movie is already in your favourites list" << std::endl;
+	}
 
 	m_option = _getch();
 
