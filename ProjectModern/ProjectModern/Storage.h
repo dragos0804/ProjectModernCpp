@@ -57,7 +57,9 @@ public:
 	void AddFilm(Film& film);
 	std::vector<Film> SearchFilmByTitle(const std::string& title);
 	Film SelectFilmFromCurrentList(const std::vector<Film>& listOfFilms, int& currentNumber);
-	std::vector<Film> GetFilmsByCategory(const std::vector<std::string>& categories, const std::string& ageRange);
+	std::vector<Film> GetFilmsByCategoryAndAgeRange(const std::vector<std::string>& categories, const std::string& ageRange);
+	std::vector<Film> GetFilmsByCategoryAndAgeRangeOrderedByRating(const std::vector<std::string>& categories, const std::string& ageRange);
+	std::vector<Film> GetFilmsByCategoryAndAgeRangeAndYear(const std::vector<std::string>& categories, const std::string& ageRange, const int& releaseYear);
 	
 	static std::vector<std::string> split(const std::string& str, const std::string& delim);
 

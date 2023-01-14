@@ -109,21 +109,27 @@ void UserInterface::LoginMenu()
 
 		if (verifiedLoginStatus) {
 			using namespace sqlite_orm;
-
 			std::vector<std::string> filmsIDs = AppStorage::split(m_user.GetWatchedMovies(), " ");
-			filmsIDs.erase(filmsIDs.begin());
-			for (const auto& id : filmsIDs)
+
+			if (m_user.GetWatchedMovies() != "")
 			{
-				std::shared_ptr<const Film> filmPtr = std::make_shared<Film>((m_storage.m_db.get_all<Film>(where(c(&Film::GetId) == std::stoi(id))))[0]);
-				m_user.AddToWatchedVector(filmPtr);
+				filmsIDs.erase(filmsIDs.begin());
+				for (const auto& id : filmsIDs)
+				{
+					std::shared_ptr<const Film> filmPtr = std::make_shared<Film>((m_storage.m_db.get_all<Film>(where(c(&Film::GetId) == std::stoi(id))))[0]);
+					m_user.AddToWatchedVector(filmPtr);
+				}
 			}
 
-			filmsIDs = AppStorage::split(m_user.GetFavouriteMovies(), " ");
-			filmsIDs.erase(filmsIDs.begin());
-			for (const auto& id : filmsIDs)
+			if (m_user.GetFavouriteMovies() != "")
 			{
-				std::shared_ptr<const Film> filmPtr = std::make_shared<Film>((m_storage.m_db.get_all<Film>(where(c(&Film::GetId) == std::stoi(id))))[0]);
-				m_user.AddToWatchedVector(filmPtr);
+				filmsIDs = AppStorage::split(m_user.GetFavouriteMovies(), " ");
+				filmsIDs.erase(filmsIDs.begin());
+				for (const auto& id : filmsIDs)
+				{
+					std::shared_ptr<const Film> filmPtr = std::make_shared<Film>((m_storage.m_db.get_all<Film>(where(c(&Film::GetId) == std::stoi(id))))[0]);
+					m_user.AddToFavouritesVector(filmPtr);
+				}
 			}
 			LoggedInMenu();
 		}
@@ -353,6 +359,105 @@ void UserInterface::PrintUserProfile()
 		auto film = m_storage.m_db.get<Film>(idFavouriteFilm);
 		std::cout << "\t\t\t" << film.GetTitle() << std::endl;
 	}
+
+	int whichFilmToGiveChooseForRecommendation;
+	std::vector<std::string> vectorOfCategoriesForFilm;
+	std::vector<Film> films;
+	std::vector<Film> similarFilms;
+	int countMax3FilmsPerRecommendation = 1;
+
+	if (m_user.GetFavouriteMoviesVect().size() != 0)
+	{
+		srand(std::time(0));
+		whichFilmToGiveChooseForRecommendation = rand() % m_user.GetFavouriteMoviesVect().size();
+		std::cout << "\t\t+----------------------------------------------------+\n";
+		std::cout << "\t\tBecause you enjoyed " << m_user.GetFavouriteMoviesVect()[whichFilmToGiveChooseForRecommendation].get()->GetTitle() << ", you might also like any of these: \n";
+
+
+		vectorOfCategoriesForFilm = AppStorage::split(m_user.GetFavouriteMoviesVect()[whichFilmToGiveChooseForRecommendation].get()->GetGenres(), ", ");
+
+		films = m_storage.GetFilmsByCategoryAndAgeRange(vectorOfCategoriesForFilm, m_user.GetFavouriteMoviesVect()[whichFilmToGiveChooseForRecommendation].get()->GetAgeRange());
+
+		KMeans kmeans(vectorOfCategoriesForFilm.size());
+		kmeans.Run(films);
+
+		similarFilms = kmeans.GetSimilarFilms(*m_user.GetFavouriteMoviesVect()[whichFilmToGiveChooseForRecommendation].get());
+		for (const auto& simFilm : similarFilms)
+		{
+			if (countMax3FilmsPerRecommendation == 4)
+				break;
+			std::cout << "\t\t\t" << countMax3FilmsPerRecommendation << ". " << simFilm.GetTitle() << std::endl;
+			std::cout << "\t\t\t\tAge range: " << simFilm.GetAgeRange() << std::endl;
+			std::cout << "\t\t\t\tGenres: " << simFilm.GetGenres() << std::endl;
+			countMax3FilmsPerRecommendation++;
+		}
+
+		films = m_storage.GetFilmsByCategoryAndAgeRangeAndYear(
+			vectorOfCategoriesForFilm,
+			m_user.GetFavouriteMoviesVect()[whichFilmToGiveChooseForRecommendation].get()->GetAgeRange(),
+			m_user.GetFavouriteMoviesVect()[whichFilmToGiveChooseForRecommendation].get()->GetReleaseYear()
+		);
+
+		if (films.size() != 0)
+		{
+			std::cout << "\t\t+----------------------------------------------------+\n";
+			std::cout << "\t\tTimeless classics similar to " << m_user.GetFavouriteMoviesVect()[whichFilmToGiveChooseForRecommendation].get()->GetTitle() << "\n";
+
+			KMeans kmeansTimeless(vectorOfCategoriesForFilm.size());
+			kmeansTimeless.Run(films);
+
+			similarFilms = kmeansTimeless.GetSimilarFilms(*m_user.GetFavouriteMoviesVect()[whichFilmToGiveChooseForRecommendation].get());
+
+			countMax3FilmsPerRecommendation = 1;
+			for (const auto& simFilm : similarFilms)
+			{
+				if (countMax3FilmsPerRecommendation == 4)
+					break;
+				std::cout << "\t\t\t" << countMax3FilmsPerRecommendation << ". " << simFilm.GetTitle() << std::endl;
+				std::cout << "\t\t\t\tAge range: " << simFilm.GetAgeRange() << std::endl;
+				std::cout << "\t\t\t\tGenres: " << simFilm.GetGenres() << std::endl;
+				std::cout << "\t\t\t\tRelease year: " << simFilm.GetReleaseYear() << std::endl;
+				countMax3FilmsPerRecommendation++;
+			}
+		}
+	}
+	else
+		std::cout << "\t\tIf you would like to receive recommendations on your profile, go ahead and add movies to your favourites!\n";
+
+	std::cout << "\t\t+----------------------------------------------------+\n";
+
+	if (m_user.GetWatchedMoviesVect().size() != 0)
+	{
+		srand(std::time(0));
+		whichFilmToGiveChooseForRecommendation = rand() % m_user.GetWatchedMoviesVect().size();
+
+		std::cout << "\t\tBecause you've watched " << m_user.GetWatchedMoviesVect()[whichFilmToGiveChooseForRecommendation].get()->GetTitle() << ", you might also like any of these: \n";
+
+
+		vectorOfCategoriesForFilm = AppStorage::split(m_user.GetWatchedMoviesVect()[whichFilmToGiveChooseForRecommendation].get()->GetGenres(), ", ");
+
+		films = m_storage.GetFilmsByCategoryAndAgeRangeOrderedByRating(vectorOfCategoriesForFilm, m_user.GetWatchedMoviesVect()[whichFilmToGiveChooseForRecommendation].get()->GetAgeRange());
+
+		KMeans kmeansWatched(vectorOfCategoriesForFilm.size());
+		kmeansWatched.Run(films);
+
+		std::vector<Film> similarToWatchedFilms = kmeansWatched.GetSimilarFilms(*m_user.GetWatchedMoviesVect()[whichFilmToGiveChooseForRecommendation].get());
+		countMax3FilmsPerRecommendation = 1;
+		for (const auto& simFilm : similarToWatchedFilms)
+		{
+			if (countMax3FilmsPerRecommendation == 4)
+				break;
+			std::cout << "\t\t\t" << countMax3FilmsPerRecommendation << ". " << simFilm.GetTitle() << std::endl;
+			std::cout << "\t\t\t\tAge range: " << simFilm.GetAgeRange() << std::endl;
+			std::cout << "\t\t\t\tGenres: " << simFilm.GetGenres() << std::endl;
+			countMax3FilmsPerRecommendation++;
+		}
+
+		std::cout << "\t\t+----------------------------------------------------+\n";
+
+	}
+
+
 	std::cout << std::endl << std::endl;
 
 	std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
@@ -390,16 +495,16 @@ void UserInterface::RateThisFilm()
 
 void UserInterface::AddToWatched(const Film& film)
 {
-	//set the string that is actually stored in the database with the id of the current film 
 
-	m_user.SetWatched(m_user.GetWatchedMovies() + " " + std::to_string(film.GetId()));
-	m_storage.m_db.update(m_user);
 	//also, modify in the vector of shared pointers that this film is part of the user's watched movies
 	std::shared_ptr<const Film> filmPtr = std::make_shared<Film>(film);
-
 	std::vector<std::string> watchedMovies = m_storage.split(m_user.GetWatchedMovies(), " ");
+
 	if (std::find(watchedMovies.begin(), watchedMovies.end(), std::to_string(film.GetId())) == watchedMovies.end())
 	{
+		//set the string that is actually stored in the database with the id of the current film 
+		m_user.SetWatched(m_user.GetWatchedMovies() + " " + std::to_string(film.GetId()));
+		m_storage.m_db.update(m_user);
 		m_user.AddToWatchedVector(filmPtr);
 		std::cout << std::endl << std::endl;
 		std::cout << "\t\tSuccessfully added the movie to your watched list" << std::endl;
@@ -414,13 +519,13 @@ void UserInterface::AddToWatched(const Film& film)
 
 void UserInterface::AddToFavourites(const Film& film)
 {
-    m_user.SetFavourites(m_user.GetFavouriteMovies() + " " + std::to_string(film.GetId()));
-    m_storage.m_db.update(m_user);
 	std::shared_ptr<const Film> filmPtr = std::make_shared<Film>(film);
-
 	std::vector<std::string> favouritesMovies = m_storage.split(m_user.GetFavouriteMovies(), " ");
+
 	if (std::find(favouritesMovies.begin(), favouritesMovies.end(), std::to_string(film.GetId())) == favouritesMovies.end())
 	{
+		m_user.SetFavourites(m_user.GetFavouriteMovies() + " " + std::to_string(film.GetId()));
+		m_storage.m_db.update(m_user);
 		m_user.AddToFavouritesVector(filmPtr);
 		std::cout << std::endl << std::endl;
 		std::cout << "\t\tSuccessfully added the movie to your favourites list" << std::endl;
@@ -458,7 +563,7 @@ std::vector<Film> UserInterface::ManageLoopSimilarity(const std::vector<Film>& p
 
 	std::vector<std::string> vectorOfCategoriesForFilm = AppStorage::split(m_film.GetGenres(), ", ");
 
-	std::vector<Film> films = m_storage.GetFilmsByCategory(vectorOfCategoriesForFilm, m_film.GetAgeRange());
+	std::vector<Film> films = m_storage.GetFilmsByCategoryAndAgeRange(vectorOfCategoriesForFilm, m_film.GetAgeRange());
 
 	KMeans kmeans(vectorOfCategoriesForFilm.size());
 	kmeans.Run(films);
