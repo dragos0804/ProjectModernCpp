@@ -188,6 +188,20 @@ void UserInterface::SearchForAFilm()
 
 	int contor = 0;
 	std::vector<Film> searchedFilms = storage.SearchFilmByTitle(title);
+	while (searchedFilms.size() == 0)
+	{
+		std::cout << "\t\tSorry, the movie you're trying to reach can't be found!" << std::endl;
+		std::cout << "\t\tSearch: ";
+		std::getline(std::cin, title);
+
+		while (title.empty())
+		{
+			std::cout << "\t\t";
+			std::getline(std::cin, title);
+		}
+		searchedFilms = storage.SearchFilmByTitle(title);
+	}
+
 	for (const auto& film : searchedFilms)
 	{
 		contor++;
