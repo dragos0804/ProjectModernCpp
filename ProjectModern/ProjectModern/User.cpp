@@ -107,7 +107,6 @@ void User::SetFavourites(const std::string& favourite)
 
 void User::AddToWatchedVector(IMoviePtr& film)
 {
-
 	m_watchedMovies.push_back(film);
 }
 
