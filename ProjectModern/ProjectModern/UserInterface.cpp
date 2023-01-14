@@ -245,9 +245,11 @@ movie_select:
 	}
 	case PRESS_2:
 		AddToWatched(m_film);
+		goto movie_select;
 		break;
 	case PRESS_3:
 		AddToFavourites(m_film);
+		goto movie_select;
 		break;
 	case PRESS_4:
 	{
@@ -392,17 +394,6 @@ void UserInterface::AddToWatched(const Film& film)
 	}
 
 	m_option = _getch();
-
-	switch (m_option) {
-	case PRESS_BACKSPACE:
-		LoggedInMenu();
-		break;
-	case PRESS_ESC:
-		exit(0);
-	default:
-		LoggedInMenu();
-		break;
-	}
 }
 
 void UserInterface::AddToFavourites(const Film& film)
@@ -424,17 +415,6 @@ void UserInterface::AddToFavourites(const Film& film)
 	}
 
 	m_option = _getch();
-
-	switch (m_option) {
-	case PRESS_BACKSPACE:
-		LoggedInMenu();
-		break;
-	case PRESS_ESC:
-		exit(0);
-	default:
-		LoggedInMenu();
-		break;
-	}
 }
 
 std::vector<Film> UserInterface::ManageLoopSimilarity(const std::vector<Film>& properVectorOfFilms)
