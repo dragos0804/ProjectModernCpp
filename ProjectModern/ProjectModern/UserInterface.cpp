@@ -447,9 +447,22 @@ void UserInterface::PrintUserProfile()
 	std::cout << "\t\t" << "Date of birth: " << m_user.GetDateOfBirth() << std::endl;
 	std::cout << "\t\t" << "Country: " << m_user.GetCountry() << std::endl;
 	std::cout << "\t\t" << "Email: " << m_user.GetEmail() << std::endl;
-	std::cout << "\t\t" << "Watched movies: " << m_user.GetWatchedMovies() << std::endl;
-	std::cout << "\t\t" << "Favourite movies: " << m_user.GetFavouriteMovies() << std::endl;
-
+	std::cout << "\t\t" << "Watched movies: " << std::endl;
+	std::vector<std::string> watchedMovies = m_storage.split(m_user.GetWatchedMovies(), " ");;
+	for (int i = 1; i < watchedMovies.size(); i++)
+	{
+		int idWatchedFilm = std::stoi(watchedMovies[i]);
+		auto film = m_storage.m_db.get<Film>(idWatchedFilm);
+		std::cout << "\t\t\t" << film.GetTitle() << std::endl;
+	}
+	std::cout << "\t\t" << "Favourite movies: " << std::endl;
+	std::vector<std::string> favouriteMovies = m_storage.split(m_user.GetFavouriteMovies(), " ");;
+	for (int i = 1; i < favouriteMovies.size(); i++)
+	{
+		int idFavouriteFilm = std::stoi(watchedMovies[i]);
+		auto film = m_storage.m_db.get<Film>(idFavouriteFilm);
+		std::cout << "\t\t\t" << film.GetTitle() << std::endl;
+	}
 	std::cout << std::endl << std::endl;
 
 	std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
