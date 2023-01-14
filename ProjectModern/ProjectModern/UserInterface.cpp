@@ -108,6 +108,21 @@ void UserInterface::LoginMenu()
 		bool verifiedLoginStatus = l.VerifyMatchUserToPassword(m_storage, username, password, m_user);
 
 		if (verifiedLoginStatus) {
+			using namespace sqlite_orm;
+
+			std::vector<std::string> filmsIDs = AppStorage::split(m_user.GetWatchedMovies(), " ");
+			for (const auto& id : filmsIDs)
+			{
+				std::shared_ptr<const Film> filmPtr = std::make_shared<Film>((m_storage.m_db.get_all<Film>(where(c(&Film::GetId) == std::stoi(id))))[0]);
+				m_user.AddToWatchedVector(filmPtr);
+			}
+
+			filmsIDs = AppStorage::split(m_user.GetFavouriteMovies(), " ");
+			for (const auto& id : filmsIDs)
+			{
+				std::shared_ptr<const Film> filmPtr = std::make_shared<Film>((m_storage.m_db.get_all<Film>(where(c(&Film::GetId) == std::stoi(id))))[0]);
+				m_user.AddToWatchedVector(filmPtr);
+			}
 			LoggedInMenu();
 		}
 		else {
