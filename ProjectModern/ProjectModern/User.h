@@ -24,6 +24,8 @@ public:
 	std::string GetCountry() const;
 	std::string GetWatchedMovies() const;
 	std::string GetFavouriteMovies() const;
+	std::vector<IMoviePtr> GetWatchedMoviesVect() const;
+	std::vector<IMoviePtr> GetFavouriteMoviesVect() const;
 
 	void SetID(const unsigned int& id);
 	void SetName(const std::string& name);

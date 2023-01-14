@@ -60,6 +60,16 @@ std::string User::GetFavouriteMovies() const
 	return m_idsFavourites;
 }
 
+std::vector<std::shared_ptr<const Film>> User::GetWatchedMoviesVect() const
+{
+	return m_watchedMovies;
+}
+
+std::vector<std::shared_ptr<const Film>> User::GetFavouriteMoviesVect() const
+{
+	return m_favouriteMovies;
+}
+
 void User::SetID(const unsigned int& id)
 {
 	m_id = id;
