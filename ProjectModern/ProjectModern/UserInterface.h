@@ -3,6 +3,13 @@
 #include "Register.h"
 #include "Login.h"
 
+#define PRESS_BACKSPACE 8
+#define PRESS_ESC 27
+#define PRESS_1 49
+#define PRESS_2 50
+#define PRESS_3 51
+#define PRESS_4 52
+
 class UserInterface
 {
 public:
