@@ -10,14 +10,14 @@ void UserInterface::StartUpMenu()
 
 	switch (m_option) {
 		// 1 == 49 in ASCII table
-	case 49:
+	case PRESS_1:
 		RegisterMenu();
 		break;
-	case 50:
+	case PRESS_2:
 		LoginMenu();
 		break;
 		// ESC KEY
-	case 27:
+	case PRESS_ESC:
 		exit(0);
 		// any other key will not change anything
 	default:
@@ -36,18 +36,18 @@ void UserInterface::RegisterMenu()
 	m_option = _getch();
 
 	switch (m_option) {
-	case 8:
+	case PRESS_BACKSPACE:
 		StartUpMenu();
 		break;
 		// 1 == 49 in ASCII table
-	case 49:
+	case PRESS_1:
 		RegisterMenu();
 		break;
-	case 50:
+	case PRESS_2:
 		LoginMenu();
 		break;
 		// ESC KEY
-	case 27:
+	case PRESS_ESC:
 		exit(0);
 		// any other key will not change anything
 	default:
@@ -68,18 +68,18 @@ void UserInterface::LoginMenu()
 	m_option = _getch();
 
 	switch (m_option) {
-	case 8:
+	case PRESS_BACKSPACE:
 		StartUpMenu();
 		break;
 		// 1 == 49 in ASCII table
-	case 49:
+	case PRESS_1:
 		RegisterMenu();
 		break;
-	case 50:
+	case PRESS_2:
 		LoginMenu();
 		break;
 		// ESC KEY
-	case 27:
+	case PRESS_ESC:
 		exit(0);
 		// any other key will not change anything
 	default:
@@ -126,19 +126,19 @@ void UserInterface::LoggedInMenu()
 	m_option = _getch();
 
 	switch (m_option) {
-	case 49:
+	case PRESS_1:
 		SettingsMenu();
 		break;
-	case 50:
+	case PRESS_2:
 		//switch user
 		LoginMenu();
 		break;
-	case 51:
+	case PRESS_3:
 		SearchForAFilm();
 		break;
-	case 52:
+	case PRESS_4:
 		PrintUserProfile();
-	case 27:
+	case PRESS_ESC:
 		exit(0);
 	default:
 		LoggedInMenu();
@@ -156,16 +156,16 @@ void UserInterface::SettingsMenu()
 	m_option = _getch();
 
 	switch (m_option) {
-	case 8:
+	case PRESS_BACKSPACE:
 		LoggedInMenu();
 		break;
-	case 49:
+	case PRESS_1:
 		ChangeUsername();
 		break;
-	case 50:
+	case PRESS_2:
 		ChangePassword();
 		break;
-	case 27:
+	case PRESS_ESC:
 		exit(0);
 		// any other key will not change anything
 	default:
@@ -211,63 +211,15 @@ void UserInterface::SearchForAFilm()
 	std::cout << std::endl;
 	
 	std::cout << std::endl;
-	std::cout << "\t\tSelect a movie: ";
-	std::cin >> movieNumber;
+	std::vector <Film> SimilarFilms = ManageLoopSimilarity(searchedFilms);
 
-	while (movieNumber <= 0 || movieNumber > searchedFilms.size())
-	{
-		std::cout << "\t\t" << movieNumber << " is an invalid input! Please select from the list of movies available!";
-		std::cout << std::endl;
-		std::cout << "\t\tSelect a movie: ";
-		std::cin >> movieNumber;
-	}
-
-	m_film = m_storage.SelectFilmFromCurrentList(searchedFilms, movieNumber);
-	PrintFilmPage();
-
-	m_option = -1;
-
-	//		film = storage.SelectFilmFromCurrentList(title, movieNumber);
-
-	std::cout << "\t\t------------------------------------------------------\n";
-	std::cout << "\t\tSimilar to this:\n";
-
-
-	std::vector<std::string> vectorOfCategoriesForFilm = AppStorage::split(m_film.GetGenres(), ", ");
-	std::vector<Film> films = m_storage.GetFilmsByCategory(vectorOfCategoriesForFilm, m_film.GetAgeRange());
-
-	KMeans kmeans(vectorOfCategoriesForFilm.size());
-	kmeans.Run(films);
-
-	std::vector<Film> similarFilms = kmeans.GetSimilarFilms(m_film);
-	int countMax10FilmsPerRecommendation = 1;
-	for (const auto& simFilm : similarFilms)
-	{
-		if (countMax10FilmsPerRecommendation == 11)
-			break;
-		std::cout << "\t\t\t" << countMax10FilmsPerRecommendation << ". " << simFilm.GetTitle() << std::endl;
-		std::cout << "\t\t\t\tAge range: " << simFilm.GetAgeRange() << std::endl;
-		std::cout << "\t\t\t\tGenres: " << simFilm.GetGenres() << std::endl;
-		countMax10FilmsPerRecommendation++;
-	}
-
-	std::cout << "\t\t------------------------------------------------------\n";
-
-	std::cout << "\t\t1. Leave review." << std::endl;
-	std::cout << "\t\t2. Add to watched." << std::endl;
-	std::cout << "\t\t3. Add to favourites." << std::endl;
-	std::cout << "\t\t4. Select movie from recomandation list." << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
-
-	m_option = _getch();
+movie_select:
 
 	switch (m_option) {
-	case 8:
+	case PRESS_BACKSPACE:
 		LoggedInMenu();
 		break;
-	case 49:
+	case PRESS_1:
 	{
 		int grade;
 		std::cout << "\t\tLeave a grade between 1 and 10 for this film: ";
@@ -280,10 +232,10 @@ void UserInterface::SearchForAFilm()
 		m_option = _getch();
 
 		switch (m_option) {
-		case 8:
+		case PRESS_BACKSPACE:
 			LoggedInMenu();
 			break;
-		case 27:
+		case PRESS_ESC:
 			exit(0);
 		default:
 			LoggedInMenu();
@@ -291,82 +243,18 @@ void UserInterface::SearchForAFilm()
 		}
 		break;
 	}
-	case 50:
+	case PRESS_2:
 		AddToWatched(m_film);
 		break;
-	case 51:
+	case PRESS_3:
 		AddToFavourites(m_film);
 		break;
-	case 52:
+	case PRESS_4:
 	{
-		std::cout << "\t\tSelect a movie: ";
-		std::cin >> movieNumber;
-
-		while (movieNumber <= 0 || movieNumber > similarFilms.size())
-		{
-			std::cout << "\t\t" << movieNumber << " is an invalid input! Please select from the list of movies available!";
-			std::cout << std::endl;
-			std::cout << "\t\tSelect a movie: ";
-			std::cin >> movieNumber;
-		}
-
-		m_film = m_storage.SelectFilmFromCurrentList(similarFilms, movieNumber);
-		PrintFilmPage();
-		std::cout << "\n\n";
-		std::cout << "\t\t1. Leave review." << std::endl;
-		std::cout << "\t\t2. Add to watched." << std::endl;
-		std::cout << "\t\t3. Add to favourites." << std::endl;
-		std::cout << "\t\t4. Select movie from recomandation list." << std::endl;
-		std::cout << std::endl;
-
-		std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
-
-		m_option = _getch();
-
-		switch (m_option) {
-		case 8:
-			LoggedInMenu();
-			break;
-		case 49:
-		{
-			int grade;
-			std::cout << "\t\tLeave a grade between 1 and 10 for this film: ";
-			std::cin >> grade;
-			m_user.leaveReview(m_film, grade);
-			std::cout << "\t\tThank you! Rating after your review: " << m_film.GetRating() << std::endl;
-			m_storage.m_db.update(m_film);
-			std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
-
-			m_option = _getch();
-
-			switch (m_option) {
-			case 8:
-				LoggedInMenu();
-				break;
-			case 27:
-				exit(0);
-			default:
-				LoggedInMenu();
-				break;
-			}
-			break;
-		}
-		case 50:
-			AddToWatched(m_film);
-			break;
-		case 51:
-			AddToFavourites(m_film);
-			break;
-		case 27:
-			exit(0);
-			// any other key will not change anything
-		default:
-			LoggedInMenu();
-			break;
-		}
-		break;
+		SimilarFilms = ManageLoopSimilarity(SimilarFilms);
+		goto movie_select;
 	}
-	case 27:
+	case PRESS_ESC:
 		exit(0);
 		// any other key will not change anything
 	default:
@@ -433,6 +321,7 @@ void UserInterface::PrintFilmPage()
 	std::cout << "\t\t" << "Type: " << m_film.GetType() << std::endl;
 	std::cout << "\t\t" << "Duration: " << m_film.GetDuration() << std::endl;
 	std::cout << "\t\t" << "Age Restriction: " << m_film.GetAgeRange() << std::endl;
+	std::cout << "\t\t" << "Release Year: " << m_film.GetReleaseYear() << std::endl;
 	std::cout << "\t\t" << "Cast: " << m_film.GetCast() << std::endl;
 	std::cout << "\t\t" << "Genres: " << m_film.GetGenres() << std::endl;
 	std::cout << "\t\t" << "Rating: " << m_film.GetRating() << " (" << m_film.GetNumberOfReviews() << " reviews) " << std::endl;
@@ -459,7 +348,7 @@ void UserInterface::PrintUserProfile()
 	std::vector<std::string> favouriteMovies = m_storage.split(m_user.GetFavouriteMovies(), " ");;
 	for (int i = 1; i < favouriteMovies.size(); i++)
 	{
-		int idFavouriteFilm = std::stoi(watchedMovies[i]);
+		int idFavouriteFilm = std::stoi(favouriteMovies[i]);
 		auto film = m_storage.m_db.get<Film>(idFavouriteFilm);
 		std::cout << "\t\t\t" << film.GetTitle() << std::endl;
 	}
@@ -470,10 +359,10 @@ void UserInterface::PrintUserProfile()
 	m_option = _getch();
 
 	switch (m_option) {
-	case 8:
+	case PRESS_BACKSPACE:
 		LoggedInMenu();
 		break;
-	case 27:
+	case PRESS_ESC:
 		exit(0);
 	default:
 		LoggedInMenu();
@@ -499,10 +388,10 @@ void UserInterface::AddToWatched(const Film& film)
 	m_option = _getch();
 
 	switch (m_option) {
-	case 8:
+	case PRESS_BACKSPACE:
 		LoggedInMenu();
 		break;
-	case 27:
+	case PRESS_ESC:
 		exit(0);
 	default:
 		LoggedInMenu();
@@ -525,15 +414,72 @@ void UserInterface::AddToFavourites(const Film& film)
 	m_option = _getch();
 
 	switch (m_option) {
-	case 8:
+	case PRESS_BACKSPACE:
 		LoggedInMenu();
 		break;
-	case 27:
+	case PRESS_ESC:
 		exit(0);
 	default:
 		LoggedInMenu();
 		break;
 	}
+}
+
+std::vector<Film> UserInterface::ManageLoopSimilarity(const std::vector<Film>& properVectorOfFilms)
+{
+	int movieNumber;
+	std::cout << "\t\tSelect a movie: ";
+	std::cin >> movieNumber;
+
+	while (movieNumber <= 0 || movieNumber > properVectorOfFilms.size())
+	{
+		std::cout << "\t\t" << movieNumber << " is an invalid input! Please select from the list of movies available!";
+		std::cout << std::endl;
+		std::cout << "\t\tSelect a movie: ";
+		std::cin >> movieNumber;
+	}
+
+	m_film = m_storage.SelectFilmFromCurrentList(properVectorOfFilms, movieNumber);
+	PrintFilmPage();
+
+	m_option = -1;
+
+	std::cout << "\t\t------------------------------------------------------\n";
+	std::cout << "\t\tSimilar to this:\n";
+
+
+	std::vector<std::string> vectorOfCategoriesForFilm = AppStorage::split(m_film.GetGenres(), ", ");
+
+	std::vector<Film> films = m_storage.GetFilmsByCategory(vectorOfCategoriesForFilm, m_film.GetAgeRange());
+
+	KMeans kmeans(vectorOfCategoriesForFilm.size());
+	kmeans.Run(films);
+
+	std::vector<Film> similarFilms = kmeans.GetSimilarFilms(m_film);
+	int countMax10FilmsPerRecommendation = 1;
+	for (const auto& simFilm : similarFilms)
+	{
+		if (countMax10FilmsPerRecommendation == 11)
+			break;
+		std::cout << "\t\t\t" << countMax10FilmsPerRecommendation << ". " << simFilm.GetTitle() << std::endl;
+		std::cout << "\t\t\t\tAge range: " << simFilm.GetAgeRange() << std::endl;
+		std::cout << "\t\t\t\tGenres: " << simFilm.GetGenres() << std::endl;
+		countMax10FilmsPerRecommendation++;
+	}
+
+	std::cout << "\t\t------------------------------------------------------\n";
+
+	std::cout << "\t\t1. Leave review." << std::endl;
+	std::cout << "\t\t2. Add to watched." << std::endl;
+	std::cout << "\t\t3. Add to favourites." << std::endl;
+	std::cout << "\t\t4. Select a movie from recomanded ones." << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
+
+	m_option = _getch();
+
+	return similarFilms;
 }
 
 void UserInterface::PrintMenu()

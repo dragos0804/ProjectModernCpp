@@ -40,6 +40,8 @@ private:
 
     void AddToFavourites(const Film& film);
 
+    std::vector<Film> ManageLoopSimilarity(const std::vector<Film>& properVectorOfFilms);
+
 private:
     User m_user;
     Film m_film;
