@@ -3,12 +3,12 @@
 
 void UserInterface::StartUpMenu()
 {
-	option = 1;
+	m_option = 1;
 	PrintMenu();
 
-	option = _getch();
+	m_option = _getch();
 
-	switch (option) {
+	switch (m_option) {
 		// 1 == 49 in ASCII table
 	case 49:
 		RegisterMenu();
@@ -33,9 +33,9 @@ void UserInterface::RegisterMenu()
 	std::cout << "\t\tRegister a new account" << std::endl;
 	std::cout << "\t\tPress BACKSPACE to go back or any other key to continue" << std::endl;
 
-	option = _getch();
+	m_option = _getch();
 
-	switch (option) {
+	switch (m_option) {
 	case 8:
 		StartUpMenu();
 		break;
@@ -52,7 +52,7 @@ void UserInterface::RegisterMenu()
 		// any other key will not change anything
 	default:
 		Register r;
-		r.CreateUser(storage);
+		r.CreateUser(m_storage);
 		LoginMenu();
 		break;
 	}
@@ -65,9 +65,9 @@ void UserInterface::LoginMenu()
 	std::cout << "\t\tLog into your account" << std::endl;
 	std::cout << "\t\tPress BACKSPACE to go back or any other key to continue" << std::endl;
 
-	option = _getch();
+	m_option = _getch();
 
-	switch (option) {
+	switch (m_option) {
 	case 8:
 		StartUpMenu();
 		break;
@@ -105,7 +105,7 @@ void UserInterface::LoginMenu()
 		}
 
 		Login l(username, password);
-		bool verifiedLoginStatus = l.VerifyMatchUserToPassword(storage, username, password, user);
+		bool verifiedLoginStatus = l.VerifyMatchUserToPassword(m_storage, username, password, m_user);
 
 		if (verifiedLoginStatus) {
 			LoggedInMenu();
@@ -120,12 +120,12 @@ void UserInterface::LoginMenu()
 
 void UserInterface::LoggedInMenu()
 {
-	option = 2;
+	m_option = 2;
 	PrintMenu();
 
-	option = _getch();
+	m_option = _getch();
 
-	switch (option) {
+	switch (m_option) {
 	case 49:
 		SettingsMenu();
 		break;
@@ -148,14 +148,14 @@ void UserInterface::LoggedInMenu()
 
 void UserInterface::SettingsMenu()
 {
-	option = 3;
+	m_option = 3;
 	PrintMenu();
 
 	std::cout << "\t\tPress BACKSPACE to go back or choose an option" << std::endl;
 
-	option = _getch();
+	m_option = _getch();
 
-	switch (option) {
+	switch (m_option) {
 	case 8:
 		LoggedInMenu();
 		break;
@@ -187,7 +187,7 @@ void UserInterface::SearchForAFilm()
 	}
 
 	int contor = 0;
-	std::vector<Film> searchedFilms = storage.SearchFilmByTitle(title);
+	std::vector<Film> searchedFilms = m_storage.SearchFilmByTitle(title);
 	while (searchedFilms.size() == 0)
 	{
 		std::cout << "\t\tSorry, the movie you're trying to reach can't be found!" << std::endl;
@@ -199,7 +199,7 @@ void UserInterface::SearchForAFilm()
 			std::cout << "\t\t";
 			std::getline(std::cin, title);
 		}
-		searchedFilms = storage.SearchFilmByTitle(title);
+		searchedFilms = m_storage.SearchFilmByTitle(title);
 	}
 
 	for (const auto& film : searchedFilms)
@@ -222,10 +222,10 @@ void UserInterface::SearchForAFilm()
 		std::cin >> movieNumber;
 	}
 
-	film = storage.SelectFilmFromCurrentList(searchedFilms, movieNumber);
+	m_film = m_storage.SelectFilmFromCurrentList(searchedFilms, movieNumber);
 	PrintFilmPage();
 
-	option = -1;
+	m_option = -1;
 
 	//		film = storage.SelectFilmFromCurrentList(title, movieNumber);
 
@@ -233,13 +233,13 @@ void UserInterface::SearchForAFilm()
 	std::cout << "\t\tSimilar to this:\n";
 
 
-	std::vector<std::string> vectorOfCategoriesForFilm = AppStorage::split(film.GetGenres(), ", ");
-	std::vector<Film> films = storage.GetFilmsByCategory(vectorOfCategoriesForFilm, film.GetAgeRange());
+	std::vector<std::string> vectorOfCategoriesForFilm = AppStorage::split(m_film.GetGenres(), ", ");
+	std::vector<Film> films = m_storage.GetFilmsByCategory(vectorOfCategoriesForFilm, m_film.GetAgeRange());
 
 	KMeans kmeans(vectorOfCategoriesForFilm.size());
 	kmeans.Run(films);
 
-	std::vector<Film> similarFilms = kmeans.GetSimilarFilms(film);
+	std::vector<Film> similarFilms = kmeans.GetSimilarFilms(m_film);
 	int countMax10FilmsPerRecommendation = 1;
 	for (const auto& simFilm : similarFilms)
 	{
@@ -261,9 +261,9 @@ void UserInterface::SearchForAFilm()
 
 	std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
 
-	option = _getch();
+	m_option = _getch();
 
-	switch (option) {
+	switch (m_option) {
 	case 8:
 		LoggedInMenu();
 		break;
@@ -272,14 +272,14 @@ void UserInterface::SearchForAFilm()
 		int grade;
 		std::cout << "\t\tLeave a grade between 1 and 10 for this film: ";
 		std::cin >> grade;
-		user.leaveReview(film, grade);
-		std::cout << "\t\tThank you! Rating after your review: " << film.GetRating() << std::endl;
-		storage.m_db.update(film);
+		m_user.leaveReview(m_film, grade);
+		std::cout << "\t\tThank you! Rating after your review: " << m_film.GetRating() << std::endl;
+		m_storage.m_db.update(m_film);
 		std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
 
-		option = _getch();
+		m_option = _getch();
 
-		switch (option) {
+		switch (m_option) {
 		case 8:
 			LoggedInMenu();
 			break;
@@ -292,10 +292,10 @@ void UserInterface::SearchForAFilm()
 		break;
 	}
 	case 50:
-		AddToWatched(film);
+		AddToWatched(m_film);
 		break;
 	case 51:
-		AddToFavourites(film);
+		AddToFavourites(m_film);
 		break;
 	case 52:
 	{
@@ -310,7 +310,7 @@ void UserInterface::SearchForAFilm()
 			std::cin >> movieNumber;
 		}
 
-		film = storage.SelectFilmFromCurrentList(similarFilms, movieNumber);
+		m_film = m_storage.SelectFilmFromCurrentList(similarFilms, movieNumber);
 		PrintFilmPage();
 		std::cout << "\n\n";
 		std::cout << "\t\t1. Leave review." << std::endl;
@@ -321,9 +321,9 @@ void UserInterface::SearchForAFilm()
 
 		std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
 
-		option = _getch();
+		m_option = _getch();
 
-		switch (option) {
+		switch (m_option) {
 		case 8:
 			LoggedInMenu();
 			break;
@@ -332,14 +332,14 @@ void UserInterface::SearchForAFilm()
 			int grade;
 			std::cout << "\t\tLeave a grade between 1 and 10 for this film: ";
 			std::cin >> grade;
-			user.leaveReview(film, grade);
-			std::cout << "\t\tThank you! Rating after your review: " << film.GetRating() << std::endl;
-			storage.m_db.update(film);
+			m_user.leaveReview(m_film, grade);
+			std::cout << "\t\tThank you! Rating after your review: " << m_film.GetRating() << std::endl;
+			m_storage.m_db.update(m_film);
 			std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
 
-			option = _getch();
+			m_option = _getch();
 
-			switch (option) {
+			switch (m_option) {
 			case 8:
 				LoggedInMenu();
 				break;
@@ -352,10 +352,10 @@ void UserInterface::SearchForAFilm()
 			break;
 		}
 		case 50:
-			AddToWatched(film);
+			AddToWatched(m_film);
 			break;
 		case 51:
-			AddToFavourites(film);
+			AddToFavourites(m_film);
 			break;
 		case 27:
 			exit(0);
@@ -383,11 +383,11 @@ void UserInterface::ChangePassword()
 	std::cout << "\t\tNew Password: ";
 	std::getline(std::cin, password);
 
-	user.SetPassword(password);
+	m_user.SetPassword(password);
 
 	Register r;
 	if (r.PasswordValidation(password)) {
-		storage.m_db.update(user);
+		m_storage.m_db.update(m_user);
 		std::cout << "\t\tPassword Changed Succesfully!";
 		Sleep(2500);
 	}
@@ -404,12 +404,12 @@ void UserInterface::ChangeUsername()
 	std::cout << "\t\tNew Username: ";
 	std::getline(std::cin, username);
 
-	user.SetUsername(username);
+	m_user.SetUsername(username);
 
 	Register r;
-	if (r.UsernameValidation(username, storage)) {
+	if (r.UsernameValidation(username, m_storage)) {
 		std::cout << "\t\tUsername Changed Succesfully!";
-		storage.m_db.update(user);
+		m_storage.m_db.update(m_user);
 		Sleep(2500);
 	}
 	else {
@@ -427,36 +427,36 @@ void UserInterface::PrintFilmPage()
 	std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
 	std::cout << "\t\t*******************************************************\n\n";
 
-	std::cout << "\t\t" << film.GetTitle() << std::endl;
+	std::cout << "\t\t" << m_film.GetTitle() << std::endl;
 	std::cout << "\t\t+----------------------------------------------------+\n";
 
-	std::cout << "\t\t" << "Type: " << film.GetType() << std::endl;
-	std::cout << "\t\t" << "Duration: " << film.GetDuration() << std::endl;
-	std::cout << "\t\t" << "Age Restriction: " << film.GetAgeRange() << std::endl;
-	std::cout << "\t\t" << "Cast: " << film.GetCast() << std::endl;
-	std::cout << "\t\t" << "Genres: " << film.GetGenres() << std::endl;
-	std::cout << "\t\t" << "Rating: " << film.GetRating() << " (" << film.GetNumberOfReviews() << " reviews) " << std::endl;
-	std::cout << "\t\t" << "Description: " << film.GetDescription() << "\n\n";
+	std::cout << "\t\t" << "Type: " << m_film.GetType() << std::endl;
+	std::cout << "\t\t" << "Duration: " << m_film.GetDuration() << std::endl;
+	std::cout << "\t\t" << "Age Restriction: " << m_film.GetAgeRange() << std::endl;
+	std::cout << "\t\t" << "Cast: " << m_film.GetCast() << std::endl;
+	std::cout << "\t\t" << "Genres: " << m_film.GetGenres() << std::endl;
+	std::cout << "\t\t" << "Rating: " << m_film.GetRating() << " (" << m_film.GetNumberOfReviews() << " reviews) " << std::endl;
+	std::cout << "\t\t" << "Description: " << m_film.GetDescription() << "\n\n";
 }
 
 void UserInterface::PrintUserProfile()
 {
 	PrintMenu();
-	std::cout << "\t\t" << "Name: " << user.GetName() << std::endl;
-	std::cout << "\t\t" << "Username: " << user.GetUsername() << std::endl;
-	std::cout << "\t\t" << "Date of birth: " << user.GetDateOfBirth() << std::endl;
-	std::cout << "\t\t" << "Country: " << user.GetCountry() << std::endl;
-	std::cout << "\t\t" << "Email: " << user.GetEmail() << std::endl;
-	std::cout << "\t\t" << "Watched movies: " << user.GetWatchedMovies() << std::endl;
-	std::cout << "\t\t" << "Favourite movies: " << user.GetFavouriteMovies() << std::endl;
+	std::cout << "\t\t" << "Name: " << m_user.GetName() << std::endl;
+	std::cout << "\t\t" << "Username: " << m_user.GetUsername() << std::endl;
+	std::cout << "\t\t" << "Date of birth: " << m_user.GetDateOfBirth() << std::endl;
+	std::cout << "\t\t" << "Country: " << m_user.GetCountry() << std::endl;
+	std::cout << "\t\t" << "Email: " << m_user.GetEmail() << std::endl;
+	std::cout << "\t\t" << "Watched movies: " << m_user.GetWatchedMovies() << std::endl;
+	std::cout << "\t\t" << "Favourite movies: " << m_user.GetFavouriteMovies() << std::endl;
 
 	std::cout << std::endl << std::endl;
 
 	std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
 
-	option = _getch();
+	m_option = _getch();
 
-	switch (option) {
+	switch (m_option) {
 	case 8:
 		LoggedInMenu();
 		break;
@@ -471,21 +471,56 @@ void UserInterface::PrintUserProfile()
 void UserInterface::AddToWatched(const Film& film)
 {
 	//set the string that is actually stored in the database with the id of the current film 
-	user.SetWatched(user.GetWatchedMovies() + " " + std::to_string(film.GetId()));
-	storage.m_db.update(user);
+
+	m_user.SetWatched(m_user.GetWatchedMovies() + " " + std::to_string(film.GetId()));
+	m_storage.m_db.update(m_user);
 	//also, modify in the vector of shared pointers that this film is part of the user's watched movies
 	std::shared_ptr<const Film> filmPtr = std::make_shared<Film>(film);
 
-	user.AddToWatchedVector(filmPtr);
+	m_user.AddToWatchedVector(filmPtr);
+
+	std::cout << std::endl << std::endl;
+
+	std::cout << "\t\tSuccessfully added the movie to your watched list" << std::endl;
+
+	m_option = _getch();
+
+	switch (m_option) {
+	case 8:
+		LoggedInMenu();
+		break;
+	case 27:
+		exit(0);
+	default:
+		LoggedInMenu();
+		break;
+	}
 }
 
 void UserInterface::AddToFavourites(const Film& film)
 {
-    user.SetFavourites(user.GetFavouriteMovies() + " " + std::to_string(film.GetId()));
-    storage.m_db.update(user);
+    m_user.SetFavourites(m_user.GetFavouriteMovies() + " " + std::to_string(film.GetId()));
+    m_storage.m_db.update(m_user);
 	std::shared_ptr<const Film> filmPtr = std::make_shared<Film>(film);
 
-    user.AddToFavouritesVector(filmPtr);
+    m_user.AddToFavouritesVector(filmPtr);
+
+	std::cout << std::endl << std::endl;
+
+	std::cout << "\t\tSuccessfully added the movie to your favourites list" << std::endl;
+
+	m_option = _getch();
+
+	switch (m_option) {
+	case 8:
+		LoggedInMenu();
+		break;
+	case 27:
+		exit(0);
+	default:
+		LoggedInMenu();
+		break;
+	}
 }
 
 void UserInterface::PrintMenu()
@@ -495,7 +530,7 @@ void UserInterface::PrintMenu()
 	std::cout << "\t\t *         MOVIE RECOMMENDATION APPLICATION          * \n";
 	std::cout << "\t\t*******************************************************\n\n";
 
-	switch (option)
+	switch (m_option)
 	{
 	case 1:
 		std::cout << "\t\t+----------------------------------------------------+\n";

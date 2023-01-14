@@ -34,9 +34,9 @@ private:
     void AddToFavourites(const Film& film);
 
 private:
-    User user;
-    Film film;
-    AppStorage storage;
-    int option = -1;
+    User m_user;
+    Film m_film;
+    AppStorage m_storage;
+    int m_option = -1;
 };
 
