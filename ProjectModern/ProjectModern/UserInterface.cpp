@@ -111,6 +111,7 @@ void UserInterface::LoginMenu()
 			using namespace sqlite_orm;
 
 			std::vector<std::string> filmsIDs = AppStorage::split(m_user.GetWatchedMovies(), " ");
+			filmsIDs.erase(filmsIDs.begin());
 			for (const auto& id : filmsIDs)
 			{
 				std::shared_ptr<const Film> filmPtr = std::make_shared<Film>((m_storage.m_db.get_all<Film>(where(c(&Film::GetId) == std::stoi(id))))[0]);
@@ -118,6 +119,7 @@ void UserInterface::LoginMenu()
 			}
 
 			filmsIDs = AppStorage::split(m_user.GetFavouriteMovies(), " ");
+			filmsIDs.erase(filmsIDs.begin());
 			for (const auto& id : filmsIDs)
 			{
 				std::shared_ptr<const Film> filmPtr = std::make_shared<Film>((m_storage.m_db.get_all<Film>(where(c(&Film::GetId) == std::stoi(id))))[0]);
