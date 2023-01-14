@@ -281,7 +281,7 @@ void UserInterface::SearchForAFilm()
 		AddToWatched(film);
 		break;
 	case 51:
-		//AddToFavourites(film);
+		AddToFavourites(film);
 		break;
 	case 52:
 	{
@@ -341,7 +341,7 @@ void UserInterface::SearchForAFilm()
 			AddToWatched(film);
 			break;
 		case 51:
-			//AddToFavourites(film);
+			AddToFavourites(film);
 			break;
 		case 27:
 			exit(0);
