@@ -36,6 +36,8 @@ private:
 
     void PrintUserProfile();
 
+    void RateThisFilm();
+
     void AddToWatched(const Film& film);
 
     void AddToFavourites(const Film& film);

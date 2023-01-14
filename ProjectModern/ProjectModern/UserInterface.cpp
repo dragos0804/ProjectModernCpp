@@ -221,26 +221,8 @@ movie_select:
 		break;
 	case PRESS_1:
 	{
-		int grade;
-		std::cout << "\t\tLeave a grade between 1 and 10 for this film: ";
-		std::cin >> grade;
-		m_user.leaveReview(m_film, grade);
-		std::cout << "\t\tThank you! Rating after your review: " << m_film.GetRating() << std::endl;
-		m_storage.m_db.update(m_film);
-		std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
-
-		m_option = _getch();
-
-		switch (m_option) {
-		case PRESS_BACKSPACE:
-			LoggedInMenu();
-			break;
-		case PRESS_ESC:
-			exit(0);
-		default:
-			LoggedInMenu();
-			break;
-		}
+		RateThisFilm();
+		goto movie_select;
 		break;
 	}
 	case PRESS_2:
@@ -370,6 +352,23 @@ void UserInterface::PrintUserProfile()
 		LoggedInMenu();
 		break;
 	}
+}
+
+void UserInterface::RateThisFilm()
+{
+	int grade;
+	std::cout << "\t\tLeave a grade between 1 and 10 for this film: ";
+	std::cin >> grade;
+	while (!(grade > 0 && grade < 11))
+	{
+		std::cout << "\t\tInvalid range. Leave a grade between 1 and 10, please: ";
+		std::cin >> grade;
+	}
+	m_user.leaveReview(m_film, grade);
+	std::cout << "\t\tThank you! Rating after your review: " << m_film.GetRating() << std::endl;
+	m_storage.m_db.update(m_film);
+	std::cout << "\t\tPress BACKSPACE to go back" << std::endl;
+	m_option = _getch();
 }
 
 void UserInterface::AddToWatched(const Film& film)
