@@ -11,19 +11,16 @@ public:
 
 	void CreateUser(AppStorage& appStorage);
 
-	bool EmailValidation(const std::string& email, AppStorage& appStorage);
-
-	bool CheckUniqueEmail(const std::string& email, AppStorage& appStorage);
-	
 	bool UsernameValidation(const std::string& username, AppStorage& appStorage);
-
-	bool CheckUniqueUsername(const std::string& username, AppStorage& appStorage);
-
 	bool PasswordValidation(const std::string& password);
 
+
+private:
+
+	bool EmailValidation(const std::string& email, AppStorage& appStorage);
+	bool CheckUniqueEmail(const std::string& email, AppStorage& appStorage);
+	bool CheckUniqueUsername(const std::string& username, AppStorage& appStorage);
 	std::string PasswordSecurityLevel(const int length, const uint8_t capital_letters, const uint8_t digits, bool special_characters);
-
 	bool AgeValidation(const std::string& dateOfBirth);
-
 };
 
