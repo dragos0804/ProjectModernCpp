@@ -8,6 +8,9 @@
     <ClCompile Include="User_test.cpp">
       <Filter>Test_source</Filter>
     </ClCompile>
+    <ClCompile Include="Cluster_test.cpp">
+      <Filter>Test_source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

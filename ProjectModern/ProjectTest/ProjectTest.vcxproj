@@ -36,6 +36,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cluster_test.cpp" />
     <ClCompile Include="Film_test.cpp" />
     <ClCompile Include="User_test.cpp" />
     <ClCompile Include="pch.cpp">
@@ -91,7 +92,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)ProjectModern\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>User.obj;Film.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>User.obj;Film.obj;Cluster.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
