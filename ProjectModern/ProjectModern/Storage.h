@@ -52,7 +52,6 @@ using Storage = decltype(createStorage(""));
 class AppStorage
 {
 public:
-	//bool Initialize(const std::string& csvDataFilePath);
 	void AddUser(User& user);
 	void AddFilm(Film& film);
 	std::vector<Film> SearchFilmByTitle(const std::string& title);
@@ -62,9 +61,6 @@ public:
 	std::vector<Film> GetFilmsByCategoryAndAgeRangeAndYear(const std::vector<std::string>& categories, const std::string& ageRange, const int& releaseYear);
 	
 	static std::vector<std::string> split(const std::string& str, const std::string& delim);
-
-private:
-	//void PopulateStorage(const std::string& dataFilePath);
 
 public:
 	Storage m_db = createStorage(dbFile);
