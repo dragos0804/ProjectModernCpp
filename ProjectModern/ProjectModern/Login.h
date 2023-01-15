@@ -2,18 +2,18 @@
 #include <limits>
 #include <string>
 #include <dos.h>
-#include "ILogin.h"
+#include "Storage.h"
 #include "User.h"
 
-class Login : public ILogin
+class Login 
 {
 public:
 	Login(std::string usernameInput, std::string passwordInput);
 
-	std::string GetUsernameInput() const override;
-	std::string GetPasswordInput() const override;
+	std::string GetUsernameInput() const;
+	std::string GetPasswordInput() const;
 
-	bool VerifyMatchUserToPassword(AppStorage& appStorage, const std::string& usernameInput, const std::string& passwordInput, User& SavedUser) override;
+	bool VerifyMatchUserToPassword(AppStorage& appStorage, const std::string& usernameInput, const std::string& passwordInput, User& SavedUser);
 
 private:
 	std::string m_usernameInput;

@@ -154,8 +154,6 @@
   <ItemGroup>
     <ClInclude Include="Cluster.h" />
     <ClInclude Include="Film.h" />
-    <ClInclude Include="ILogin.h" />
-    <ClInclude Include="IRegister.h" />
     <ClInclude Include="KMeans.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="Parser.h" />

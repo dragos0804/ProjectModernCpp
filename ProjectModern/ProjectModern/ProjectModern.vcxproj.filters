@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\API">
-      <UniqueIdentifier>{96fd2b1d-655e-4dbe-85e8-d0bf2ed3da6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Recommendation">
       <UniqueIdentifier>{83498116-eb89-4dd7-a9db-0e7ef2f71ad6}</UniqueIdentifier>
     </Filter>
@@ -70,12 +67,6 @@
     </ClInclude>
     <ClInclude Include="Register.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ILogin.h">
-      <Filter>Header Files\API</Filter>
-    </ClInclude>
-    <ClInclude Include="IRegister.h">
-      <Filter>Header Files\API</Filter>
     </ClInclude>
     <ClInclude Include="UserInterface.h">
       <Filter>Header Files</Filter>
