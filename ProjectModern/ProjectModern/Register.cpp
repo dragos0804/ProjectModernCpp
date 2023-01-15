@@ -37,6 +37,23 @@ void Register::CreateUser(AppStorage& appStorage)
 	user.SetUsername(str);
 	std::cout << std::endl;
 
+	std::cout << "\t\tSet up a password (minimum 7 characters, one digit and one capital letter): ";
+	std::getline(std::cin, str);
+
+	while (Validate::IsBlankField(str) || Validate::ContainsOnlyWhiteSpaces(str))
+	{
+		std::cout << "\t\tSet up a password (minimum 7 characters, one digit and one capital letter): ";
+		std::getline(std::cin, str);
+	}
+
+
+	while (PasswordValidation(str) == false)
+	{
+		std::getline(std::cin, str);
+	}
+	user.SetPassword(str);
+	std::cout << std::endl;
+
 	std::cout << "\t\tEnter your date of birth (YYYY-MM-DD): ";
 	std::getline (std::cin, str);
 
@@ -70,23 +87,6 @@ void Register::CreateUser(AppStorage& appStorage)
 		std::getline (std::cin, str);
 	}
 	user.SetEmail(str);
-	std::cout << std::endl;
-
-	std::cout << "\t\tSet up a password (minimum 7 characters, one digit and one capital letter): ";
-	std::getline (std::cin, str);
-
-	while (Validate::IsBlankField(str) || Validate::ContainsOnlyWhiteSpaces(str))
-	{
-		std::cout << "\t\tSet up a password (minimum 7 characters, one digit and one capital letter): ";
-		std::getline(std::cin, str);
-	}
-
-
-	while (PasswordValidation(str) == false)
-	{
-		std::getline (std::cin, str);
-	}
-	user.SetPassword(str);
 	std::cout << std::endl;
 
 	std::cout << "\t\tEnter your country of origin: ";
