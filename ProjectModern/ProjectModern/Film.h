@@ -93,7 +93,7 @@ private:
 
 	float m_rating;
 	
-	std::string m_type; //should be changed to bool once we know we are doing with the set functions
+	std::string m_type; 
 	std::string m_title;
 	std::string m_ageRange;
 	std::string m_description;
@@ -105,8 +105,4 @@ private:
 	std::string m_cast;
 	std::string m_director;
 	std::string m_country;
-
-	//add getter setter for description, country, ageRange
-	//add description to constructor
-	//decomment make_table
 };

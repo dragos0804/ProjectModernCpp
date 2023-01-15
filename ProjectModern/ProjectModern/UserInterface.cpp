@@ -153,14 +153,14 @@ void UserInterface::LoggedInMenu()
 		SettingsMenu();
 		break;
 	case PRESS_2:
+		PrintUserProfile();
+	case PRESS_3:
 		//switch user
 		LoginMenu();
 		break;
-	case PRESS_3:
+	case PRESS_4:
 		SearchForAFilm();
 		break;
-	case PRESS_4:
-		PrintUserProfile();
 	case PRESS_ESC:
 		exit(0);
 	default:
@@ -622,9 +622,9 @@ void UserInterface::PrintMenu()
 		std::cout << "\t\t|                You are now logged in!              |\n";
 		std::cout << "\t\t|                                                    |\n";
 		std::cout << "\t\t|                  1. Settings                       |\n";
-		std::cout << "\t\t|                  2. Switch Account                 |\n";
-		std::cout << "\t\t|                  3. Search for a film              |\n";
-		std::cout << "\t\t|                  4. Your profile                   |\n";
+		std::cout << "\t\t|                  2. Your Profile                   |\n";
+		std::cout << "\t\t|                  3. Switch Account                 |\n";
+		std::cout << "\t\t|                  4. Search for a film              |\n";
 		std::cout << "\t\t|                                                    |\n";
 		std::cout << "\t\t+----------------------------------------------------+\n\n";
 		break;
