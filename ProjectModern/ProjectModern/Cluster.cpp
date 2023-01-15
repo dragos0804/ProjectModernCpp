@@ -40,6 +40,11 @@ void Cluster::RemovePoints()
 	m_points.clear();
 }
 
+std::vector<Position> Cluster::GetPoints()
+{
+	return m_points;
+}
+
 Position Cluster::GetPosition() const
 {
 	return m_clusterPosition;

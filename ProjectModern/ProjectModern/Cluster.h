@@ -13,7 +13,7 @@ public:
 	void AddPoint(Position positionPoint);
 	void UpdateClusterPosition();
 	void RemovePoints();
-
+	std::vector<Position> GetPoints();
 	Position GetPosition() const;
 
 private:
